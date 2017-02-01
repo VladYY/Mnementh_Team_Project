@@ -7,6 +7,8 @@ import java.awt.event.KeyListener;
 
 public class Screen extends JPanel implements ActionListener, KeyListener {
 
+    private boolean exitMenu;
+
     Timer timer = new Timer(10, this);
     Player player = new Player(20,20,20,20);
 
@@ -31,15 +33,24 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent k) {
 
         switch (k.getKeyCode()){
-            case KeyEvent.VK_RIGHT: player.setDx(1); break;
-            case KeyEvent.VK_DOWN: player.setDy(1); break;
-            case KeyEvent.VK_LEFT: player.setDx(-1); break;
-            case KeyEvent.VK_UP: player.setDy(-1); break;
+            case KeyEvent.VK_RIGHT: player.setDx(1); this.exitMenu = false; break;
+            case KeyEvent.VK_DOWN: player.setDy(1); this.exitMenu = false; break;
+            case KeyEvent.VK_LEFT: player.setDx(-1); this.exitMenu = false; break;
+            case KeyEvent.VK_UP: player.setDy(-1); this.exitMenu = false; break;
+            case KeyEvent.VK_ENTER: this.exitMenu = true; break;
 
         }
 
     }
-
+public boolean isMenuModeOn()
+    {
+        if (this.exitMenu) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
     public void keyTyped(KeyEvent k) {
 
 
