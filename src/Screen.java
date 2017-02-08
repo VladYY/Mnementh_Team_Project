@@ -7,10 +7,14 @@ import java.awt.event.KeyListener;
 
 public class Screen extends JPanel implements ActionListener, KeyListener {
 
-    private boolean exitMenu;
-
     Timer timer = new Timer(10, this);
-    Player player = new Player(20,20,20,20);
+    Player player = new Player(25,25,20,20);
+
+    Player HP1 = new Player(5,0,10,20);
+    Player HP2 = new Player(20,0,10,20);
+    Player HP3 = new Player(35,0,10,20);
+    Player HP4 = new Player(50,0,10,20);
+    Player HP5 = new Player(65,0,10,20);
 
     public Screen() {
         addKeyListener(this);
@@ -28,29 +32,32 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 
         player.draw(graphics);
 
+        graphics.setColor(Color.GREEN);
+
+        switch (HP)
+        {
+            case 5: HP5.draw(graphics);
+            case 4: HP4.draw(graphics);
+            case 3: HP3.draw(graphics);
+            case 2: HP2.draw(graphics);
+            case 1: HP1.draw(graphics);break;
+        }
     }
+
+
 
     public void keyPressed(KeyEvent k) {
 
         switch (k.getKeyCode()){
-            case KeyEvent.VK_RIGHT: player.setDx(1); this.exitMenu = false; break;
-            case KeyEvent.VK_DOWN: player.setDy(1); this.exitMenu = false; break;
-            case KeyEvent.VK_LEFT: player.setDx(-1); this.exitMenu = false; break;
-            case KeyEvent.VK_UP: player.setDy(-1); this.exitMenu = false; break;
-            case KeyEvent.VK_ENTER: this.exitMenu = true; break;
+            case KeyEvent.VK_RIGHT: player.setDx(1); break;
+            case KeyEvent.VK_DOWN: player.setDy(1); break;
+            case KeyEvent.VK_LEFT: player.setDx(-1); break;
+            case KeyEvent.VK_UP: player.setDy(-1); break;
 
         }
 
     }
-public boolean isMenuModeOn()
-    {
-        if (this.exitMenu) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+
     public void keyTyped(KeyEvent k) {
 
 
@@ -58,5 +65,22 @@ public boolean isMenuModeOn()
 
     public void keyReleased(KeyEvent k) {
 
+    }
+
+    //Player HP
+    public int HP = 5;
+
+    public int HP(int HPinput, boolean nest, boolean enemy)
+    {
+        if (nest)
+        {
+            HP = HPinput - 2;
+        }
+
+        if (enemy)
+        {
+            HP = HPinput - 1;
+        }
+        return HP;
     }
 }
