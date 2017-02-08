@@ -24,19 +24,19 @@ public class Player extends Rectangle {
     }
     
     //Player HP
-    static int HP = 5;
+    static int hp = 5;
 
-    public static int calculateHealthPoints(int HPinput, boolean nest, boolean enemy)
+    public static int calculateHealthPoints(int inputHP, boolean nest, boolean enemy)
     {
         if (nest)
         {
-            HP = HPinput - 2;
+            hp = inputHP - 2;
         }
 
         if (enemy)
         {
-            HP = HPinput - 1;
+            hp = inputHP - 1;
         }
-        return HP;
+        return hp;
     }
 }
