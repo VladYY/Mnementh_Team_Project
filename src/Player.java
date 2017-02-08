@@ -22,4 +22,21 @@ public class Player extends Rectangle {
     public void setDy(int y) {
         this.y = this.y + (y * 4);
     }
+    
+    //Player HP
+    static int HP = 5;
+
+    public static int calculateHealthPoints(int HPinput, boolean nest, boolean enemy)
+    {
+        if (nest)
+        {
+            HP = HPinput - 2;
+        }
+
+        if (enemy)
+        {
+            HP = HPinput - 1;
+        }
+        return HP;
+    }
 }
