@@ -34,7 +34,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 
         graphics.setColor(Color.GREEN);
 
-        switch (Player.calculateHealthPoints(Player.HP, false, false))
+        switch (Player.calculateHealthPoints(Player.hp, false, false))
         {
             case 5: HP5.draw(graphics);
             case 4: HP4.draw(graphics);
