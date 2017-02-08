@@ -30,6 +30,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     public void paint(Graphics graphics) {
         graphics.clearRect(0,0, getWidth(), getHeight());
 
+        graphics.setColor(Color.ORANGE);
         player.draw(graphics);
 
         graphics.setColor(Color.GREEN);
