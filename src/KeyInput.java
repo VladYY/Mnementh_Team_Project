@@ -1,5 +1,6 @@
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 public class KeyInput extends KeyAdapter {
 
@@ -10,7 +11,11 @@ public class KeyInput extends KeyAdapter {
     }
 
     public void keyPressed(KeyEvent k) {
-        game.keyPressed(k);
+        try {
+            game.keyPressed(k);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void keyReleased(KeyEvent k) {

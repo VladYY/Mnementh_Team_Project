@@ -20,6 +20,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage dragonImage = null;
 
     private Player player;
+    private Controller controller;
 
     public void init() {
         BufferedImageLoader loader = new BufferedImageLoader();
@@ -32,6 +33,7 @@ public class Game extends Canvas implements Runnable {
         addKeyListener(new KeyInput(this));
 
         player = new Player(200, 200, this);
+        controller = new Controller(this);
     }
 
     private synchronized void start() {
@@ -90,6 +92,7 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         player.tick();
+        controller.tick();
     }
 
 
@@ -107,6 +110,7 @@ public class Game extends Canvas implements Runnable {
         graphics.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 
         player.render(graphics);
+        controller.render(graphics);
 
         graphics.dispose();
         bs.show();
@@ -114,17 +118,26 @@ public class Game extends Canvas implements Runnable {
     }
 
     //Movement
-    public void keyPressed(KeyEvent k) {
+
+    public static int direction;
+
+    public void keyPressed(KeyEvent k) throws IOException {
         int key = k.getKeyCode();
 
         if (key == KeyEvent.VK_RIGHT) {
             player.setVelX(5);
+            direction = 1;
         } else if (key == KeyEvent.VK_LEFT) {
             player.setVelX(-5);
+            direction = 2;
         } else if (key == KeyEvent.VK_DOWN) {
             player.setVelY(5);
+            direction = 3;
         } else if (key == KeyEvent.VK_UP) {
             player.setVelY(-5);
+            direction = 4;
+        } else if (key == KeyEvent.VK_SPACE) {
+            controller.addFire(new Fire(player.getX(), player.getY(),direction, this ));
         }
     }
 
