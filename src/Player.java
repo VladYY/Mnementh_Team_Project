@@ -1,42 +1,53 @@
-
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
-public class Player extends Rectangle {
-    private int x, y;
+public class Player {
+    private double x, y;
+    private double velX = 0;
+    private double velY = 0;
 
-    public Player(int x, int y, int width, int height) {
+    private BufferedImage player;
+
+    public Player(double x, double y, Game game) {
         this.x = x;
         this.y = y;
-        setBounds(x, y, width, height);
+
+        DragonImage dragonImage = new DragonImage(game.getDragonImage());
+
+        player = dragonImage.grabImage();
     }
 
-    public void draw(Graphics graphics) {
-        graphics.fillRect(this.x, this.y, this.width, this.height);
-
+    public void tick() {
+        x += velX;
+        y += velY;
     }
 
-    public void setDx(int x) {
-        this.x = this.x + (x * 4);
+    public void render(Graphics graphics) {
+        graphics.drawImage(player, (int) x, (int) y, null);
     }
 
-    public void setDy(int y) {
-        this.y = this.y + (y * 4);
+    public double getX() {
+        return x;
     }
-    
-    //Player HP
-    static int hp = 5;
 
-    public static int calculateHealthPoints(int inputHP, boolean nest, boolean enemy)
-    {
-        if (nest)
-        {
-            hp = inputHP - 2;
-        }
-
-        if (enemy)
-        {
-            hp = inputHP - 1;
-        }
-        return hp;
+    public double getY() {
+        return y;
     }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void setVelX(double velX) {
+        this.velX = velX;
+    }
+
+    public void setVelY(double velY) {
+        this.velY = velY;
+    }
+
 }
