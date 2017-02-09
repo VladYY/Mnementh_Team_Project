@@ -20,7 +20,20 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage dragonImage = null;
 
     private Player player;
+<<<<<<< HEAD
     private Controller controller;
+=======
+    private Menu menu;
+
+    public static enum STATE {
+        MENU,
+        GAME
+    }
+
+    ;
+
+    public static STATE State = STATE.MENU;
+>>>>>>> origin/master
 
     public void init() {
         BufferedImageLoader loader = new BufferedImageLoader();
@@ -31,9 +44,14 @@ public class Game extends Canvas implements Runnable {
         }
 
         addKeyListener(new KeyInput(this));
+        this.addMouseListener(new MouseInput());
 
         player = new Player(200, 200, this);
+<<<<<<< HEAD
         controller = new Controller(this);
+=======
+        menu = new Menu();
+>>>>>>> origin/master
     }
 
     private synchronized void start() {
@@ -91,8 +109,15 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
+<<<<<<< HEAD
         player.tick();
         controller.tick();
+=======
+
+        if (State == STATE.GAME) {
+            player.tick();
+        }
+>>>>>>> origin/master
     }
 
 
@@ -108,10 +133,18 @@ public class Game extends Canvas implements Runnable {
         Graphics graphics = bs.getDrawGraphics();
 
         graphics.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+<<<<<<< HEAD
 
         player.render(graphics);
         controller.render(graphics);
 
+=======
+        if (State == STATE.GAME) {
+            player.render(graphics);
+        } else if (State == STATE.MENU) {
+            menu.render(graphics);
+        }
+>>>>>>> origin/master
         graphics.dispose();
         bs.show();
 
@@ -144,14 +177,16 @@ public class Game extends Canvas implements Runnable {
     public void keyReleased(KeyEvent k) {
         int key = k.getKeyCode();
 
-        if (key == KeyEvent.VK_RIGHT) {
-            player.setVelX(0);
-        } else if (key == KeyEvent.VK_LEFT) {
-            player.setVelX(0);
-        } else if (key == KeyEvent.VK_DOWN) {
-            player.setVelY(0);
-        } else if (key == KeyEvent.VK_UP) {
-            player.setVelY(0);
+        if (State == STATE.GAME) {
+            if (key == KeyEvent.VK_RIGHT) {
+                player.setVelX(0);
+            } else if (key == KeyEvent.VK_LEFT) {
+                player.setVelX(0);
+            } else if (key == KeyEvent.VK_DOWN) {
+                player.setVelY(0);
+            } else if (key == KeyEvent.VK_UP) {
+                player.setVelY(0);
+            }
         }
     }
 
