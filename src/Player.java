@@ -20,6 +20,19 @@ public class Player {
     public void tick() {
         x += velX;
         y += velY;
+
+        if (x <= 0){
+            x = 0;
+        }
+        if (x >= Game.WIDTH * 2 - 50){
+            x = (Game.WIDTH * 2) - 50;
+        }
+        if (y <= 0){
+            y = 0;
+        }
+        if (y >= Game.HEIGHT * 2 - 50){
+            y = Game.HEIGHT * 2 - 50;
+        }
     }
 
     public void render(Graphics graphics) {
