@@ -5,6 +5,6 @@ import java.awt.*;
  */
 public class PlayerHealth {
 
-    public static int hp = 100 * 3;
+    public static int hp = 100 * 2;
 
 }
