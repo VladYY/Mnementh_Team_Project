@@ -21,14 +21,14 @@ public class MouseInput implements MouseListener {
  public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 120, 350, 100, 50);
  */
 //Play Button
-        if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 220){
+        if (mx >= Game.WIDTH / 2 + 200 && mx <= Game.WIDTH / 2 + 320){
             if (my >= 150 && my <= 200){
                 //Pressed PlayButton
                 Game.State = Game.STATE.GAME;
             }
         }
         //Quit Button
-        if (mx >= Game.WIDTH / 2 + 120 && mx <= Game.WIDTH / 2 + 220){
+        if (mx >= Game.WIDTH / 2 + 200 && mx <= Game.WIDTH / 2 + 320){
             if (my >= 350 && my <= 400){
                 //Pressed QuitButton
                 System.exit(1);
