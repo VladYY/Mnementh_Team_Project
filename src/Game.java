@@ -48,6 +48,9 @@ public class Game extends Canvas implements Runnable {
 
         player = new Player(200, 200, this);
         menu = new Menu();
+
+        // Test add enemy
+        controller.createEnemy(new Enemy(100, 70, this));
     }
 
     private synchronized void start() {
