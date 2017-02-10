@@ -25,7 +25,12 @@ public class Enemy {
         }
 
     public void tick() {
-
+        if (this.x < (this.game.WIDTH * this.game.SCALE) / 2 && this.y < (this.game.HEIGHT * this.game.SCALE) / 2) {
+            this.x += 1;
+            this.y += 1;
+        } else if (this.x < (this.game.WIDTH * this.game.SCALE) / 2) {
+            this.x += 1;
+        }
     }
 
     public double getX() {
