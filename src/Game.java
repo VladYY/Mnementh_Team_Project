@@ -23,6 +23,7 @@ public class Game extends Canvas implements Runnable {
     private Menu menu;
     private Controller controller;
 
+
     public static enum STATE {
         MENU,
         GAME
@@ -127,6 +128,16 @@ public class Game extends Canvas implements Runnable {
         if (State == STATE.GAME) {
             player.render(graphics);
             controller.render(graphics);
+
+            graphics.setColor(Color.gray);
+            graphics.fillRect(5,5,200,50);
+
+            graphics.setColor(Color.GREEN);
+            graphics.fillRect(5,5,PlayerHealth.hp,50);
+
+            graphics.setColor(Color.WHITE);
+            graphics.drawRect(5,5,200,50);
+
         } else if (State == STATE.MENU) {
             menu.render(graphics);
         }
