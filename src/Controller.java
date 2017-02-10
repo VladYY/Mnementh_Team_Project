@@ -15,12 +15,9 @@ public class Controller {
         this.game = game;
     }
 
-    public void createEnemy(int enemy_count){
+    public void createEnemy(){
 
-        for (int i = 0; i < enemy_count; i++) {
-            addEnemy(new Enemy(100, 270, this.game));
-        }
-
+        addEnemy(new Enemy(100, 270, this.game));
     }
 
     public void tick(){

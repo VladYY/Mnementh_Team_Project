@@ -23,6 +23,7 @@ public class Game extends Canvas implements Runnable {
     private Menu menu;
     private Controller controller;
 
+    private int count_enemy = 1;
 
     public static enum STATE {
         MENU,
@@ -50,7 +51,7 @@ public class Game extends Canvas implements Runnable {
         menu = new Menu();
 
         // Test add enemy
-        controller.createEnemy(new Enemy(100, 70, this));
+        controller.createEnemy();
     }
 
     private synchronized void start() {
