@@ -1,5 +1,4 @@
 import java.awt.*;
-
 /**
  * Created by Magdalena on 9.2.2017 г..
  */
@@ -9,14 +8,13 @@ public class Menu {
     public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 + 200, 250, 100, 50);
     public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 200, 350, 100, 50);
 
-
     public void render(Graphics graphics) {
         Graphics2D g2d = (Graphics2D)graphics;
-
+        graphics.drawImage(ImageLoader.loadImage("/resources/Mnementh-Dragon.jpg"),0,0,1024,768,null);
         Font fnt0 = new Font("arial", Font.BOLD, 50);
         graphics.setFont(fnt0);
         graphics.setColor(Color.white);
-        graphics.drawString("Mnementh - the game", Game.WIDTH / 2, 100);
+        graphics.drawString("Mnementh - the game", Game.WIDTH / 2, 50);
 
         Font fnt1 = new Font("arial", Font.BOLD, 30);
         graphics.setFont(fnt1);
