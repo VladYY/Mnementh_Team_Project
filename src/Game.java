@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable {
     private Controller controller;
 
 
-    private int count_enemy = 10;
+    private int count_enemy = 100;
     private int enemy_killed = 0;
 
     public static void main(String[] args) {

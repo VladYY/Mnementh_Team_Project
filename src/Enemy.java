@@ -9,7 +9,7 @@ public class Enemy implements Entity{
     public BufferedImage[] enemy = new BufferedImage[3];
     private SpriteSheet ss;
     private double x, y;
-    private int speed = r.nextInt(2) + 1;
+    private double speed = (r.nextInt(2) + 1);
     private Game game;
     Animation animation;
 
