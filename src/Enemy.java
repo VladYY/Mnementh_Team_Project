@@ -28,8 +28,8 @@ public class Enemy implements Entity{
     }
 
     public void tick() {
-        int centerX = (this.game.WIDTH * this.game.SCALE) / 2;
-        int centerY = (this.game.HEIGHT * this.game.SCALE) / 2;
+        int centerX = 600;
+        int centerY = 120;
 
         if (this.x < centerX && this.y < centerY) {
             this.x += speed;
