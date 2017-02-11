@@ -11,7 +11,6 @@ public class Menu {
 
     public void render(Graphics graphics) {
         Graphics2D g2d = (Graphics2D) graphics;
-        graphics.drawImage(ImageLoader.loadImage("/resources/Mnementh-Dragon.jpg"), 0, 0, 1024, 768, null);
         Font fnt0 = new Font("arial", Font.BOLD, 50);
         graphics.setFont(fnt0);
         graphics.setColor(Color.white);

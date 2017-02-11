@@ -16,10 +16,10 @@ public class Game extends Canvas implements Runnable {
     public final String TITLE = "Mnementh the game";
     private boolean running = false;
     private Thread thread;
-    private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+    private BufferedImage image = ImageLoader.loadImage("/resources/Mnementh-Dragon.jpg");
     private BufferedImage dragonImage = null;
     private BufferedImage caveImage = null;
-    private BufferedImage battlegroundImage = null;
+    private BufferedImage battlegroundImage = ImageLoader.loadImage("resources/battleGround.png");
     private Battleground battleground;
     private Player player;
     private Cave cave;
@@ -53,7 +53,7 @@ public class Game extends Canvas implements Runnable {
         try {
             dragonImage = loader.loadImage("resources/red_dragonRight.png");
             caveImage = loader.loadImage("resources/cave.png");
-            battlegroundImage = loader.loadImage("resources/battleGround.png");
+//            battlegroundImage = loader.loadImage("resources/battleGround.png");
         } catch (IOException e) {
             e.printStackTrace();
         }
