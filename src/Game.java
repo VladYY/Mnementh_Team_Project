@@ -25,9 +25,9 @@ public class Game extends Canvas implements Runnable {
     private Cave cave;
     private Menu menu;
     private Controller controller;
-    private int count_enemy = 10;
 
-    ;
+
+    private int count_enemy = 10;
     private int enemy_killed = 0;
 
     public static void main(String[] args) {
@@ -52,6 +52,8 @@ public class Game extends Canvas implements Runnable {
         BufferedImageLoader loader = new BufferedImageLoader();
         try {
             dragonImage = loader.loadImage("resources/red_dragonRight.png");
+            caveImage = loader.loadImage("resources/cave.png");
+            battlegroundImage = loader.loadImage("resources/battleGround.png");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,45 +62,50 @@ public class Game extends Canvas implements Runnable {
         this.addMouseListener(new MouseInput());
 
         controller = new Controller(this);
-
+        battleground = new Battleground(this);
         player = new Player(200, 200, this);
-        menu = new Menu();
-
-        // Test add enemy
-        controller.createEnemy(this.count_enemy);
-    }
-
-    public void initCave() {
-        BufferedImageLoader loader = new BufferedImageLoader();
-
-        try {
-            caveImage = loader.loadImage("resources/cave.png");
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-        controller = new Controller(this);
         //////////Test Random Cave Position//////////
         int x = 180 + (int) (Math.random() * ((570 - 130) + 9));
         int y = 85 + (int) (Math.random() * ((475 - 75) + 6));
         //////////////////////////////////////////////
         cave = new Cave(x, y, this);
         menu = new Menu();
+
+        // Test add enemy
+        controller.createEnemy(this.count_enemy);
     }
 
-    public void initBattleground() {
-        BufferedImageLoader loader = new BufferedImageLoader();
-
-        try {
-            battlegroundImage = loader.loadImage("resources/battleGround.png");
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-
-        battleground = new Battleground(this);
-        menu = new Menu();
-    }
+//    public void initCave() {
+//        BufferedImageLoader loader = new BufferedImageLoader();
+//
+//        try {
+//            caveImage = loader.loadImage("resources/cave.png");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//
+//        }
+//        controller = new Controller(this);
+//        //////////Test Random Cave Position//////////
+//        int x = 180 + (int) (Math.random() * ((570 - 130) + 9));
+//        int y = 85 + (int) (Math.random() * ((475 - 75) + 6));
+//        //////////////////////////////////////////////
+//        cave = new Cave(x, y, this);
+//        menu = new Menu();
+//    }
+//
+//    public void initBattleground() {
+//        BufferedImageLoader loader = new BufferedImageLoader();
+//
+//        try {
+//            battlegroundImage = loader.loadImage("resources/battleGround.png");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//
+//        }
+//
+//        battleground = new Battleground(this);
+//        menu = new Menu();
+//    }
 
     private synchronized void start() {
         if (running) {
@@ -124,9 +131,9 @@ public class Game extends Canvas implements Runnable {
 
     // GAME LOOP.
     public void run() {
-        initBattleground();
+        //initBattleground();
         init();
-        initCave();
+        //initCave();
         long lastTime = System.nanoTime();
         final double amountOfTicks = 60.0;
         double nanoSeconds = 1000000000 / amountOfTicks;
