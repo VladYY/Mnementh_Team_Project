@@ -71,6 +71,7 @@ public class Game extends Canvas implements Runnable {
         cave = new Cave(x, y, this);
         menu = new Menu();
 
+
         // Test add enemy
         controller.createEnemy(this.count_enemy);
     }
@@ -224,7 +225,7 @@ public class Game extends Canvas implements Runnable {
             player.setVelY(-5);
             direction = 4;
         } else if (key == KeyEvent.VK_SPACE) {
-            controller.addFire(new Fire(player.getX(), player.getY(), direction, this));
+            controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
         }
     }
 

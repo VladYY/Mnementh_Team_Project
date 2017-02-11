@@ -5,11 +5,10 @@ import java.util.Random;
 public class Controller {
 
     Game game;
-    Fire TempFire;
-    Enemy enemy;
     Random r = new Random();
-    private LinkedList<Fire> f = new LinkedList<>();
-    private LinkedList<Enemy> e = new LinkedList<>();
+    private LinkedList<Entity> e = new LinkedList<Entity>();
+
+    Entity ent;
 
     public Controller(Game game) {
 
@@ -21,19 +20,19 @@ public class Controller {
         for (int i = 0; i < count_enemy; i++) {
             if (spawnIndex == 0) {
                 //Spawn from up
-                addEnemy(new Enemy(r.nextInt(930), 5, this.game));
+                addEntity(new Enemy(r.nextInt(930), 5, this.game));
                 spawnIndex++;
             } else if (spawnIndex == 1) {
                 //Spawn from left
-                addEnemy(new Enemy(5, r.nextInt(720), this.game));
+                addEntity(new Enemy(5, r.nextInt(720), this.game));
                 spawnIndex++;
             } else if (spawnIndex == 2) {
                 //Spawn from right
-                addEnemy(new Enemy(930, r.nextInt(720), this.game));
+                addEntity(new Enemy(930, r.nextInt(720), this.game));
                 spawnIndex++;
             } else if (spawnIndex == 3) {
                 //Spawn from down
-                addEnemy(new Enemy(r.nextInt(930), 720, this.game));
+                addEntity(new Enemy(r.nextInt(930), 720, this.game));
                 spawnIndex = 0;
             }
         }
@@ -41,49 +40,28 @@ public class Controller {
     }
 
     public void tick() {
-
-        for (int i = 0; i < f.size(); i++) {
-            TempFire = f.get(i);
-
-            TempFire.tick();
-        }
-
         for (int i = 0; i < e.size(); i++) {
+            ent = e.get(i);
 
-            enemy = e.get(i);
-
-            enemy.tick();
+            ent.tick();
         }
     }
 
     public void render(Graphics graphics) {
-        for (int i = 0; i < f.size(); i++) {
-            TempFire = f.get(i);
-
-            TempFire.render(graphics);
-        }
-
         for (int i = 0; i < e.size(); i++) {
-            enemy = e.get(i);
+            ent = e.get(i);
 
-            enemy.render(graphics);
+            ent.render(graphics);
         }
     }
 
-
-    public void addEnemy(Enemy block) {
+    public void addEntity(Entity block) {
         e.add(block);
     }
 
-    public void removeEnemy(Enemy block) {
+    public void RemoveEntity(Entity block) {
         e.remove(block);
     }
 
-    public void addFire(Fire block) {
-        f.add(block);
-    }
 
-    public void removeFire(Fire block) {
-        f.remove(block);
-    }
 }

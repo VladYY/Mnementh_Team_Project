@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Fire {
+public class Fire implements Entity{
 
     BufferedImage image;
     private double x, y;
@@ -36,5 +36,14 @@ public class Fire {
 
     public void render(Graphics graphics) {
         graphics.drawImage(image, (int) x, (int) y, null);
+    }
+
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 }

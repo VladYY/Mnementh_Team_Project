@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
-public class Enemy {
+public class Enemy implements Entity{
     Random r = new Random();
     BufferedImage image;
     private double x, y;
