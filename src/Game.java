@@ -24,6 +24,7 @@ public class Game extends Canvas implements Runnable {
     private Controller controller;
 
     private int count_enemy = 1;
+    private int enemy_killed = 0;
 
     public static enum STATE {
         MENU,

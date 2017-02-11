@@ -25,11 +25,29 @@ public class Enemy {
         }
 
     public void tick() {
-        if (this.x < (this.game.WIDTH * this.game.SCALE) / 2 && this.y < (this.game.HEIGHT * this.game.SCALE) / 2) {
+        int centerX = (this.game.WIDTH * this.game.SCALE) / 2;
+        int centerY =( this.game.HEIGHT * this.game.SCALE) / 2;
+
+        if (this.x < centerX && this.y < centerY) {
             this.x += 1;
             this.y += 1;
-        } else if (this.x < (this.game.WIDTH * this.game.SCALE) / 2) {
+        } else if (this.x > centerX && this.y < centerY) {
+            this.x -= 1;
+            this.y += 1;
+        } else if (this.y > centerY && this.x > centerX) {
+            this.x -= 1;
+            this.y -= 1;
+        } else if (this.y > centerY && this.x < centerX) {
             this.x += 1;
+            this.y -= 1;
+        } else if (this.x > centerX) {
+            this.x -= 1;
+        } else if (this.x < centerX) {
+            this.x += 1;
+        } else if (this.y < centerY) {
+            this.y += 1;
+        } else if (this.y > centerY) {
+            this.y -= 1;
         }
     }
 
