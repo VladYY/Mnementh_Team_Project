@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -14,9 +13,10 @@ public class Cave {
         CaveImage caveImage = new CaveImage(game.getCaveImage());
         cave = caveImage.grabImage();
 
-}
+    }
+
     public void render(Graphics graphics) {
-        graphics.drawImage(cave,  x,  y, null);
+        graphics.drawImage(cave, x, y, null);
     }
 
 

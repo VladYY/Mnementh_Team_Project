@@ -5,19 +5,20 @@ import java.io.IOException;
 
 public class Fire {
 
-    private double x,y;
-    private int direction;
     BufferedImage image;
+    private double x, y;
+    private int direction;
 
-    public Fire(double x, double y,int direction, Game game) throws IOException {
+    public Fire(double x, double y, int direction, Game game) throws IOException {
         this.x = x;
         this.y = y;
         this.direction = direction;
 //        DragonImage dragonImage = new DragonImage(game.getDragonImage());
         image = ImageIO.read(getClass().getResourceAsStream("resources/fire.png"));
     }
-    public void tick(){
-        switch (direction){
+
+    public void tick() {
+        switch (direction) {
             case 1:
                 x += 10;
                 break;
@@ -32,7 +33,8 @@ public class Fire {
                 break;
         }
     }
-    public void render(Graphics graphics){
-        graphics.drawImage(image, (int)x, (int)y, null);
+
+    public void render(Graphics graphics) {
+        graphics.drawImage(image, (int) x, (int) y, null);
     }
 }

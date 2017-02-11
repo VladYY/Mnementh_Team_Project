@@ -12,5 +12,5 @@ public class CaveImage {
         BufferedImage img = image;
         return img;
     }
-    }
+}
 

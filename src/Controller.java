@@ -3,24 +3,23 @@ import java.util.LinkedList;
 
 public class Controller {
 
-    private LinkedList<Fire> f = new LinkedList<>();
-    private LinkedList<Enemy> e = new LinkedList<>();
-
     Game game;
     Fire TempFire;
     Enemy enemy;
+    private LinkedList<Fire> f = new LinkedList<>();
+    private LinkedList<Enemy> e = new LinkedList<>();
 
-    public Controller(Game game){
+    public Controller(Game game) {
 
         this.game = game;
     }
 
-    public void createEnemy(){
+    public void createEnemy() {
 
         addEnemy(new Enemy(100, 270, this.game));
     }
 
-    public void tick(){
+    public void tick() {
 
         for (int i = 0; i < f.size(); i++) {
             TempFire = f.get(i);
@@ -36,7 +35,7 @@ public class Controller {
         }
     }
 
-    public void render (Graphics graphics) {
+    public void render(Graphics graphics) {
         for (int i = 0; i < f.size(); i++) {
             TempFire = f.get(i);
 
@@ -51,15 +50,15 @@ public class Controller {
     }
 
 
-    public void addEnemy(Enemy block){
+    public void addEnemy(Enemy block) {
         e.add(block);
     }
 
-    public void addFire(Fire block){
+    public void addFire(Fire block) {
         f.add(block);
     }
 
-    public void removeFire(Fire block){
+    public void removeFire(Fire block) {
         f.remove(block);
     }
 }

@@ -11,7 +11,7 @@ public class Menu {
 
 
     public void render(Graphics graphics) {
-        Graphics2D g2d = (Graphics2D)graphics;
+        Graphics2D g2d = (Graphics2D) graphics;
 
         Font fnt0 = new Font("arial", Font.BOLD, 50);
         graphics.setFont(fnt0);
