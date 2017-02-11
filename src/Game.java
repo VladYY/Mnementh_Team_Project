@@ -20,6 +20,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage dragonImage = null;
     private BufferedImage caveImage = null;
     private BufferedImage battlegroundImage = ImageLoader.loadImage("resources/battleGround.png");
+    private BufferedImage spriteSheet = null;
     private Battleground battleground;
     private Player player;
     private Cave cave;
@@ -53,6 +54,7 @@ public class Game extends Canvas implements Runnable {
         try {
             dragonImage = loader.loadImage("resources/red_dragonRight.png");
             caveImage = loader.loadImage("resources/cave.png");
+            spriteSheet = loader.loadImage("resources/gorgon-test.png");
 //            battlegroundImage = loader.loadImage("resources/battleGround.png");
         } catch (IOException e) {
             e.printStackTrace();
@@ -271,6 +273,10 @@ public class Game extends Canvas implements Runnable {
 
     public BufferedImage getBattlegroundImage() {
         return battlegroundImage;
+    }
+
+    public BufferedImage getSpriteSheet() {
+        return spriteSheet;
     }
 
     public static enum STATE {

@@ -6,21 +6,25 @@ import java.util.Random;
 
 public class Enemy implements Entity{
     Random r = new Random();
-    BufferedImage image;
+    public BufferedImage[] enemy = new BufferedImage[3];
+    private SpriteSheet ss;
     private double x, y;
     private int speed = r.nextInt(2) + 1;
     private Game game;
+    Animation animation;
 
     public Enemy(double x, double y, Game game) {
         this.x = x;
         this.y = y;
         this.game = game;
 
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("resources/vultureRight.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.ss = new SpriteSheet(game.getSpriteSheet());
+
+        enemy[0] = ss.grabImage(3, 1, 32, 32);
+        enemy[1] = ss.grabImage(3, 2, 32, 32);
+        enemy[2] = ss.grabImage(3, 3, 32, 32);
+
+        this.animation = new Animation(5, this.enemy[0], this.enemy[1], this.enemy[2]);
     }
 
     public void tick() {
@@ -28,26 +32,28 @@ public class Enemy implements Entity{
         int centerY = (this.game.HEIGHT * this.game.SCALE) / 2;
 
         if (this.x < centerX && this.y < centerY) {
-            this.x += 1;
-            this.y += 1;
+            this.x += speed;
+            this.y += speed;
         } else if (this.x > centerX && this.y < centerY) {
-            this.x -= 1;
-            this.y += 1;
+            this.x -= speed;
+            this.y += speed;
         } else if (this.y > centerY && this.x > centerX) {
-            this.x -= 1;
-            this.y -= 1;
+            this.x -= speed;
+            this.y -= speed;
         } else if (this.y > centerY && this.x < centerX) {
-            this.x += 1;
-            this.y -= 1;
+            this.x += speed;
+            this.y -= speed;
         } else if (this.x > centerX) {
-            this.x -= 1;
+            this.x -= speed;
         } else if (this.x < centerX) {
-            this.x += 1;
+            this.x += speed;
         } else if (this.y < centerY) {
-            this.y += 1;
+            this.y += speed;
         } else if (this.y > centerY) {
-            this.y -= 1;
+            this.y -= speed;
         }
+
+        this.animation.runAnimation();
     }
 
     public double getX() {
@@ -67,6 +73,7 @@ public class Enemy implements Entity{
     }
 
     public void render(Graphics graphics) {
-        graphics.drawImage(this.image, (int) this.x, (int) this.y, null);
+        this.animation.drawAnimation(graphics, x, y, 0);
+        //graphics.drawImage(this.image, (int) this.x, (int) this.y, null);
     }
 }
