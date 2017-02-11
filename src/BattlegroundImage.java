@@ -1,9 +1,12 @@
+
 import java.awt.image.BufferedImage;
 
-public class DragonImage {
+
+public class BattlegroundImage {
+
     private BufferedImage image;
 
-    public DragonImage(BufferedImage image) {
+    public BattlegroundImage(BufferedImage image) {
         this.image = image;
     }
 
@@ -12,4 +15,3 @@ public class DragonImage {
         return img;
     }
 }
-
