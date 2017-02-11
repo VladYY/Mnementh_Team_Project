@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class Game extends Canvas implements Runnable {
 
-    public static final int WIDTH = 480;
-    public static final int HEIGHT = WIDTH / 12 * 9;
+    public static final int WIDTH = 640;
+    public static final int HEIGHT = 400;
     public static final int SCALE = 2;
     private static final long serialVersionUID = 1L;
     public static STATE State = STATE.MENU;
