@@ -20,13 +20,13 @@ public class Enemy implements Entity{
 
         this.ss = new SpriteSheet(game.getSpriteSheet());
         if (this.x < 600) {
-            enemy[0] = ss.grabImage(3, 1, 32, 32);
-            enemy[1] = ss.grabImage(3, 2, 32, 32);
-            enemy[2] = ss.grabImage(3, 3, 32, 32);
+            enemy[0] = ss.grabImage(1, 1, 42, 65);
+            enemy[1] = ss.grabImage(1, 2, 42, 65);
+            enemy[2] = ss.grabImage(1, 3, 42, 65);
         } else {
-            enemy[0] = ss.grabImage(2, 1, 32, 32);
-            enemy[1] = ss.grabImage(2, 2, 32, 32);
-            enemy[2] = ss.grabImage(2, 3, 32, 32);
+            enemy[0] = ss.grabImage(2, 1, 42, 65);
+            enemy[1] = ss.grabImage(2, 2, 42, 65);
+            enemy[2] = ss.grabImage(2, 3, 42, 65);
         }
 
 

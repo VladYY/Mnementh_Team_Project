@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable {
     private Controller controller;
 
 
-    private int count_enemy = 200;
+    private int count_enemy = 10;
     private int enemy_killed = 0;
 
     public static void main(String[] args) {
@@ -54,7 +54,7 @@ public class Game extends Canvas implements Runnable {
         try {
             dragonImage = loader.loadImage("resources/red_dragonRight.png");
             caveImage = loader.loadImage("resources/cave.png");
-            spriteSheet = loader.loadImage("resources/gorgon-test.png");
+            spriteSheet = loader.loadImage("resources/gorgon_spriteSheet.png");
 //            battlegroundImage = loader.loadImage("resources/battleGround.png");
         } catch (IOException e) {
             e.printStackTrace();
