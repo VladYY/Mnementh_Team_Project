@@ -21,16 +21,16 @@ public class Player {
         x += velX;
         y += velY;
 
-        if (x <= 0){
+        if (x <= 0) {
             x = 0;
         }
-        if (x >= Game.WIDTH * 2 - 50){
+        if (x >= Game.WIDTH * 2 - 50) {
             x = (Game.WIDTH * 2) - 50;
         }
-        if (y <= 0){
+        if (y <= 0) {
             y = 0;
         }
-        if (y >= Game.HEIGHT * 2 - 50){
+        if (y >= Game.HEIGHT * 2 - 50) {
             y = Game.HEIGHT * 2 - 50;
         }
     }
@@ -43,12 +43,12 @@ public class Player {
         return x;
     }
 
-    public double getY() {
-        return y;
-    }
-
     public void setX(double x) {
         this.x = x;
+    }
+
+    public double getY() {
+        return y;
     }
 
     public void setY(double y) {

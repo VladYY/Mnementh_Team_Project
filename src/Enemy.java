@@ -6,27 +6,26 @@ import java.util.Random;
 
 public class Enemy {
     Random r = new Random();
-
+    BufferedImage image;
     private double x, y;
     private int speed = r.nextInt(2) + 1;
     private Game game;
-    BufferedImage image;
 
     public Enemy(double x, double y, Game game) {
-            this.x = x;
-            this.y = y;
-            this.game = game;
+        this.x = x;
+        this.y = y;
+        this.game = game;
 
-            try {
-                image = ImageIO.read(getClass().getResourceAsStream("resources/vulture.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            image = ImageIO.read(getClass().getResourceAsStream("resources/vultureRight.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
     public void tick() {
         int centerX = (this.game.WIDTH * this.game.SCALE) / 2;
-        int centerY =( this.game.HEIGHT * this.game.SCALE) / 2;
+        int centerY = (this.game.HEIGHT * this.game.SCALE) / 2;
 
         if (this.x < centerX && this.y < centerY) {
             this.x += 1;
@@ -67,7 +66,7 @@ public class Enemy {
         this.y = y;
     }
 
-    public void render (Graphics graphics) {
-        graphics.drawImage(this.image, (int)this.x, (int)this.y, null);
+    public void render(Graphics graphics) {
+        graphics.drawImage(this.image, (int) this.x, (int) this.y, null);
     }
 }

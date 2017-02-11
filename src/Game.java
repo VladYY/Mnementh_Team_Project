@@ -7,38 +7,51 @@ import java.io.IOException;
 
 public class Game extends Canvas implements Runnable {
 
-    private static final long serialVersionUID = 1L;
     public static final int WIDTH = 480;
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final int SCALE = 2;
+    private static final long serialVersionUID = 1L;
+    public static STATE State = STATE.MENU;
+    public static int direction;
     public final String TITLE = "Mnementh the game";
-
     private boolean running = false;
     private Thread thread;
-
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
     private BufferedImage dragonImage = null;
-
+    private BufferedImage caveImage = null;
+    private BufferedImage battlegroundImage = null;
+    private Battleground battleground;
     private Player player;
+    private Cave cave;
     private Menu menu;
     private Controller controller;
-
     private int count_enemy = 10;
-    private int enemy_killed = 0;
-
-    public static enum STATE {
-        MENU,
-        GAME
-    }
 
     ;
+    private int enemy_killed = 0;
 
-    public static STATE State = STATE.MENU;
+    public static void main(String[] args) {
+        Game game = new Game();
+
+        game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+        game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+        game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+
+        JFrame frame = new JFrame(game.TITLE);
+        frame.add(game);
+        frame.pack();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+        game.start();
+    }
 
     public void init() {
         BufferedImageLoader loader = new BufferedImageLoader();
         try {
-            dragonImage = loader.loadImage("resources/red_dragon.png");
+            dragonImage = loader.loadImage("resources/red_dragonRight.png");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,6 +66,38 @@ public class Game extends Canvas implements Runnable {
 
         // Test add enemy
         controller.createEnemy(this.count_enemy);
+    }
+
+    public void initCave() {
+        BufferedImageLoader loader = new BufferedImageLoader();
+
+        try {
+            caveImage = loader.loadImage("resources/cave.png");
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+        controller = new Controller(this);
+        //////////Test Random Cave Position//////////
+        int x = 180 + (int) (Math.random() * ((570 - 130) + 9));
+        int y = 85 + (int) (Math.random() * ((475 - 75) + 6));
+        //////////////////////////////////////////////
+        cave = new Cave(x, y, this);
+        menu = new Menu();
+    }
+
+    public void initBattleground() {
+        BufferedImageLoader loader = new BufferedImageLoader();
+
+        try {
+            battlegroundImage = loader.loadImage("resources/battleGround.png");
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+        battleground = new Battleground(this);
+        menu = new Menu();
     }
 
     private synchronized void start() {
@@ -79,7 +124,9 @@ public class Game extends Canvas implements Runnable {
 
     // GAME LOOP.
     public void run() {
+        initBattleground();
         init();
+        initCave();
         long lastTime = System.nanoTime();
         final double amountOfTicks = 60.0;
         double nanoSeconds = 1000000000 / amountOfTicks;
@@ -117,6 +164,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    //Movement
 
     //Rendering the game.
     private void render() {
@@ -131,17 +179,19 @@ public class Game extends Canvas implements Runnable {
 
         graphics.drawImage(image, 0, 0, getWidth(), getHeight(), this);
         if (State == STATE.GAME) {
+            battleground.render(graphics);
+            cave.render(graphics);
             player.render(graphics);
             controller.render(graphics);
 
             graphics.setColor(Color.gray);
-            graphics.fillRect(5,5,200,50);
+            graphics.fillRect(5, 5, 200, 50);
 
             graphics.setColor(Color.GREEN);
-            graphics.fillRect(5,5,PlayerHealth.hp,50);
+            graphics.fillRect(5, 5, PlayerHealth.hp, 50);
 
             graphics.setColor(Color.WHITE);
-            graphics.drawRect(5,5,200,50);
+            graphics.drawRect(5, 5, 200, 50);
 
         } else if (State == STATE.MENU) {
             menu.render(graphics);
@@ -150,10 +200,6 @@ public class Game extends Canvas implements Runnable {
         bs.show();
 
     }
-
-    //Movement
-
-    public static int direction;
 
     public void keyPressed(KeyEvent k) throws IOException {
         int key = k.getKeyCode();
@@ -171,7 +217,7 @@ public class Game extends Canvas implements Runnable {
             player.setVelY(-5);
             direction = 4;
         } else if (key == KeyEvent.VK_SPACE) {
-            controller.addFire(new Fire(player.getX(), player.getY(),direction, this ));
+            controller.addFire(new Fire(player.getX(), player.getY(), direction, this));
         }
     }
 
@@ -191,25 +237,21 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    public static void main(String[] args) {
-        Game game = new Game();
-
-        game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-        game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-        game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-
-        JFrame frame = new JFrame(game.TITLE);
-        frame.add(game);
-        frame.pack();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-
-        game.start();
-    }
-
     public BufferedImage getDragonImage() {
         return dragonImage;
     }
+
+    public BufferedImage getCaveImage() {
+        return caveImage;
+    }
+
+    public BufferedImage getBattlegroundImage() {
+        return battlegroundImage;
+    }
+
+    public static enum STATE {
+        MENU,
+        GAME
+    }
+
 }
