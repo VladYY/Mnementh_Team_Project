@@ -21,11 +21,11 @@ public class Controller {
         for (int i = 0; i < count_enemy; i++) {
              if (spawnIndex == 0) {
                 //Spawn from left
-                addEntity(new Enemy(5, r.nextInt(800-500)+500, this.game));
+                addEntity(new Enemy(r.nextInt(25-1)+1, r.nextInt(800-500)+500, this.game));
                 spawnIndex++;
             } else if (spawnIndex == 1) {
                 //Spawn from right
-                addEntity(new Enemy(1200, r.nextInt(800-500)+500, this.game));
+                addEntity(new Enemy(r.nextInt(1200-1180)+1180, r.nextInt(800-500)+500, this.game));
                 spawnIndex++;
             } else if (spawnIndex == 2) {
                 //Spawn from down

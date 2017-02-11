@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable {
     private Controller controller;
 
 
-    private int count_enemy = 100;
+    private int count_enemy = 200;
     private int enemy_killed = 0;
 
     public static void main(String[] args) {
@@ -161,7 +161,7 @@ public class Game extends Canvas implements Runnable {
             player.render(graphics);
             controller.render(graphics);
 
-            graphics.setColor(Color.gray);
+            graphics.setColor(Color.RED);
             graphics.fillRect(5, 5, 200, 50);
 
             graphics.setColor(Color.GREEN);
