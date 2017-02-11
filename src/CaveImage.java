@@ -1,9 +1,10 @@
 import java.awt.image.BufferedImage;
 
-public class DragonImage {
+public class CaveImage {
+
     private BufferedImage image;
 
-    public DragonImage(BufferedImage image) {
+    public CaveImage(BufferedImage image) {
         this.image = image;
     }
 
@@ -11,5 +12,5 @@ public class DragonImage {
         BufferedImage img = image;
         return img;
     }
-}
+    }
 
