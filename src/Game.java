@@ -214,19 +214,35 @@ public class Game extends Canvas implements Runnable {
 
         if (key == KeyEvent.VK_RIGHT) {
             player.setVelX(5);
-            direction = 1;
         } else if (key == KeyEvent.VK_LEFT) {
             player.setVelX(-5);
-            direction = 2;
         } else if (key == KeyEvent.VK_DOWN) {
             player.setVelY(5);
-            direction = 3;
         } else if (key == KeyEvent.VK_UP) {
             player.setVelY(-5);
-            direction = 4;
-        } else if (key == KeyEvent.VK_SPACE) {
+        }
+        else if (key == KeyEvent.VK_D)
+        {
+            direction = 1;
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
         }
+        else if (key == KeyEvent.VK_A)
+        {
+            direction = 2;
+            controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
+        }
+        else if (key == KeyEvent.VK_S)
+        {
+            direction = 3;
+            controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
+        }
+        else if (key == KeyEvent.VK_W)
+        {
+            direction = 4;
+            controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
+        }
+
+
     }
 
     public void keyReleased(KeyEvent k) {
