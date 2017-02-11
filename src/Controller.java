@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Controller {
 
@@ -10,14 +11,35 @@ public class Controller {
     Fire TempFire;
     Enemy enemy;
 
+    Random r = new Random();
+
     public Controller(Game game){
 
         this.game = game;
     }
 
-    public void createEnemy(){
+    public void createEnemy(int count_enemy){
+        int spawnIndex = 0;
+        for (int i = 0; i < count_enemy; i++) {
+            if (spawnIndex == 0) {
+             //Spawn from up
+                addEnemy(new Enemy(r.nextInt(930), 5, this.game));
+                spawnIndex++;
+            } else if (spawnIndex == 1) {
+             //Spawn from left
+                addEnemy(new Enemy(5, r.nextInt(720), this.game));
+                spawnIndex++;
+            } else if (spawnIndex == 2) {
+             //Spawn from right
+                addEnemy(new Enemy(930, r.nextInt(720), this.game));
+                spawnIndex++;
+            } else if (spawnIndex == 3) {
+             //Spawn from down
+                addEnemy(new Enemy(r.nextInt(930), 720, this.game));
+                spawnIndex = 0;
+            }
+        }
 
-        addEnemy(new Enemy(100, 270, this.game));
     }
 
     public void tick(){
@@ -53,6 +75,10 @@ public class Controller {
 
     public void addEnemy(Enemy block){
         e.add(block);
+    }
+
+    public void removeEnemy(Enemy block){
+        e.remove(block);
     }
 
     public void addFire(Fire block){
