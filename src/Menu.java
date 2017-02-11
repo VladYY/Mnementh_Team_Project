@@ -19,9 +19,9 @@ public class Menu {
 
         Font fnt1 = new Font("arial", Font.BOLD, 30);
         graphics.setFont(fnt1);
-        graphics.drawString("Play", playButton.x + 19, playButton.y + 30);
-        graphics.drawString("Help", helpButton.x + 19, helpButton.y + 30);
-        graphics.drawString("Quit", quitButton.x + 19, quitButton.y + 30);
+        graphics.drawString("Play", playButton.x + 19, playButton.y + 35);
+        graphics.drawString("Help", helpButton.x + 19, helpButton.y + 35);
+        graphics.drawString("Quit", quitButton.x + 19, quitButton.y + 35);
         g2d.draw(playButton);
         g2d.draw(helpButton);
         g2d.draw(quitButton);
