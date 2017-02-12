@@ -1,9 +1,14 @@
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 
 public class Game extends Canvas implements Runnable {
@@ -36,7 +41,7 @@ public class Game extends Canvas implements Runnable {
     private int count_enemy = 10;
     private int enemy_killed = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Game game = new Game();
 
         game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
@@ -50,6 +55,12 @@ public class Game extends Canvas implements Runnable {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        // Music
+        String gongFile = "C:\\Users\\User\\Desktop\\Stuff\\Study\\Softuni\\Mnementh_Team_Project\\resources\\defense line.au";
+        InputStream in = new FileInputStream(gongFile);
+        AudioStream audioStream = new AudioStream(in);
+        AudioPlayer.player.start(audioStream);
 
         game.start();
     }
