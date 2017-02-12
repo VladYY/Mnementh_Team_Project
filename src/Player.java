@@ -1,20 +1,24 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Player {
-    private double x, y;
+public class Player extends DefaultObject implements FriendlyEntity{
     private double velX = 0;
     private double velY = 0;
+    private Game game;
+    private Controller c;
+
 
     private BufferedImage player;
 
-    public Player(double x, double y, Game game) {
-        this.x = x;
-        this.y = y;
+    public Player(double x, double y, Game game, Controller c) {
+        super(x,y);
 
         DragonImage dragonImage = new DragonImage(game.getDragonImage());
 
         player = dragonImage.grabImage();
+        this.game = game;
+        c.addEntity(this);
+        this.c = c;
     }
 
     public void tick() {
@@ -32,6 +36,10 @@ public class Player {
         }
         if (y >= Game.HEIGHT * 2 - 50) {
             y = Game.HEIGHT * 2 - 50;
+        }
+
+        if (Physics.Collision(this, game.enemyEN)) {
+            PlayerHealth.hp -= 10;
         }
     }
 
@@ -57,6 +65,9 @@ public class Player {
 
     public void setVelX(double velX) {
         this.velX = velX;
+    }
+    public  Rectangle getBounds() {
+        return new Rectangle((int)x , (int)y, 32, 32);
     }
 
     public void setVelY(double velY) {

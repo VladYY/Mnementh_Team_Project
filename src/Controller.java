@@ -7,9 +7,14 @@ public class Controller {
     Game game;
     Random r = new Random();
 
-    private LinkedList<Entity> e = new LinkedList<Entity>();
+    private LinkedList<FriendlyEntity> friendlyEn = new LinkedList<>(); //ea
+    private LinkedList<EnemyEntity> enemyEn = new LinkedList<>();       //eb
+    private LinkedList<CaveEntity> caveEn = new LinkedList<>();       //eb
 
-    Entity ent;
+    FriendlyEntity entFR;
+    EnemyEntity entEN;
+
+    CaveEntity entCav;
 
     public Controller(Game game) {
 
@@ -21,15 +26,16 @@ public class Controller {
         for (int i = 0; i < count_enemy; i++) {
              if (spawnIndex == 0) {
                 //Spawn from left
-                addEntity(new Enemy(r.nextInt(25-1)+1, r.nextInt(800-500)+500, this.game));
+                addEntity(new Enemy(r.nextInt(25-1)+1, r.nextInt(800-500)+500, this.game, this));
                 spawnIndex++;
             } else if (spawnIndex == 1) {
                 //Spawn from right
-                addEntity(new Enemy(r.nextInt(1200-1180)+1180, r.nextInt(800-500)+500, this.game));
+                addEntity(new Enemy(r.nextInt(1200-1180)+1180, r.nextInt(800-500)+500, this.game, this));
                 spawnIndex++;
             } else if (spawnIndex == 2) {
                 //Spawn from down
-                addEntity(new Enemy(r.nextInt(1200), 800, this.game));
+                addEntity(new Enemy(r.nextInt(1200), 800, this.game, this));
+
                 spawnIndex = 0;
             }
         }
@@ -37,27 +43,86 @@ public class Controller {
     }
 
     public void tick() {
-        for (int i = 0; i < e.size(); i++) {
-            ent = e.get(i);
+        //FOR FRIENDLY ENTITY
+        for (int i = 0; i < friendlyEn.size(); i++) {
+            entFR = friendlyEn.get(i);
 
-            ent.tick();
+            entFR.tick();
+        }
+
+        //FOR ENEMY ENTITY
+        for (int i = 0; i < enemyEn.size(); i++) {
+            entEN = enemyEn.get(i);
+
+            entEN.tick();
+        }
+
+        //FOR ENEMY ENTITY
+        for (int i = 0; i < caveEn.size(); i++) {
+            entCav = caveEn.get(i);
+
+            entCav.tick();
         }
     }
 
     public void render(Graphics graphics) {
-        for (int i = 0; i < e.size(); i++) {
-            ent = e.get(i);
+        //FOR FRIENDLY ENTITY
+        for (int i = 0; i < friendlyEn.size(); i++) {
+            entFR = friendlyEn.get(i);
 
-            ent.render(graphics);
+            entFR.render(graphics);
+        }
+
+        //FOR ENEMY ENTITY
+        for (int i = 0; i < enemyEn.size(); i++) {
+            entEN = enemyEn.get(i);
+
+            entEN.render(graphics);
+        }
+
+
+        for (int i = 0; i < caveEn.size(); i++) {
+            entCav = caveEn.get(i);
+
+            entCav.render(graphics);
         }
     }
 
-    public void addEntity(Entity block) {
-        e.add(block);
+
+    public void addEntity(FriendlyEntity block) {
+        friendlyEn.add(block);
     }
 
-    public void RemoveEntity(Entity block) {
-        e.remove(block);
+    public void RemoveEntity(FriendlyEntity block) {
+        friendlyEn.remove(block);
+    }
+
+    public void addEntity(EnemyEntity block) {
+        enemyEn.add(block);
+    }
+
+    public void RemoveEntity(EnemyEntity block) {
+        enemyEn.remove(block);
+    }
+
+    public void addEntity(CaveEntity block) {
+        caveEn.add(block);
+    }
+
+    public void RemoveEntity(CaveEntity block) {
+        caveEn.remove(block);
+    }
+
+    public LinkedList<FriendlyEntity> getFriendly() {
+        return  friendlyEn;
+    }
+
+    public LinkedList<EnemyEntity> getEnemy() {
+        return  enemyEn;
+    }
+
+    public LinkedList<CaveEntity> getCave() {
+        return  caveEn;
     }
 
 

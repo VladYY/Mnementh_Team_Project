@@ -3,18 +3,18 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Fire implements Entity{
+public class Fire extends DefaultObject implements FriendlyEntity{
 
     BufferedImage image;
-    private double x, y;
     private int direction;
+    private Game game;
 
     public Fire(double x, double y, int direction, Game game) throws IOException {
-        this.x = x;
-        this.y = y;
+        super(x,y);
         this.direction = direction;
 //        DragonImage dragonImage = new DragonImage(game.getDragonImage());
         image = ImageIO.read(getClass().getResourceAsStream("resources/fire.png"));
+        this.game = game;
     }
 
     public void tick() {
@@ -41,6 +41,10 @@ public class Fire implements Entity{
 
     public double getX() {
         return x;
+    }
+
+    public  Rectangle getBounds() {
+        return new Rectangle((int)x , (int)y, 32, 32);
     }
 
     public double getY() {

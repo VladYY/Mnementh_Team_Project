@@ -4,19 +4,21 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
-public class Enemy implements Entity{
+
+
+public class Enemy extends DefaultObject implements EnemyEntity{
     Random r = new Random();
     public BufferedImage[] enemy = new BufferedImage[3];
     private SpriteSheet ss;
-    private double x, y;
     private double speed = (r.nextInt(2) + 1);
     private Game game;
+    private Controller c;
     Animation animation;
 
-    public Enemy(double x, double y, Game game) {
-        this.x = x;
-        this.y = y;
+    public Enemy(double x, double y, Game game, Controller c) {
+        super(x,y);
         this.game = game;
+        this.c = c;
 
         this.ss = new SpriteSheet(game.getSpriteSheet());
         if (this.x < 600) {
@@ -59,6 +61,10 @@ public class Enemy implements Entity{
             this.y -= speed;
         }
 
+        if (Physics.Collision(this, game.friendlyEN)) {
+            c.RemoveEntity(this);
+        }
+
         this.animation.runAnimation();
     }
 
@@ -72,6 +78,10 @@ public class Enemy implements Entity{
 
     public double getY() {
         return y;
+    }
+
+    public  Rectangle getBounds() {
+        return new Rectangle((int)x , (int)y, 32, 32);
     }
 
     public void setY(double y) {

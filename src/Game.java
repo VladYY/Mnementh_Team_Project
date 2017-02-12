@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class Game extends Canvas implements Runnable {
 
@@ -26,6 +27,10 @@ public class Game extends Canvas implements Runnable {
     private Cave cave;
     private Menu menu;
     private Controller controller;
+
+    public LinkedList<FriendlyEntity> friendlyEN;
+    public LinkedList<EnemyEntity> enemyEN;
+    public LinkedList<CaveEntity> caveEN;
 
 
     private int count_enemy = 10;
@@ -65,13 +70,18 @@ public class Game extends Canvas implements Runnable {
 
         controller = new Controller(this);
         battleground = new Battleground(this);
-        player = new Player(200, 200, this);
+        player = new Player(200, 200, this, controller);
         //////////Test Cave Position//////////
         int x = 550;
         int y = 70;
         //////////////////////////////////////////////
-        cave = new Cave(x, y, this);
+        cave = new Cave(x, y, this, controller);
         menu = new Menu();
+
+        friendlyEN = controller.getFriendly();
+        enemyEN = controller.getEnemy();
+        caveEN = controller.getCave();
+
 
 
         // Test add enemy
