@@ -192,13 +192,13 @@ public class Game extends Canvas implements Runnable {
         int key = k.getKeyCode();
 
         if (key == KeyEvent.VK_RIGHT) {
-            player.setVelX(5);
+            player.setVelX(2);
         } else if (key == KeyEvent.VK_LEFT) {
-            player.setVelX(-5);
+            player.setVelX(-2);
         } else if (key == KeyEvent.VK_DOWN) {
-            player.setVelY(5);
+            player.setVelY(2);
         } else if (key == KeyEvent.VK_UP) {
-            player.setVelY(-5);
+            player.setVelY(-2);
         }
         else if (key == KeyEvent.VK_D)
         {
