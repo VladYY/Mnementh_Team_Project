@@ -60,7 +60,6 @@ public class Game extends Canvas implements Runnable {
             dragonImage = loader.loadImage("resources/red_dragonRight.png");
             caveImage = loader.loadImage("resources/cave.png");
             spriteSheet = loader.loadImage("resources/gorgon_spriteSheet.png");
-//            battlegroundImage = loader.loadImage("resources/battleGround.png");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -112,7 +111,6 @@ public class Game extends Canvas implements Runnable {
 
     // GAME LOOP.
     public void run() {
-        //initBattleground();
         init();
         long lastTime = System.nanoTime();
         final double amountOfTicks = 60.0;
@@ -150,9 +148,6 @@ public class Game extends Canvas implements Runnable {
             controller.tick();
         }
     }
-
-    //Movement
-
     //Rendering the game.
     private void render() {
         BufferStrategy bs = this.getBufferStrategy();
@@ -185,9 +180,9 @@ public class Game extends Canvas implements Runnable {
         }
         graphics.dispose();
         bs.show();
-
     }
 
+    //Movement
     public void keyPressed(KeyEvent k) throws IOException {
         int key = k.getKeyCode();
 
@@ -220,8 +215,6 @@ public class Game extends Canvas implements Runnable {
             direction = 4;
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
         }
-
-
     }
 
     public void keyReleased(KeyEvent k) {

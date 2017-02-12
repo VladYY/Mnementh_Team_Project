@@ -17,7 +17,6 @@ public class KeyInput extends KeyAdapter {
             e.printStackTrace();
         }
     }
-
     public void keyReleased(KeyEvent k) {
         game.keyReleased(k);
     }

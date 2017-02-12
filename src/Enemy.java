@@ -4,8 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
-
-
 public class Enemy extends DefaultObject implements EnemyEntity{
     Random r = new Random();
     public BufferedImage[] enemy = new BufferedImage[3];
@@ -90,6 +88,5 @@ public class Enemy extends DefaultObject implements EnemyEntity{
 
     public void render(Graphics graphics) {
         this.animation.drawAnimation(graphics, x, y, 0);
-        //graphics.drawImage(this.image, (int) this.x, (int) this.y, null);
     }
 }

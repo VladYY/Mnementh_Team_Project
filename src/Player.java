@@ -6,8 +6,6 @@ public class Player extends DefaultObject implements FriendlyEntity{
     private double velY = 0;
     private Game game;
     private Controller c;
-
-
     private BufferedImage player;
 
     public Player(double x, double y, Game game, Controller c) {
@@ -66,6 +64,7 @@ public class Player extends DefaultObject implements FriendlyEntity{
     public void setVelX(double velX) {
         this.velX = velX;
     }
+
     public  Rectangle getBounds() {
         return new Rectangle((int)x , (int)y, 32, 32);
     }

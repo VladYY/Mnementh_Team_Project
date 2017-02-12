@@ -1,8 +1,5 @@
 import java.awt.*;
 
-/**
- * Created by Magdalena on 9.2.2017 г..
- */
 public class Menu {
 
     public Rectangle playButton = new Rectangle(Game.WIDTH / 2 + 270, 150, 100, 50);

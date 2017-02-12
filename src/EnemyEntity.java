@@ -1,11 +1,9 @@
 import java.awt.*;
 
-
 public interface EnemyEntity {
-    public void tick();
-    public void render(Graphics g);
-    public double getX();
-    public double getY();
-
-    public Rectangle getBounds();
+    void tick();
+    void render(Graphics g);
+    double getX();
+    double getY();
+    Rectangle getBounds();
 }

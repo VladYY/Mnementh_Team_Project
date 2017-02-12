@@ -10,8 +10,6 @@ public class Cave extends DefaultObject implements CaveEntity{
 
     public Cave(int x, int y, Game game, Controller controller) {
         super(x,y);
-        CaveImage caveImage = new CaveImage(game.getCaveImage());
-        cave = caveImage.grabImage();
         this.game = game;
         controller.addEntity(this);
         this.controller = controller;
@@ -42,6 +40,4 @@ public class Cave extends DefaultObject implements CaveEntity{
     public Rectangle getBounds() {
         return new Rectangle((int)x , (int)y, 102, 102);
     }
-
-
 }

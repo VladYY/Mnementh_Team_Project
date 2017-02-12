@@ -1,15 +1,7 @@
 import java.util.LinkedList;
 
-
-/**
- * Created by mario on 2/11/2017.
- */
-
 public class Physics {
     private static Controller controller;
-    //private GameObject da;
-
-
 
     public static boolean Collision(FriendlyEntity friendly, LinkedList<EnemyEntity> enemies) {
 
@@ -41,8 +33,4 @@ public class Physics {
         }
         return false;
     }
-
-
-
-
 }

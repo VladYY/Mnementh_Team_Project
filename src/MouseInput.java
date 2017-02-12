@@ -1,9 +1,6 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-/**
- * Created by Magdalena on 9.2.2017 г..
- */
 public class MouseInput implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -16,10 +13,6 @@ public class MouseInput implements MouseListener {
         int mx = e.getX();
         int my = e.getY();
 
-/** public Rectangle playButton = new Rectangle(Game.WIDTH / 2 + 120, 150, 100, 50);
- public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 + 120, 250, 100, 50);
- public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 120, 350, 100, 50);
- */
 //Play Button
         if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
             if (my >= 150 && my <= 200) {

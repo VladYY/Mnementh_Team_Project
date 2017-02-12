@@ -12,7 +12,6 @@ public class Fire extends DefaultObject implements FriendlyEntity{
     public Fire(double x, double y, int direction, Game game) throws IOException {
         super(x,y);
         this.direction = direction;
-//        DragonImage dragonImage = new DragonImage(game.getDragonImage());
         image = ImageIO.read(getClass().getResourceAsStream("resources/fire.png"));
         this.game = game;
     }
@@ -37,7 +36,6 @@ public class Fire extends DefaultObject implements FriendlyEntity{
     public void render(Graphics graphics) {
         graphics.drawImage(image, (int) x, (int) y, null);
     }
-
 
     public double getX() {
         return x;
