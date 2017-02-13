@@ -57,7 +57,7 @@ public class Game extends Canvas implements Runnable {
         frame.setVisible(true);
 
         // Music
-        String gongFile = "C:\\Users\\User\\Desktop\\Stuff\\Study\\Softuni\\Mnementh_Team_Project\\resources\\defense line.au";
+        String gongFile = "..\\Mnementh_Team_Project\\resources\\defense line.au";
         InputStream in = new FileInputStream(gongFile);
         AudioStream audioStream = new AudioStream(in);
         AudioPlayer.player.start(audioStream);
