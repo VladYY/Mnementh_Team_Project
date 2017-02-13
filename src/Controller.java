@@ -14,6 +14,10 @@ public class Controller {
     FriendlyEntity entFR;
     EnemyEntity entEN;
 
+    public LinkedList<EnemyEntity> getEnemyEn() {
+        return enemyEn;
+    }
+
     CaveEntity entCav;
 
     public Controller(Game game) {

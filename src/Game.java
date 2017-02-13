@@ -38,7 +38,7 @@ public class Game extends Canvas implements Runnable {
     public LinkedList<CaveEntity> caveEN;
 
 
-    private int count_enemy = 100;
+    private int count_enemy = 5;
     private int enemy_killed = 0;
 
     public static void main(String[] args) throws Exception {
@@ -152,6 +152,10 @@ public class Game extends Canvas implements Runnable {
         if (State == STATE.GAME) {
             player.tick();
             controller.tick();
+        }
+
+        if (this.controller.getEnemyEn().size() == 0) {
+            this.controller.createEnemy(this.count_enemy);
         }
     }
     //Rendering the game.
