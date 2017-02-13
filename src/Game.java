@@ -1,14 +1,9 @@
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.LinkedList;
 
 public class Game extends Canvas implements Runnable {
@@ -154,7 +149,7 @@ public class Game extends Canvas implements Runnable {
             controller.tick();
         }
 
-        if (this.controller.getEnemyEn().size() == 0) {
+        if (this.controller.getEnemy().size() == 0) {
             this.controller.createEnemy(this.count_enemy);
         }
     }
@@ -243,6 +238,8 @@ public class Game extends Canvas implements Runnable {
                 player.setVelY(0);
             } else if (key == KeyEvent.VK_UP) {
                 player.setVelY(0);
+            } else if (key == KeyEvent.VK_ESCAPE) {
+                State = State.MENU;
             }
         }
     }
