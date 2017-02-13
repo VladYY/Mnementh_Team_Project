@@ -21,5 +21,12 @@ public class Music {
         AudioStream audioStream2 = new AudioStream(in);
         AudioPlayer.player.start(audioStream2);
     }
+
+    public static void enemyDie()throws IOException {
+        String enDie = "./resources/audio/EnemyDie.wav";
+        InputStream in = new FileInputStream(enDie);
+        AudioStream audioStream3 = new AudioStream(in);
+        AudioPlayer.player.start(audioStream3);
+    }
 }
 

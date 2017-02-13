@@ -60,6 +60,11 @@ public class Enemy extends DefaultObject implements EnemyEntity{
         }
 
         if (Physics.Collision(this, game.friendlyEN)) {
+            try {
+                Music.enemyDie();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             c.RemoveEntity(this);
         }
 

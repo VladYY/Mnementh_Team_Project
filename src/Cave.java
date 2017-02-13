@@ -18,7 +18,7 @@ public class Cave extends DefaultObject implements CaveEntity{
     @Override
     public void tick() {
         if (Physics.CaveAttacked(this, game.enemyEN)) {
-            PlayerHealth.hp -= 10;
+            PlayerHealth.hp -= 20;
         }
     }
 

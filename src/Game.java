@@ -38,7 +38,7 @@ public class Game extends Canvas implements Runnable {
     public LinkedList<CaveEntity> caveEN;
 
 
-    private int count_enemy = 10;
+    private int count_enemy = 100;
     private int enemy_killed = 0;
 
     public static void main(String[] args) throws Exception {
@@ -57,7 +57,6 @@ public class Game extends Canvas implements Runnable {
         frame.setVisible(true);
 
         Music.music();
-//        Music.dragonFire();
         game.start();
     }
 
@@ -205,21 +204,25 @@ public class Game extends Canvas implements Runnable {
         else if (key == KeyEvent.VK_D)
         {
             direction = 1;
+            Music.dragonFire();
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
         }
         else if (key == KeyEvent.VK_A)
         {
             direction = 2;
+            Music.dragonFire();
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
         }
         else if (key == KeyEvent.VK_S)
         {
             direction = 3;
+            Music.dragonFire();
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
         }
         else if (key == KeyEvent.VK_W)
         {
             direction = 4;
+            Music.dragonFire();
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
         }
     }
