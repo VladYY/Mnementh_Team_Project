@@ -66,6 +66,7 @@ public class Enemy extends DefaultObject implements EnemyEntity{
                 e.printStackTrace();
             }
             c.RemoveEntity(this);
+            this.game.setEnemy_killed(this.game.getEnemy_killed() + 1);
         }
 
         this.animation.runAnimation();
@@ -92,6 +93,7 @@ public class Enemy extends DefaultObject implements EnemyEntity{
     }
 
     public void render(Graphics graphics) {
+
         this.animation.drawAnimation(graphics, x, y, 0);
     }
 }

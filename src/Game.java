@@ -32,7 +32,6 @@ public class Game extends Canvas implements Runnable {
     public LinkedList<EnemyEntity> enemyEN;
     public LinkedList<CaveEntity> caveEN;
 
-
     private int count_enemy = 5;
     private int enemy_killed = 0;
 
@@ -142,6 +141,14 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
+    public int getCount_enemy() {
+        return count_enemy;
+    }
+
+    public void setCount_enemy(int count_enemy) {
+        this.count_enemy = count_enemy;
+    }
+
     private void tick() {
 
         if (State == STATE.GAME) {
@@ -150,6 +157,7 @@ public class Game extends Canvas implements Runnable {
         }
 
         if (this.controller.getEnemy().size() == 0) {
+            this.setCount_enemy(this.getCount_enemy() + 1);
             this.controller.createEnemy(this.count_enemy);
         }
     }
@@ -226,6 +234,14 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    public int getEnemy_killed() {
+        return enemy_killed;
+    }
+
+    public void setEnemy_killed(int enemy_killed) {
+        this.enemy_killed = enemy_killed;
+    }
+
     public void keyReleased(KeyEvent k) {
         int key = k.getKeyCode();
 
@@ -240,6 +256,7 @@ public class Game extends Canvas implements Runnable {
                 player.setVelY(0);
             } else if (key == KeyEvent.VK_ESCAPE) {
                 State = State.MENU;
+
             }
         }
     }
