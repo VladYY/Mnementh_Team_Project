@@ -19,6 +19,11 @@ public class Cave extends DefaultObject implements CaveEntity{
     public void tick() {
         if (Physics.CaveAttacked(this, game.enemyEN)) {
             PlayerHealth.hp -= 20;
+            if (PlayerHealth.hp <= 0)
+            {
+                //TODO
+                System.exit(1);
+            }
         }
     }
 

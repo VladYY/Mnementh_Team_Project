@@ -38,6 +38,11 @@ public class Player extends DefaultObject implements FriendlyEntity{
 
         if (Physics.Collision(this, game.enemyEN)) {
             PlayerHealth.hp -= 10;
+            if (PlayerHealth.hp <= 0)
+            {
+                //TODO
+                System.exit(1);
+            }
         }
     }
 

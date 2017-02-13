@@ -12,7 +12,7 @@ public class Fire extends DefaultObject implements FriendlyEntity{
     public Fire(double x, double y, int direction, Game game) throws IOException {
         super(x,y);
         this.direction = direction;
-        image = ImageIO.read(getClass().getResourceAsStream("resources/fire.png"));
+        image = ImageIO.read(getClass().getResourceAsStream("resources/gfx/fire.png"));
         this.game = game;
     }
 
