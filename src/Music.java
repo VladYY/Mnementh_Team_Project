@@ -9,11 +9,17 @@ import java.io.InputStream;
 public class Music {
 
     public static void music() throws IOException {
-        String gongFile = "./resources/audio/defense line.au";
+        String gongFile = "./resources/audio/defense line.wav";
         InputStream in = new FileInputStream(gongFile);
         AudioStream audioStream = new AudioStream(in);
         AudioPlayer.player.start(audioStream);
     }
 
+    public static void dragonFire()throws IOException {
+        String dr = "./resources/audio/DragonFire.wav";
+        InputStream in = new FileInputStream(dr);
+        AudioStream audioStream2 = new AudioStream(in);
+        AudioPlayer.player.start(audioStream2);
+    }
 }
 

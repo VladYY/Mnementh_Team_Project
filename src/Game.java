@@ -57,6 +57,7 @@ public class Game extends Canvas implements Runnable {
         frame.setVisible(true);
 
         Music.music();
+//        Music.dragonFire();
         game.start();
     }
 
