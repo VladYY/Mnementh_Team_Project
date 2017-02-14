@@ -17,29 +17,32 @@ public class MouseInput implements MouseListener {
         int my = e.getY();
 
 //Play Button
-        if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
-            if (my >= 150 && my <= 200) {
-                //Pressed PlayButton
-                try {
-                    Music.dragonRoar();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
+        if (Game.State == Game.STATE.MENU) {
+            if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
+                if (my >= 150 && my <= 200) {
+                    //Pressed PlayButton
+                    try {
+                        Music.dragonRoar();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                    Game.State = Game.STATE.GAME;
                 }
-                Game.State = Game.STATE.GAME;
             }
-        }
-        if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
-            if (my >= 250 && my <= 300) {
-                //Pressed HelpButton
-Game.State = Game.STATE.HELP;
-            }
-        }
-        //Quit Button
-        if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
-            if (my >= 350 && my <= 400) {
-                //Pressed QuitButton
-                System.exit(1);
 
+            if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
+                if (my >= 250 && my <= 300) {
+                    //Pressed HelpButton
+                    Game.State = Game.STATE.HELP;
+                }
+            }
+            //Quit Button
+            if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
+                if (my >= 350 && my <= 400) {
+                    //Pressed QuitButton
+                    System.exit(1);
+
+                }
             }
         }
 
