@@ -75,7 +75,8 @@ public class Game extends Canvas implements Runnable {
         int y = 70;
         //////////////////////////////////////////////
         cave = new Cave(x, y, this, controller);
-        menu = new Menu();
+        menu = new Menu(this);
+
 
         friendlyEN = controller.getFriendly();
         enemyEN = controller.getEnemy();
@@ -155,6 +156,7 @@ public class Game extends Canvas implements Runnable {
             player.tick();
             controller.tick();
         }
+
 
         if (this.controller.getEnemy().size() == 0) {
             this.setCount_enemy(this.getCount_enemy() + 1);
@@ -286,7 +288,8 @@ public class Game extends Canvas implements Runnable {
 
     public static enum STATE {
         MENU,
-        GAME
+        GAME,
+        HELP
     }
 
 }

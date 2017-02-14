@@ -1,3 +1,5 @@
+import javafx.scene.control.Alert;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -29,7 +31,7 @@ public class MouseInput implements MouseListener {
         if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
             if (my >= 250 && my <= 300) {
                 //Pressed HelpButton
-                //TODO
+Game.State = Game.STATE.HELP;
             }
         }
         //Quit Button
