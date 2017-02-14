@@ -5,10 +5,12 @@ public class Player extends DefaultObject implements FriendlyEntity{
     private double velX = 0;
     private double velY = 0;
     private Game game;
+    private String direction = "right";
     private Controller c;
+    boolean directionChanged = false;
 
     private SpriteSheet ss;
-    private BufferedImage[] dragon = new BufferedImage[8];
+    private BufferedImage[] dragon = new BufferedImage[16];
     Animation animation;
 
     public Player(double x, double y, Game game, Controller c) {
@@ -26,6 +28,15 @@ public class Player extends DefaultObject implements FriendlyEntity{
         this.dragon[5] = this.ss.grabDragonImage(1, 6, 72, 72);
         this.dragon[6] = this.ss.grabDragonImage(1, 7, 72, 72);
         this.dragon[7] = this.ss.grabDragonImage(1, 8, 72, 72);
+
+        this.dragon[8] = this.ss.grabDragonImage(2, 1, 72, 72);
+        this.dragon[9] = this.ss.grabDragonImage(2, 2, 72, 72);
+        this.dragon[10] = this.ss.grabDragonImage(2, 3, 72, 72);
+        this.dragon[11] = this.ss.grabDragonImage(2, 4, 72, 72);
+        this.dragon[12] = this.ss.grabDragonImage(2, 5, 72, 72);
+        this.dragon[13] = this.ss.grabDragonImage(2, 6, 72, 72);
+        this.dragon[14] = this.ss.grabDragonImage(2, 7, 72, 72);
+        this.dragon[15] = this.ss.grabDragonImage(2, 8, 72, 72);
 
         this.animation = new Animation(5,
                 this.dragon[0],
@@ -58,12 +69,53 @@ public class Player extends DefaultObject implements FriendlyEntity{
         if (Physics.Collision(this, game.enemyEN)) {
             PlayerHealth.hp -= 10;
             if (PlayerHealth.hp <= 0)
+
             {
                 Game.State = Game.STATE.END;
             }
         }
 
+        if (directionChanged && direction.equals("left")) {
+            this.animation = new Animation(5,
+                    this.dragon[8],
+                    this.dragon[9],
+                    this.dragon[10],
+                    this.dragon[11],
+                    this.dragon[12],
+                    this.dragon[13],
+                    this.dragon[14],
+                    this.dragon[15]);
+            this.directionChanged = false;
+        } else if (directionChanged && direction.equals("right")) {
+            this.animation = new Animation(5,
+                    this.dragon[0],
+                    this.dragon[1],
+                    this.dragon[2],
+                    this.dragon[3],
+                    this.dragon[4],
+                    this.dragon[5],
+                    this.dragon[6],
+                    this.dragon[7]);
+            this.directionChanged = false;
+        }
+
         this.animation.runAnimation();
+    }
+
+    public boolean isDirectionChanged() {
+        return directionChanged;
+    }
+
+    public void setDirectionChanged(boolean directionChanged) {
+        this.directionChanged = directionChanged;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 
     public void render(Graphics graphics) {

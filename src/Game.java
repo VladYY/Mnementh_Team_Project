@@ -158,7 +158,6 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
-
         if (State == STATE.GAME) {
             player.tick();
             controller.tick();
@@ -226,8 +225,17 @@ public class Game extends Canvas implements Runnable {
 
         if (key == KeyEvent.VK_RIGHT) {
             player.setVelX(2);
+            if (!this.player.getDirection().equals("right")) {
+                this.player.setDirection("right");
+                this.player.setDirectionChanged(true);
+            }
+
         } else if (key == KeyEvent.VK_LEFT) {
             player.setVelX(-2);
+            if (!this.player.getDirection().equals("left")) {
+                this.player.setDirection("left");
+                this.player.setDirectionChanged(true);
+            }
         } else if (key == KeyEvent.VK_DOWN) {
             player.setVelY(2);
         } else if (key == KeyEvent.VK_UP) {
