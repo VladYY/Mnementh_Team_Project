@@ -17,6 +17,11 @@ public class MouseInput implements MouseListener {
         if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
             if (my >= 150 && my <= 200) {
                 //Pressed PlayButton
+                try {
+                    Music.dragonRoar();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
                 Game.State = Game.STATE.GAME;
             }
         }
