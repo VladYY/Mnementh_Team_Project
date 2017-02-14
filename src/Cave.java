@@ -21,8 +21,7 @@ public class Cave extends DefaultObject implements CaveEntity{
             PlayerHealth.hp -= 20;
             if (PlayerHealth.hp <= 0)
             {
-                //TODO
-                System.exit(1);
+                game.State = Game.STATE.END;
             }
         }
     }

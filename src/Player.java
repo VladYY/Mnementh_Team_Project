@@ -40,8 +40,7 @@ public class Player extends DefaultObject implements FriendlyEntity{
             PlayerHealth.hp -= 10;
             if (PlayerHealth.hp <= 0)
             {
-                //TODO
-                System.exit(1);
+                Game.State = Game.STATE.END;
             }
         }
     }

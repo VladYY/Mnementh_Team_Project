@@ -52,6 +52,10 @@ public class Game extends Canvas implements Runnable {
 
         Music.music();
         game.start();
+        if (Game.State == STATE.END)
+        {
+            game.stop();
+        }
     }
 
     public void init() {
@@ -200,6 +204,15 @@ public class Game extends Canvas implements Runnable {
         } else if (State == STATE.MENU) {
             menu.render(graphics);
         }
+        else if (State == STATE.END)
+        {
+            graphics.drawImage(ImageLoader.loadImage("resources/gfx/Dragonborn6.jpg"), 0,0,getWidth(),getHeight(),null);
+            graphics.setColor(Color.white);
+            Font fnt1 = new Font("arial", Font.ITALIC, 60);
+            graphics.setFont(fnt1);
+            graphics.drawString("" + enemy_killed, WIDTH / 2 + 315, 315);
+        }
+
         graphics.dispose();
         bs.show();
     }
@@ -289,7 +302,7 @@ public class Game extends Canvas implements Runnable {
     public static enum STATE {
         MENU,
         GAME,
-        HELP
+        HELP, END
     }
 
 }
