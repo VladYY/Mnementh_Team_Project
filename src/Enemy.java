@@ -8,10 +8,13 @@ public class Enemy extends DefaultObject implements EnemyEntity{
     Random r = new Random();
     public BufferedImage[] enemy = new BufferedImage[3];
     private SpriteSheet ss;
-    private double speed = (r.nextInt(2) + 1);
+    private double speedRandom = (r.nextInt(100) + 1);
+    private double speed = 1;
     private Game game;
     private Controller c;
     Animation animation;
+
+
 
     public Enemy(double x, double y, Game game, Controller c) {
         super(x,y);
@@ -34,6 +37,25 @@ public class Enemy extends DefaultObject implements EnemyEntity{
     }
 
     public void tick() {
+
+        if (speedRandom > 1 && speedRandom <41)
+        {
+            speed = 1;
+        }
+        if (speedRandom > 40 && speedRandom <81)
+        {
+            speed = 2;
+        }
+        if (speedRandom > 80 && speedRandom <96)
+        {
+            speed = 3;
+        }
+        if (speedRandom > 95 && speedRandom <100)
+        {
+            speed = 4;
+        }
+
+
         int centerX = 600;
         int centerY = 120;
 
