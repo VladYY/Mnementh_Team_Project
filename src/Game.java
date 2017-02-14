@@ -10,6 +10,7 @@ public class Game extends Canvas implements Runnable {
 
     public static final int WIDTH = 640;
     public static final int HEIGHT = 400;
+
     public static final int SCALE = 2;
     private static final long serialVersionUID = 1L;
     public static STATE State = STATE.MENU;
@@ -22,6 +23,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage caveImage = null;
     private BufferedImage battlegroundImage = ImageLoader.loadImage("resources/gfx/battleGround.png");
     private BufferedImage spriteSheet = null;
+    private BufferedImage spriteSheetDragon = null;
     private Battleground battleground;
     private Player player;
     private Cave cave;
@@ -61,9 +63,10 @@ public class Game extends Canvas implements Runnable {
     public void init() {
         BufferedImageLoader loader = new BufferedImageLoader();
         try {
-            dragonImage = loader.loadImage("resources/gfx/red_dragonRight.png");
-            caveImage = loader.loadImage("resources/gfx/cave.png");
-            spriteSheet = loader.loadImage("resources/gfx/gorgon_spriteSheet.png");
+            this.dragonImage = loader.loadImage("resources/gfx/red_dragonRight.png");
+            this.caveImage = loader.loadImage("resources/gfx/cave.png");
+            this.spriteSheet = loader.loadImage("resources/gfx/gorgon_spriteSheet.png");
+            this.spriteSheetDragon = loader.loadImage("resources/gfx/dragon_spriteSheet.png");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -257,7 +260,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public int getEnemy_killed() {
-        return enemy_killed;
+        return this.enemy_killed;
     }
 
     public void setEnemy_killed(int enemy_killed) {
@@ -284,20 +287,23 @@ public class Game extends Canvas implements Runnable {
     }
 
     public BufferedImage getDragonImage() {
-        return dragonImage;
+        return this.dragonImage;
     }
 
     public BufferedImage getCaveImage() {
-        return caveImage;
+        return this.caveImage;
     }
 
     public BufferedImage getBattlegroundImage() {
-        return battlegroundImage;
+        return this.battlegroundImage;
     }
 
     public BufferedImage getSpriteSheet() {
-        return spriteSheet;
+        return this.spriteSheet;
     }
+
+    public BufferedImage getSpriteSheetDragon() {
+        return this.spriteSheetDragon; }
 
     public static enum STATE {
         MENU,
