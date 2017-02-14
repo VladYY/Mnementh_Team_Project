@@ -46,15 +46,6 @@ public class MouseInput implements MouseListener {
             }
         }
 
-        if (Game.State == Game.STATE.END)
-        {
-            if (mx >= Game.WIDTH / 2 + 190 && mx <= Game.WIDTH / 2 + 490)
-                if (my >= 340 && my <= 440)
-                {
-                    //TODO
-                    System.exit(1);
-                }
-        }
     }
 
     @Override
