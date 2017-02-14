@@ -50,7 +50,9 @@ public class Controller {
         //FOR FRIENDLY ENTITY
         for (int i = 0; i < friendlyEn.size(); i++) {
             entFR = friendlyEn.get(i);
-
+            if (entFR.getX() < 0 || entFR.getY() < 0 || entFR.getX() > 1280 || entFR.getY() > 800) {
+                this.RemoveEntity(entFR);
+            }
             entFR.tick();
         }
 
