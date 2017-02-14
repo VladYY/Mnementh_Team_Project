@@ -11,10 +11,12 @@ public class KeyInput extends KeyAdapter {
     }
 
     public void keyPressed(KeyEvent k) {
-        try {
-            game.keyPressed(k);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (Game.State == Game.STATE.GAME) {
+            try {
+                game.keyPressed(k);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     public void keyReleased(KeyEvent k) {
