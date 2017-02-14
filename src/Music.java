@@ -9,7 +9,7 @@ import java.io.InputStream;
 public class Music {
 
     public static void music() throws IOException {
-        String gongFile = "./resources/audio/defense line.wav";
+        String gongFile = "./resources/audio/Forest_Night.wav";
         InputStream in = new FileInputStream(gongFile);
         AudioStream audioStream = new AudioStream(in);
         AudioPlayer.player.start(audioStream);
@@ -27,6 +27,13 @@ public class Music {
         InputStream in = new FileInputStream(enDie);
         AudioStream audioStream3 = new AudioStream(in);
         AudioPlayer.player.start(audioStream3);
+    }
+
+    public static void dragonRoar()throws IOException {
+        String dragoRoar = "./resources/audio/DragonRoar.wav";
+        InputStream in = new FileInputStream(dragoRoar);
+        AudioStream audioStream4 = new AudioStream(in);
+        AudioPlayer.player.start(audioStream4);
     }
 }
 
