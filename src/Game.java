@@ -179,6 +179,13 @@ public class Game extends Canvas implements Runnable {
             player.render(graphics);
             controller.render(graphics);
 
+            //Score
+            graphics.setColor(Color.white);
+            Font fnt1 = new Font("arial", Font.BOLD, 30);
+            graphics.setFont(fnt1);
+            graphics.drawString("Kills:" + enemy_killed, 1150, 35);
+
+            //HP BAR
             graphics.setColor(Color.RED);
             graphics.fillRect(5, 5, 200, 50);
 
