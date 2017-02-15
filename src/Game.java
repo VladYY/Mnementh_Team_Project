@@ -30,6 +30,8 @@ public class Game extends Canvas implements Runnable {
     private Menu menu;
     private Controller controller;
 
+    private boolean isShooting = false;
+
     public LinkedList<FriendlyEntity> friendlyEN;
     public LinkedList<EnemyEntity> enemyEN;
     public LinkedList<CaveEntity> caveEN;
@@ -244,38 +246,34 @@ public class Game extends Canvas implements Runnable {
         } else if (key == KeyEvent.VK_UP) {
             player.setVelY(-2);
         }
-        else if (key == KeyEvent.VK_D)
+        else if (key == KeyEvent.VK_D && !isShooting)
         {
+            isShooting = true;
             direction = 1;
             Music.dragonFire();
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
         }
-        else if (key == KeyEvent.VK_A)
+        else if (key == KeyEvent.VK_A && !isShooting)
         {
+            isShooting = true;
             direction = 2;
             Music.dragonFire();
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
         }
-        else if (key == KeyEvent.VK_S)
+        else if (key == KeyEvent.VK_S && !isShooting)
         {
+            isShooting = true;
             direction = 3;
             Music.dragonFire();
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
         }
-        else if (key == KeyEvent.VK_W)
+        else if (key == KeyEvent.VK_W && !isShooting)
         {
+            isShooting = true;
             direction = 4;
             Music.dragonFire();
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
         }
-    }
-
-    public int getEnemy_killed() {
-        return this.enemy_killed;
-    }
-
-    public void setEnemy_killed(int enemy_killed) {
-        this.enemy_killed = enemy_killed;
     }
 
     public void keyReleased(KeyEvent k) {
@@ -292,9 +290,25 @@ public class Game extends Canvas implements Runnable {
                 player.setVelY(0);
             } else if (key == KeyEvent.VK_ESCAPE) {
                 State = State.MENU;
-
+            }else if (key == KeyEvent.VK_D) {
+                isShooting = false;
+            } else if (key == KeyEvent.VK_A) {
+                isShooting = false;
+            } else if (key == KeyEvent.VK_S) {
+                isShooting = false;
+            } else if (key == KeyEvent.VK_W) {
+                isShooting = false;
             }
         }
+    }
+
+
+    public int getEnemy_killed() {
+        return this.enemy_killed;
+    }
+
+    public void setEnemy_killed(int enemy_killed) {
+        this.enemy_killed = enemy_killed;
     }
 
     public BufferedImage getDragonImage() {
