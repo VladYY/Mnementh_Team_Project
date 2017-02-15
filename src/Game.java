@@ -212,7 +212,7 @@ public class Game extends Canvas implements Runnable {
             graphics.setColor(Color.white);
             Font fnt1 = new Font("arial", Font.ITALIC, 60);
             graphics.setFont(fnt1);
-            graphics.drawString("" + enemy_killed, WIDTH / 2 + 315, 315);
+            graphics.drawString("" + enemy_killed, WIDTH / 2 + 315, 340);
         }
 
         graphics.dispose();
