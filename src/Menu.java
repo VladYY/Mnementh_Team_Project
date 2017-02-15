@@ -6,7 +6,6 @@ public class Menu {
     public Rectangle playButton = new Rectangle(Game.WIDTH / 2 + 270, 150, 100, 50);
     public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 + 270, 250, 100, 50);
     public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 270, 350, 100, 50);
-//    public Rectangle StartAgainButton = new Rectangle(Game.WIDTH / 2 + 315, 450, 100, 50);
 
     public Menu(Game game) {
         this.game = game;
@@ -14,11 +13,11 @@ public class Menu {
 
     public void render(Graphics graphics) {
 
-
+        Graphics2D g2d = (Graphics2D) graphics;
 
         if (game.State == Game.STATE.MENU) {
 
-            Graphics2D g2d = (Graphics2D) graphics;
+
             Font fnt0 = new Font("arial", Font.BOLD, 50);
             graphics.setFont(fnt0);
             graphics.setColor(Color.white);
@@ -40,17 +39,6 @@ public class Menu {
             graphics.drawString("TEST", Game.WIDTH / 2 + 50, 170);
             graphics.drawString("Back", 458, 239);
         }
-
-//        } else if (game.State == Game.STATE.END) {
-//            Graphics2D g2d = (Graphics2D) graphics;
-//
-//            Font fnt1 = new Font("arial", Font.ITALIC, 60);
-//            graphics.setFont(fnt1);
-//            graphics.setColor(Color.white);
-//            graphics.drawString("Play again", StartAgainButton.x, StartAgainButton.y);
-//
-//            g2d.draw(StartAgainButton);
-//        }
 
     }
 }
