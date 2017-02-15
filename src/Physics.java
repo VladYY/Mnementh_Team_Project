@@ -1,7 +1,6 @@
 import java.util.LinkedList;
 
 public class Physics {
-    private static Controller controller;
 
     public static boolean Collision(FriendlyEntity friendly, LinkedList<EnemyEntity> enemies) {
 
