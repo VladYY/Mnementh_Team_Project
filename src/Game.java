@@ -203,7 +203,7 @@ public class Game extends Canvas implements Runnable {
             graphics.setColor(Color.WHITE);
             graphics.drawRect(5, 5, 200, 50);
 
-        } else if (State == STATE.MENU) {
+        } else if (State == STATE.MENU || State == STATE.HELP) {
             menu.render(graphics);
         }
         else if (State == STATE.END)
