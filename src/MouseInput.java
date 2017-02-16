@@ -62,19 +62,6 @@ public class MouseInput implements MouseListener {
                     }
                 }
 
-//            if (Game.StateSound == Game.STATESOUND.OFF){
-//                if (mx >= 1050 && mx <= 1250) {
-//                    if (my >= 25 && my <= 75) {
-//                        //Pressed Sound OFF Button
-//                        Game.StateSound = Game.STATESOUND.ON;
-//                    }
-//                }
-//            }
-
-
-
-
-
         }
 
 
@@ -92,7 +79,11 @@ public class MouseInput implements MouseListener {
             if (mx >= Game.WIDTH / 2 + 190 && mx <= Game.WIDTH / 2 + 490) {
                 if (my >= 340 && my <= 440) {
                     //TODO
-                    System.exit(1);
+                    Game.State = Game.STATE.MENU;
+                    PlayerHealth.hp = 200;
+                    Game.count_enemy = 5;
+
+                    Game.State = Game.STATE.GAME;
                 }
             }
         }

@@ -80,6 +80,7 @@ public class Menu {
 
             Font fnt2 = new Font("arial", Font.CENTER_BASELINE, 25);
 
+
             graphics.setFont(fnt2);
             graphics.setColor(Color.white);
             drawStringMultiLine((Graphics2D) graphics, helpString, helpString.length() * 2 - (helpString.length() / 2), (game.WIDTH / 2), 250);
@@ -88,6 +89,16 @@ public class Menu {
             graphics.setColor(Color.white);
             graphics.drawString("Back", backButton.x + 14, backButton.y + 35);
             g2d.draw(backButton);
+        }
+        if (game.State == Game.STATE.END) {
+
+            graphics.setColor(Color.white);
+            Font fnt1 = new Font("arial", Font.ITALIC, 60);
+            graphics.setFont(fnt1);
+            graphics.drawString("" + Game.enemy_killed, Game.WIDTH / 2 + 315, 340);
+            graphics.setColor(Color.white);
+            graphics.drawString("Play again", Game.WIDTH / 2 + 200, 430);
+            graphics.drawRect(Game.WIDTH / 2 + 190, 355, 300, 100);
         }
 
     }
