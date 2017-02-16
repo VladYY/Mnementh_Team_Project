@@ -51,23 +51,25 @@ public class MouseInput implements MouseListener {
                 }
             }
 //Sound Button
-            if (Game.StateSound == Game.STATESOUND.ON){
+
                 if (mx >= 1050 && mx <= 1250) {
                 if (my >= 25 && my <= 75) {
-                    //Pressed Sound ON Button
+                    if (Game.StateSound == Game.STATESOUND.ON){
                         Game.StateSound = Game.STATESOUND.OFF;
+                        } else {
+                            Game.StateSound = Game.STATESOUND.ON;
+                        }
                     }
                 }
-            }
 
-            if (Game.StateSound == Game.STATESOUND.OFF){
-                if (mx >= 1050 && mx <= 1250) {
-                    if (my >= 25 && my <= 75) {
-                        //Pressed Sound OFF Button
-                        Game.StateSound = Game.STATESOUND.ON;
-                    }
-                }
-            }
+//            if (Game.StateSound == Game.STATESOUND.OFF){
+//                if (mx >= 1050 && mx <= 1250) {
+//                    if (my >= 25 && my <= 75) {
+//                        //Pressed Sound OFF Button
+//                        Game.StateSound = Game.STATESOUND.ON;
+//                    }
+//                }
+//            }
 
 
 
