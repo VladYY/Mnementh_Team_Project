@@ -1,3 +1,5 @@
+import sun.audio.AudioPlayer;
+
 import java.awt.*;
 
 public class Menu {
@@ -61,10 +63,12 @@ public class Menu {
             //Sound ON/OFF
             if (Game.StateSound == Game.STATESOUND.ON) {
                 graphics.drawString("SOUND ON", soundButton.x + 19, soundButton.y + 35);
+                AudioPlayer.player.start(Music.audioStream);
             }
 
             if (Game.StateSound == Game.STATESOUND.OFF) {
                 graphics.drawString("SOUND OFF", soundButton.x + 19, soundButton.y + 35);
+                AudioPlayer.player.stop(Music.audioStream);
             }
             g2d.draw(soundButton);
 

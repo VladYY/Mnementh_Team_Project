@@ -222,6 +222,13 @@ public class Game extends Canvas implements Runnable {
         }
         else if (State == STATE.END)
         {
+            player.setVelX(0);
+            player.setVelY(0);
+            player.setX(200);
+            player.setY(200);
+            PlayerHealth.hp = 200;
+            Game.count_enemy = 5;
+            enemyEN.clear();
             graphics.drawImage(imageDead, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
         }

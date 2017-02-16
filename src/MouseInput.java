@@ -79,10 +79,7 @@ public class MouseInput implements MouseListener {
             if (mx >= Game.WIDTH / 2 + 190 && mx <= Game.WIDTH / 2 + 490) {
                 if (my >= 340 && my <= 440) {
                     //TODO
-                    Game.State = Game.STATE.MENU;
-                    PlayerHealth.hp = 200;
-                    Game.count_enemy = 5;
-
+                    Game.enemy_killed = 0;
                     Game.State = Game.STATE.GAME;
                 }
             }

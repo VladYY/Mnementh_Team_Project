@@ -9,15 +9,19 @@ import java.io.InputStream;
  * Created by MARIO on 2/13/2017.
  */
 public class Music {
+    public static AudioStream audioStream;
+
 
     public static void music() throws IOException {
         String gongFile = "./resources/audio/Forest_Night.wav";
         InputStream in = new FileInputStream(gongFile);
-        AudioStream audioStream = new AudioStream(in);
+        audioStream = new AudioStream(in);
 
-        if (Game.StateSound == Game.STATESOUND.ON) {
-            AudioPlayer.player.start(audioStream);
-        }
+//        if (Game.StateSound == Game.STATESOUND.ON) {
+//            AudioPlayer.player.start(audioStream);
+//        } else if (Game.StateSound == Game.STATESOUND.OFF){
+//            AudioPlayer.player.stop(audioStream);
+//        }
     }
 
     public static void dragonFire() throws IOException {
