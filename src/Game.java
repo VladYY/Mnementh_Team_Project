@@ -20,6 +20,7 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
     private Thread thread;
     private BufferedImage image = ImageLoader.loadImage("/resources/gfx/Mnementh-Dragon.jpg");
+    private BufferedImage imageHelp = ImageLoader.loadImage("/resources/gfx/Dragon3.jpg");
     private BufferedImage dragonImage = null;
     private BufferedImage caveImage = null;
     private BufferedImage battlegroundImage = ImageLoader.loadImage("resources/gfx/battleGround.png");
@@ -183,7 +184,7 @@ public class Game extends Canvas implements Runnable {
 
         Graphics graphics = bs.getDrawGraphics();
 
-        graphics.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+
         if (State == STATE.GAME) {
             battleground.render(graphics);
             cave.render(graphics);
@@ -210,7 +211,11 @@ public class Game extends Canvas implements Runnable {
             graphics.setFont(fnt1);
             graphics.drawString(PlayerHealth.hp/2 + "%", 75, 42);
 
-        } else if (State == STATE.MENU || State == STATE.HELP) {
+        } else if (State == STATE.MENU) {
+            graphics.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            menu.render(graphics);
+        } else if (State == STATE.HELP) {
+            graphics.drawImage(imageHelp, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
         }
         else if (State == STATE.END)

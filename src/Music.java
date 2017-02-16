@@ -18,9 +18,6 @@ public class Music {
         if (Game.StateSound == Game.STATESOUND.ON) {
             AudioPlayer.player.start(audioStream);
         }
-        if (Game.StateSound == Game.STATESOUND.OFF) {
-            AudioPlayer.player.stop(audioStream);
-        }
     }
 
     public static void dragonFire() throws IOException {
