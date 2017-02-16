@@ -7,6 +7,7 @@ public class Menu {
     public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 + 270, 250, 100, 50);
     public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 270, 350, 100, 50);
     public Rectangle backButton = new Rectangle(900, 600, 100, 50);
+    public Rectangle soundButton = new Rectangle(1050, 25, 200, 50);
 
     public Menu(Game game) {
         this.game = game;
@@ -48,13 +49,25 @@ public class Menu {
             Font fnt1 = new Font("arial", Font.BOLD, 30);
 
             graphics.setFont(fnt1);
+
+            //Main Menu
             graphics.drawString("Play", playButton.x + 19, playButton.y + 35);
             graphics.drawString("Help", helpButton.x + 19, helpButton.y + 35);
             graphics.drawString("Quit", quitButton.x + 19, quitButton.y + 35);
-
             g2d.draw(playButton);
             g2d.draw(helpButton);
             g2d.draw(quitButton);
+
+            //Sound ON/OFF
+            if (Game.StateSound == Game.STATESOUND.ON) {
+                graphics.drawString("SOUND ON", soundButton.x + 19, soundButton.y + 35);
+            }
+
+            if (Game.StateSound == Game.STATESOUND.OFF) {
+                graphics.drawString("SOUND OFF", soundButton.x + 19, soundButton.y + 35);
+            }
+            g2d.draw(soundButton);
+
 
         } else if (game.State == Game.STATE.HELP) {
             String helpString = "The player (a bronze dragon named Mnementh) have the task to protect the dragon cave (the object that must be defended) and avoid his own death. Each time the dragon hit directly an enemy, losing 5% of his total health, but of course the enemy dies – you can’t hit a dragon like this. When an enemy reach the cave, it disappear in the deep darkness and takes 10% of dragon’s total health. Every next wave is bigger and bigger. You must slay all enemies you can. Protect the cave! Protect the treasure in it!";

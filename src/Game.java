@@ -14,6 +14,7 @@ public class Game extends Canvas implements Runnable {
     public static final int SCALE = 2;
     private static final long serialVersionUID = 1L;
     public static STATE State = STATE.MENU;
+    public static STATESOUND StateSound = STATESOUND.ON;
     public static int direction;
     public final String TITLE = "Mnementh the game";
     private boolean running = false;
@@ -224,6 +225,11 @@ public class Game extends Canvas implements Runnable {
             graphics.drawRect(Game.WIDTH / 2 + 190, 355, 300, 100);
         }
 
+//        if (StateSound == STATESOUND.ON || StateSound == STATESOUND.OFF){
+//            menu.render(graphics);
+//        }
+
+
         graphics.dispose();
         bs.show();
     }
@@ -338,6 +344,11 @@ public class Game extends Canvas implements Runnable {
         MENU,
         GAME,
         HELP, END
+    }
+
+    public static enum STATESOUND {
+        ON,
+        OFF
     }
 
 }

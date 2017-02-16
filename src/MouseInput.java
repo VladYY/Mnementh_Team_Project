@@ -18,7 +18,7 @@ public class MouseInput implements MouseListener {
 
 //Play Button
         if (Game.State == Game.STATE.MENU) {
-            if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
+            if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 370) {
                 if (my >= 150 && my <= 200) {
                     //Pressed Play Button
                     try {
@@ -30,35 +30,62 @@ public class MouseInput implements MouseListener {
                 }
             }
 //Help Button
-            if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
+            if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 370) {
                 if (my >= 250 && my <= 300) {
                     //Pressed Help Button
                     Game.State = Game.STATE.HELP;
-                    if (mx >= 900 && mx <= 1100) {
+                    if (mx >= 900 && mx <= 1000) {
                         if (my >= 600 && my <= 650) {
                             //Pressed Back Button
                             Game.State = Game.STATE.MENU;
                         }
+                    }
                 }
             }
-        }
 //Quit Button
-        if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 390) {
-            if (my >= 350 && my <= 400) {
-                //Pressed Quit Button
+            if (mx >= Game.WIDTH / 2 + 270 && mx <= Game.WIDTH / 2 + 370) {
+                if (my >= 350 && my <= 400) {
+                    //Pressed Quit Button
                     System.exit(1);
 
                 }
             }
+//Sound Button
+            if (Game.StateSound == Game.STATESOUND.ON){
+                if (mx >= 1050 && mx <= 1250) {
+                if (my >= 25 && my <= 75) {
+                    //Pressed Sound ON Button
+                        Game.StateSound = Game.STATESOUND.OFF;
+                    }
+                }
+            }
+
+            if (Game.StateSound == Game.STATESOUND.OFF){
+                if (mx >= 1050 && mx <= 1250) {
+                    if (my >= 25 && my <= 75) {
+                        //Pressed Sound OFF Button
+                        Game.StateSound = Game.STATESOUND.ON;
+                    }
+                }
+            }
+
+
+
+
+
         }
+
+
+//Back Button
         else if (Game.State == Game.STATE.HELP){
-            if (mx >= 900 && mx <= 1100) {
+            if (mx >= 900 && mx <= 1000) {
                 if (my >= 600 && my <= 650) {
                     //Pressed Back Button
                     Game.State = Game.STATE.MENU;
                 }
             }
         }
+//PlayAgain Button
             else if (Game.State == Game.STATE.END) {
             if (mx >= Game.WIDTH / 2 + 190 && mx <= Game.WIDTH / 2 + 490) {
                 if (my >= 340 && my <= 440) {
