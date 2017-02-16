@@ -205,6 +205,10 @@ public class Game extends Canvas implements Runnable {
             graphics.setColor(Color.WHITE);
             graphics.drawRect(5, 5, 200, 50);
 
+            graphics.setColor(Color.white);
+            graphics.setFont(fnt1);
+            graphics.drawString(PlayerHealth.hp/2 + "%", 75, 42);
+
         } else if (State == STATE.MENU || State == STATE.HELP) {
             menu.render(graphics);
         }

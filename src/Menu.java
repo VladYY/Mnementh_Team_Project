@@ -71,9 +71,9 @@ public class Menu {
             graphics.setColor(Color.white);
             drawStringMultiLine((Graphics2D) graphics, helpString, helpString.length() * 2 - (helpString.length() / 2), (game.WIDTH / 2), 250);
 
-           graphics.setFont(fnt1);
+            graphics.setFont(fnt1);
             graphics.setColor(Color.white);
-            graphics.drawString("Back", backButton.x + 19, backButton.y + 35);
+            graphics.drawString("Back", backButton.x + 14, backButton.y + 35);
             g2d.draw(backButton);
         }
 
