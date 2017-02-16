@@ -20,6 +20,7 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
     private Thread thread;
     private BufferedImage image = ImageLoader.loadImage("/resources/gfx/Mnementh-Dragon.jpg");
+    private BufferedImage imageDead = ImageLoader.loadImage("resources/gfx/Dragonborn6.jpg");
     private BufferedImage imageHelp = ImageLoader.loadImage("/resources/gfx/Dragon3.jpg");
     private BufferedImage dragonImage = null;
     private BufferedImage caveImage = null;
@@ -221,7 +222,7 @@ public class Game extends Canvas implements Runnable {
         }
         else if (State == STATE.END)
         {
-            graphics.drawImage(ImageLoader.loadImage("resources/gfx/Dragonborn6.jpg"), 0,0,getWidth(),getHeight(),null);
+            graphics.drawImage(imageDead, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
         }
 
