@@ -251,30 +251,22 @@ public class Game extends Canvas implements Runnable {
             player.setVelY(2);
         } else if (key == KeyEvent.VK_UP) {
             player.setVelY(-2);
-        }
-        else if (key == KeyEvent.VK_D && !isShooting)
-        {
+        } else if (key == KeyEvent.VK_D && !isShooting) {
             isShooting = true;
             direction = 1;
             Music.dragonFire();
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
-        }
-        else if (key == KeyEvent.VK_A && !isShooting)
-        {
+        } else if (key == KeyEvent.VK_A && !isShooting) {
             isShooting = true;
             direction = 2;
             Music.dragonFire();
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
-        }
-        else if (key == KeyEvent.VK_S && !isShooting)
-        {
+        } else if (key == KeyEvent.VK_S && !isShooting) {
             isShooting = true;
             direction = 3;
             Music.dragonFire();
             controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
-        }
-        else if (key == KeyEvent.VK_W && !isShooting)
-        {
+        } else if (key == KeyEvent.VK_W && !isShooting) {
             isShooting = true;
             direction = 4;
             Music.dragonFire();
