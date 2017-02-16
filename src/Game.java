@@ -168,6 +168,7 @@ public class Game extends Canvas implements Runnable {
         }
 
 
+
         if (this.controller.getEnemy().size() == 0) {
             this.setCount_enemy(this.getCount_enemy() + 1);
             this.controller.createEnemy(this.count_enemy);
@@ -223,10 +224,6 @@ public class Game extends Canvas implements Runnable {
             graphics.drawImage(ImageLoader.loadImage("resources/gfx/Dragonborn6.jpg"), 0,0,getWidth(),getHeight(),null);
             menu.render(graphics);
         }
-
-//        if (StateSound == STATESOUND.ON || StateSound == STATESOUND.OFF){
-//            menu.render(graphics);
-//        }
 
 
         graphics.dispose();
