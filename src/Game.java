@@ -25,7 +25,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage imageDead = ImageLoader.loadImage("resources/gfx/Dragonborn6.jpg");
     private BufferedImage imageHelp = ImageLoader.loadImage("/resources/gfx/Dragon3.jpg");
     private BufferedImage battlegroundImage = ImageLoader.loadImage("resources/gfx/battleGround.png");
-    private BufferedImage spriteSheet = null;
+    private BufferedImage spriteSheetGorgon = null;
     private BufferedImage spriteSheetDragon = null;
 
     private Battleground battleground;
@@ -69,7 +69,7 @@ public class Game extends Canvas implements Runnable {
     public void init() {
         BufferedImageLoader loader = new BufferedImageLoader();
         try {
-            this.spriteSheet = loader.loadImage("resources/gfx/gorgon_spriteSheet.png");
+            this.spriteSheetGorgon = loader.loadImage("resources/gfx/fixed_gorgon_sheet.png");
             this.spriteSheetDragon = loader.loadImage("resources/gfx/fixed_dragon_sheet.png");
         } catch (IOException e) {
             e.printStackTrace();
@@ -320,8 +320,8 @@ public class Game extends Canvas implements Runnable {
         return this.battlegroundImage;
     }
 
-    public BufferedImage getSpriteSheet() {
-        return this.spriteSheet;
+    public BufferedImage getSpriteSheetGorgon() {
+        return this.spriteSheetGorgon;
     }
 
     public BufferedImage getSpriteSheetDragon() {

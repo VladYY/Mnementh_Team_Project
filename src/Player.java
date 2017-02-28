@@ -120,7 +120,6 @@ public class Player extends DefaultObject implements FriendlyEntity{
 
     public void render(Graphics graphics) {
         this.animation.drawAnimation(graphics, x, y, 0);
-        //graphics.drawImage(player, (int) x, (int) y, null);
     }
 
     public double getX() {
