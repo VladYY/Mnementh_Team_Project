@@ -8,23 +8,26 @@ import java.util.LinkedList;
 
 public class Game extends Canvas implements Runnable {
 
+    public final String TITLE = "Mnementh the game";
     public static final int WIDTH = 640;
     public static final int HEIGHT = 400;
-
     public static final int SCALE = 2;
     private static final long serialVersionUID = 1L;
+
     public static STATE State = STATE.MENU;
     public static STATESOUND StateSound = STATESOUND.ON;
     public static int direction;
-    public final String TITLE = "Mnementh the game";
+
     private boolean running = false;
     private Thread thread;
+
     private BufferedImage image = ImageLoader.loadImage("/resources/gfx/Mnementh-Dragon.jpg");
     private BufferedImage imageDead = ImageLoader.loadImage("resources/gfx/Dragonborn6.jpg");
     private BufferedImage imageHelp = ImageLoader.loadImage("/resources/gfx/Dragon3.jpg");
     private BufferedImage battlegroundImage = ImageLoader.loadImage("resources/gfx/battleGround.png");
     private BufferedImage spriteSheet = null;
     private BufferedImage spriteSheetDragon = null;
+
     private Battleground battleground;
     private Player player;
     private Cave cave;
@@ -67,7 +70,7 @@ public class Game extends Canvas implements Runnable {
         BufferedImageLoader loader = new BufferedImageLoader();
         try {
             this.spriteSheet = loader.loadImage("resources/gfx/gorgon_spriteSheet.png");
-            this.spriteSheetDragon = loader.loadImage("resources/gfx/dragon_spriteSheet.png");
+            this.spriteSheetDragon = loader.loadImage("resources/gfx/fixed_dragon_sheet.png");
         } catch (IOException e) {
             e.printStackTrace();
         }
