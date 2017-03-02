@@ -1,5 +1,3 @@
-package interfaces;
-
 import java.awt.*;
 
 public interface CaveEntity {

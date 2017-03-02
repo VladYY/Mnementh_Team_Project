@@ -1,7 +1,3 @@
-import interfaces.CaveEntity;
-import interfaces.EnemyEntity;
-import interfaces.FriendlyEntity;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
