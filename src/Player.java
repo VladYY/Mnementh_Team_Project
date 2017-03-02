@@ -1,7 +1,9 @@
+import interfaces.FriendlyEntity;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Player extends DefaultObject implements FriendlyEntity{
+public class Player extends DefaultObject implements FriendlyEntity {
     private double velX = 0;
     private double velY = 0;
     private Game game;

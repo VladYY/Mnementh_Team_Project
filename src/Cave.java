@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Cave extends DefaultObject implements CaveEntity{
+public class Cave extends DefaultObject implements interfaces.CaveEntity {
 
 
     private BufferedImage cave;
