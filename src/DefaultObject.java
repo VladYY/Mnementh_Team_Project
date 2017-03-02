@@ -3,7 +3,6 @@ import java.awt.*;
 public class DefaultObject {
 
     public double x,y;
-
     public DefaultObject(double x, double y) {
         this.x = x;
         this.y = y;
