@@ -1,8 +1,6 @@
-package interfaces;
-
 import java.awt.*;
 
-public interface CaveEntity {
+public interface EnemyEntity {
     void tick();
     void render(Graphics g);
     double getX();

@@ -1,7 +1,3 @@
-import interfaces.CaveEntity;
-import interfaces.EnemyEntity;
-import interfaces.FriendlyEntity;
-
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
@@ -13,7 +9,7 @@ public class Controller {
 
     private LinkedList<FriendlyEntity> friendlyEn = new LinkedList<>(); //ea
     private LinkedList<EnemyEntity> enemyEn = new LinkedList<>();       //eb
-    private LinkedList<interfaces.CaveEntity> caveEn = new LinkedList<>();       //eb
+    private LinkedList<CaveEntity> caveEn = new LinkedList<>();       //eb
 
     FriendlyEntity entFR;
     EnemyEntity entEN;

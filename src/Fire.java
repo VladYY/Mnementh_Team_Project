@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Fire extends DefaultObject implements interfaces.FriendlyEntity {
+public class Fire extends DefaultObject implements FriendlyEntity{
 
     BufferedImage image;
     private int direction;

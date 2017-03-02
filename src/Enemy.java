@@ -1,11 +1,9 @@
-import interfaces.EnemyEntity;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
-public class Enemy extends DefaultObject implements EnemyEntity {
+public class Enemy extends DefaultObject implements EnemyEntity{
 
     private Random rnd = new Random();
     public BufferedImage[] enemy = new BufferedImage[3];

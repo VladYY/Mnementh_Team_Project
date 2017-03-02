@@ -1,15 +1,9 @@
-package interfaces;
-
 import java.awt.*;
 
-public interface FriendlyEntity {
-
+public interface CaveEntity {
     void tick();
-
     void render(Graphics g);
-
     double getX();
     double getY();
-
     Rectangle getBounds();
 }
