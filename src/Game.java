@@ -67,7 +67,6 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void init() {
-        requestFocus();
         BufferedImageLoader loader = new BufferedImageLoader();
         try {
             this.spriteSheetGorgon = loader.loadImage("resources/gfx/fixed_gorgon_sheet.png");
