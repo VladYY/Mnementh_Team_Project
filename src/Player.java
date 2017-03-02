@@ -21,22 +21,22 @@ public class Player extends DefaultObject implements FriendlyEntity{
         this.c = c;
         this.ss = new SpriteSheet(game.getSpriteSheetDragon());
         this.dragon[0] = this.ss.grabDragonImage(1, 1, 72, 72);
-        this.dragon[1] = this.ss.grabDragonImage(2, 1, 72, 72);
-        this.dragon[2] = this.ss.grabDragonImage(3, 1, 72, 72);
-        this.dragon[3] = this.ss.grabDragonImage(4, 1, 72, 72);
-        this.dragon[4] = this.ss.grabDragonImage(5, 1, 72, 72);
-        this.dragon[5] = this.ss.grabDragonImage(6, 1, 72, 72);
-        this.dragon[6] = this.ss.grabDragonImage(7, 1, 72, 72);
-        this.dragon[7] = this.ss.grabDragonImage(8, 1, 72, 72);
+        this.dragon[1] = this.ss.grabDragonImage(1, 2, 72, 72);
+        this.dragon[2] = this.ss.grabDragonImage(1, 3, 72, 72);
+        this.dragon[3] = this.ss.grabDragonImage(1, 4, 72, 72);
+        this.dragon[4] = this.ss.grabDragonImage(1, 5, 72, 72);
+        this.dragon[5] = this.ss.grabDragonImage(1, 6, 72, 72);
+        this.dragon[6] = this.ss.grabDragonImage(1, 7, 72, 72);
+        this.dragon[7] = this.ss.grabDragonImage(1, 8, 72, 72);
 
-        this.dragon[8] = this.ss.grabDragonImage(1, 2, 72, 72);
+        this.dragon[8] = this.ss.grabDragonImage(2, 1, 72, 72);
         this.dragon[9] = this.ss.grabDragonImage(2, 2, 72, 72);
-        this.dragon[10] = this.ss.grabDragonImage(3, 2, 72, 72);
-        this.dragon[11] = this.ss.grabDragonImage(4, 2, 72, 72);
-        this.dragon[12] = this.ss.grabDragonImage(5, 2, 72, 72);
-        this.dragon[13] = this.ss.grabDragonImage(6, 2, 72, 72);
-        this.dragon[14] = this.ss.grabDragonImage(7, 2, 72, 72);
-        this.dragon[15] = this.ss.grabDragonImage(8, 2, 72, 72);
+        this.dragon[10] = this.ss.grabDragonImage(2, 3, 72, 72);
+        this.dragon[11] = this.ss.grabDragonImage(2, 4, 72, 72);
+        this.dragon[12] = this.ss.grabDragonImage(2, 5, 72, 72);
+        this.dragon[13] = this.ss.grabDragonImage(2, 6, 72, 72);
+        this.dragon[14] = this.ss.grabDragonImage(2, 7, 72, 72);
+        this.dragon[15] = this.ss.grabDragonImage(2, 8, 72, 72);
 
         this.animation = new Animation(5,
                 this.dragon[0],
