@@ -22,6 +22,8 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage image = ImageLoader.loadImage("/resources/gfx/Mnementh-Dragon.jpg");
     private BufferedImage imageDead = ImageLoader.loadImage("resources/gfx/Dragonborn6.jpg");
     private BufferedImage imageHelp = ImageLoader.loadImage("/resources/gfx/Dragon3.jpg");
+    private BufferedImage dragonImage = null;
+    private BufferedImage caveImage = null;
     private BufferedImage battlegroundImage = ImageLoader.loadImage("resources/gfx/battleGround.png");
     private BufferedImage spriteSheet = null;
     private BufferedImage spriteSheetDragon = null;
@@ -66,6 +68,8 @@ public class Game extends Canvas implements Runnable {
     public void init() {
         BufferedImageLoader loader = new BufferedImageLoader();
         try {
+            this.dragonImage = loader.loadImage("resources/gfx/red_dragonRight.png");
+            this.caveImage = loader.loadImage("resources/gfx/cave.png");
             this.spriteSheet = loader.loadImage("resources/gfx/gorgon_spriteSheet.png");
             this.spriteSheetDragon = loader.loadImage("resources/gfx/dragon_spriteSheet.png");
         } catch (IOException e) {
@@ -311,6 +315,14 @@ public class Game extends Canvas implements Runnable {
 
     public void setEnemy_killed(int enemy_killed) {
         this.enemy_killed = enemy_killed;
+    }
+
+    public BufferedImage getDragonImage() {
+        return this.dragonImage;
+    }
+
+    public BufferedImage getCaveImage() {
+        return this.caveImage;
     }
 
     public BufferedImage getBattlegroundImage() {
