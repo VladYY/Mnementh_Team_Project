@@ -1,3 +1,7 @@
+import interfaces.CaveEntity;
+import interfaces.EnemyEntity;
+import interfaces.FriendlyEntity;
+
 import java.util.LinkedList;
 
 public class Physics {
