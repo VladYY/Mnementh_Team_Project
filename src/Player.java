@@ -4,21 +4,23 @@ import java.awt.image.BufferedImage;
 public class Player extends DefaultObject implements FriendlyEntity{
     private double velX = 0;
     private double velY = 0;
+    public int health;
     private Game game;
     private String direction = "right";
-    private Controller c;
+    private Controller controller;
     boolean directionChanged = false;
 
     private SpriteSheet ss;
     private BufferedImage[] dragon = new BufferedImage[16];
     Animation animation;
 
-    public Player(double x, double y, Game game, Controller c) {
+    public Player(double x, double y, Game game, Controller controller, int health) {
         super(x,y);
 
+        this.health = health;
         this.game = game;
-        c.addEntity(this);
-        this.c = c;
+        controller.addEntity(this);
+        this.controller = controller;
         this.ss = new SpriteSheet(game.getSpriteSheetDragon());
         this.dragon[0] = this.ss.grabDragonImage(1, 1, 72, 72);
         this.dragon[1] = this.ss.grabDragonImage(2, 1, 72, 72);
@@ -143,11 +145,19 @@ public class Player extends DefaultObject implements FriendlyEntity{
     }
 
     public  Rectangle getBounds() {
-        return new Rectangle((int)x , (int)y, 32, 32);
+        return new Rectangle((int)x , (int)y, 72, 72);
     }
 
     public void setVelY(double velY) {
         this.velY = velY;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
 }

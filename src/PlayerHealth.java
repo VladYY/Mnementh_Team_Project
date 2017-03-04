@@ -1,5 +1,5 @@
 public class PlayerHealth {
 
-    public static int hp = 100 * 2;
+//    public static int hp = 100 * 2;
 
 }

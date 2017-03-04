@@ -18,9 +18,9 @@ public class Music {
         audioStream = new AudioStream(in);
 
 //        if (Game.StateSound == Game.STATESOUND.ON) {
-//            AudioPlayer.player.start(audioStream);
+//            AudioPlayer.player1.start(audioStream);
 //        } else if (Game.StateSound == Game.STATESOUND.OFF){
-//            AudioPlayer.player.stop(audioStream);
+//            AudioPlayer.player1.stop(audioStream);
 //        }
     }
 

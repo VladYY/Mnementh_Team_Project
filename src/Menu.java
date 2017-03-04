@@ -74,7 +74,7 @@ public class Menu {
 
 
         } else if (game.State == Game.STATE.HELP) {
-            String helpString = "The player (a bronze dragon named Mnementh) have the task to protect the dragon cave (the object that must be defended) and avoid his own death. Each time the dragon hit directly an enemy, losing 5% of his total health, but of course the enemy dies – you can’t hit a dragon like this. When an enemy reach the cave, it disappear in the deep darkness and takes 10% of dragon’s total health. Every next wave is bigger and bigger. You must slay all enemies you can. Protect the cave! Protect the treasure in it!";
+            String helpString = "The player1 (a bronze dragon named Mnementh) have the task to protect the dragon cave (the object that must be defended) and avoid his own death. Each time the dragon hit directly an enemy, losing 5% of his total health, but of course the enemy dies – you can’t hit a dragon like this. When an enemy reach the cave, it disappear in the deep darkness and takes 10% of dragon’s total health. Every next wave is bigger and bigger. You must slay all enemies you can. Protect the cave! Protect the treasure in it!";
 
             Font fnt1 = new Font("arial", Font.BOLD, 30);
 

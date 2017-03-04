@@ -29,7 +29,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage spriteSheetDragon = null;
 
     private Battleground battleground;
-    private Player player;
+    public Player player1;
     private Cave cave;
     private Menu menu;
     private Controller controller;
@@ -80,12 +80,9 @@ public class Game extends Canvas implements Runnable {
 
         controller = new Controller(this);
         battleground = new Battleground(this);
-        player = new Player(200, 200, this, controller);
-        //////////Test Cave Position//////////
-        int x = 550;
-        int y = 70;
-        //////////////////////////////////////////////
-        cave = new Cave(x, y, this, controller);
+        player1 = new Player(200, 200, this, controller, 200);
+        //////////Cave Position//////////
+        cave = new Cave(550, 70, this, controller);
         menu = new Menu(this);
 
 
@@ -163,7 +160,7 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         if (State == STATE.GAME) {
-            player.tick();
+            player1.tick();
             controller.tick();
         }
 
@@ -189,7 +186,7 @@ public class Game extends Canvas implements Runnable {
         if (State == STATE.GAME) {
             battleground.render(graphics);
             cave.render(graphics);
-            player.render(graphics);
+            player1.render(graphics);
             controller.render(graphics);
 
             //Score
@@ -203,14 +200,14 @@ public class Game extends Canvas implements Runnable {
             graphics.fillRect(5, 5, 200, 50);
 
             graphics.setColor(Color.GREEN);
-            graphics.fillRect(5, 5, PlayerHealth.hp, 50);
+            graphics.fillRect(5, 5, player1.getHealth(), 50);
 
             graphics.setColor(Color.WHITE);
             graphics.drawRect(5, 5, 200, 50);
 
             graphics.setColor(Color.white);
             graphics.setFont(fnt1);
-            graphics.drawString(PlayerHealth.hp/2 + "%", 75, 42);
+            graphics.drawString(player1.getHealth()/2 + "%", 75, 42);
 
         } else if (State == STATE.MENU) {
             graphics.drawImage(image, 0, 0, getWidth(), getHeight(), this);
@@ -221,11 +218,11 @@ public class Game extends Canvas implements Runnable {
         }
         else if (State == STATE.END)
         {
-            player.setVelX(0);
-            player.setVelY(0);
-            player.setX(200);
-            player.setY(200);
-            PlayerHealth.hp = 200;
+            player1.setVelX(0);
+            player1.setVelY(0);
+            player1.setX(200);
+            player1.setY(200);
+            player1.setHealth(200);
             Game.count_enemy = 5;
             enemyEN.clear();
             graphics.drawImage(imageDead, 0, 0, getWidth(), getHeight(), this);
@@ -242,42 +239,42 @@ public class Game extends Canvas implements Runnable {
         int key = k.getKeyCode();
 
         if (key == KeyEvent.VK_RIGHT) {
-            player.setVelX(2);
-            if (!this.player.getDirection().equals("right")) {
-                this.player.setDirection("right");
-                this.player.setDirectionChanged(true);
+            player1.setVelX(2);
+            if (!this.player1.getDirection().equals("right")) {
+                this.player1.setDirection("right");
+                this.player1.setDirectionChanged(true);
             }
 
         } else if (key == KeyEvent.VK_LEFT) {
-            player.setVelX(-2);
-            if (!this.player.getDirection().equals("left")) {
-                this.player.setDirection("left");
-                this.player.setDirectionChanged(true);
+            player1.setVelX(-2);
+            if (!this.player1.getDirection().equals("left")) {
+                this.player1.setDirection("left");
+                this.player1.setDirectionChanged(true);
             }
         } else if (key == KeyEvent.VK_DOWN) {
-            player.setVelY(2);
+            player1.setVelY(2);
         } else if (key == KeyEvent.VK_UP) {
-            player.setVelY(-2);
+            player1.setVelY(-2);
         } else if (key == KeyEvent.VK_D && !isShooting) {
             isShooting = true;
             direction = 1;
             Music.dragonFire();
-            controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
+            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this));
         } else if (key == KeyEvent.VK_A && !isShooting) {
             isShooting = true;
             direction = 2;
             Music.dragonFire();
-            controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
+            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this));
         } else if (key == KeyEvent.VK_S && !isShooting) {
             isShooting = true;
             direction = 3;
             Music.dragonFire();
-            controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
+            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this));
         } else if (key == KeyEvent.VK_W && !isShooting) {
             isShooting = true;
             direction = 4;
             Music.dragonFire();
-            controller.addEntity(new Fire(player.getX(), player.getY(), direction, this));
+            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this));
         }
     }
 
@@ -286,13 +283,13 @@ public class Game extends Canvas implements Runnable {
 
         if (State == STATE.GAME) {
             if (key == KeyEvent.VK_RIGHT) {
-                player.setVelX(0);
+                player1.setVelX(0);
             } else if (key == KeyEvent.VK_LEFT) {
-                player.setVelX(0);
+                player1.setVelX(0);
             } else if (key == KeyEvent.VK_DOWN) {
-                player.setVelY(0);
+                player1.setVelY(0);
             } else if (key == KeyEvent.VK_UP) {
-                player.setVelY(0);
+                player1.setVelY(0);
             } else if (key == KeyEvent.VK_ESCAPE) {
                 State = State.MENU;
             }else if (key == KeyEvent.VK_D) {
