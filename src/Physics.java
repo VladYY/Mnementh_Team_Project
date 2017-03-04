@@ -1,5 +1,3 @@
-import java.util.LinkedList;
-
 public class Physics {
 
     public static boolean Collision(FriendlyEntity friendly, EnemyEntity enemy) {
