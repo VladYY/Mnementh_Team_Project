@@ -1,14 +1,15 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Player extends DefaultObject implements FriendlyEntity{
+public class Player extends DefaultObject implements FriendlyEntity {
+
     private double velX = 0;
     private double velY = 0;
     public int health;
     private Game game;
     private String direction = "right";
     private Controller controller;
-    boolean directionChanged = false;
+    private boolean directionChanged = false;
 
     private SpriteSheet ss;
     private BufferedImage[] dragon = new BufferedImage[16];
@@ -69,15 +70,13 @@ public class Player extends DefaultObject implements FriendlyEntity{
         }
 
         if (Physics.Collision(this, game.enemyEN)) {
-            PlayerHealth.hp -= 10;
-            if (PlayerHealth.hp <= 0)
-
-            {
+            this.health -= 10;
+            if (this.health <= 0) {
                 Game.State = Game.STATE.END;
             }
         }
 
-        if (directionChanged && direction.equals("left")) {
+        if (this.directionChanged && this.direction.equals("left")) {
             this.animation = new Animation(5,
                     this.dragon[8],
                     this.dragon[9],
@@ -87,8 +86,9 @@ public class Player extends DefaultObject implements FriendlyEntity{
                     this.dragon[13],
                     this.dragon[14],
                     this.dragon[15]);
+
             this.directionChanged = false;
-        } else if (directionChanged && direction.equals("right")) {
+        } else if (this.directionChanged && this.direction.equals("right")) {
             this.animation = new Animation(5,
                     this.dragon[0],
                     this.dragon[1],
@@ -98,6 +98,7 @@ public class Player extends DefaultObject implements FriendlyEntity{
                     this.dragon[5],
                     this.dragon[6],
                     this.dragon[7]);
+
             this.directionChanged = false;
         }
 
@@ -105,7 +106,7 @@ public class Player extends DefaultObject implements FriendlyEntity{
     }
 
     public boolean isDirectionChanged() {
-        return directionChanged;
+        return this.directionChanged;
     }
 
     public void setDirectionChanged(boolean directionChanged) {
@@ -113,7 +114,7 @@ public class Player extends DefaultObject implements FriendlyEntity{
     }
 
     public String getDirection() {
-        return direction;
+        return this.direction;
     }
 
     public void setDirection(String direction) {
@@ -125,7 +126,7 @@ public class Player extends DefaultObject implements FriendlyEntity{
     }
 
     public double getX() {
-        return x;
+        return this.x;
     }
 
     public void setX(double x) {
@@ -133,7 +134,7 @@ public class Player extends DefaultObject implements FriendlyEntity{
     }
 
     public double getY() {
-        return y;
+        return this.y;
     }
 
     public void setY(double y) {
@@ -145,7 +146,7 @@ public class Player extends DefaultObject implements FriendlyEntity{
     }
 
     public  Rectangle getBounds() {
-        return new Rectangle((int)x , (int)y, 72, 72);
+        return new Rectangle((int)this.x , (int)this.y, 72, 72);
     }
 
     public void setVelY(double velY) {
@@ -153,7 +154,7 @@ public class Player extends DefaultObject implements FriendlyEntity{
     }
 
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     public void setHealth(int health) {

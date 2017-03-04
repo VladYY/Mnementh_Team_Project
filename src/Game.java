@@ -30,7 +30,6 @@ public class Game extends Canvas implements Runnable {
 
     private Battleground battleground;
     public Player player1;
-    private Cave cave;
     private Menu menu;
     private Controller controller;
 
@@ -81,16 +80,12 @@ public class Game extends Canvas implements Runnable {
         controller = new Controller(this);
         battleground = new Battleground(this);
         player1 = new Player(200, 200, this, controller, 200);
-        //////////Cave Position//////////
-        cave = new Cave(550, 70, this, controller);
-        menu = new Menu(this);
 
+        menu = new Menu(this);
 
         friendlyEN = controller.getFriendly();
         enemyEN = controller.getEnemy();
         caveEN = controller.getCave();
-
-
 
         // Test add enemy
         controller.createEnemy(this.count_enemy);
@@ -185,7 +180,6 @@ public class Game extends Canvas implements Runnable {
 
         if (State == STATE.GAME) {
             battleground.render(graphics);
-            cave.render(graphics);
             player1.render(graphics);
             controller.render(graphics);
 
