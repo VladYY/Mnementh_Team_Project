@@ -40,20 +40,19 @@ public class Enemy extends DefaultObject implements EnemyEntity {
 
     public void tick() {
 
-        if (this.speedRandom > 1 && this.speedRandom <41)
-        {
+        if (this.speedRandom > 1 && this.speedRandom <41) {
             this.speed = 1;
         }
-        if (this.speedRandom > 40 && this.speedRandom <81)
-        {
+
+        if (this.speedRandom > 40 && this.speedRandom <81) {
             this.speed = 2;
         }
-        if (this.speedRandom > 80 && this.speedRandom <96)
-        {
+
+        if (this.speedRandom > 80 && this.speedRandom <96) {
             this.speed = 3;
         }
-        if (this.speedRandom > 95 && this.speedRandom <100)
-        {
+
+        if (this.speedRandom > 95 && this.speedRandom <100) {
             this.speed = 4;
         }
 
@@ -80,6 +79,14 @@ public class Enemy extends DefaultObject implements EnemyEntity {
             this.y += this.speed;
         } else if (this.y > caveY) {
             this.y -= this.speed;
+        }
+
+        if (this.x >= 550 && this.x <= 652) {
+            if(this.y >= 70 && this.y <= 172) {
+                this.game.enemyEN.remove(this);
+                int playerHealth = this.game.getPlayer1().getHealth();
+                this.game.getPlayer1().setHealth(playerHealth - 20);
+            }
         }
 
         if (Physics.Collision(this, this.game.friendlyEN)) {

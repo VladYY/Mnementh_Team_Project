@@ -29,7 +29,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage spriteSheetDragon = null;
 
     private Battleground battleground;
-    public Player player1;
+    private Player player1;
     private Menu menu;
     private Controller controller;
 
@@ -63,6 +63,10 @@ public class Game extends Canvas implements Runnable {
         {
             game.stop();
         }
+    }
+
+    public Player getPlayer1() {
+        return this.player1;
     }
 
     public void init() {
