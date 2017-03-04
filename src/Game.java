@@ -89,7 +89,6 @@ public class Game extends Canvas implements Runnable {
 
         friendlyEN = controller.getFriendly();
         enemyEN = controller.getEnemy();
-        caveEN = controller.getCave();
 
         // Test add enemy
         controller.createEnemy(this.count_enemy);
@@ -254,22 +253,22 @@ public class Game extends Canvas implements Runnable {
             isShooting = true;
             direction = 1;
             Music.dragonFire();
-            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this));
+            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this, this.controller));
         } else if (key == KeyEvent.VK_A && !isShooting) {
             isShooting = true;
             direction = 2;
             Music.dragonFire();
-            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this));
+            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this, this.controller));
         } else if (key == KeyEvent.VK_S && !isShooting) {
             isShooting = true;
             direction = 3;
             Music.dragonFire();
-            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this));
+            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this, this.controller));
         } else if (key == KeyEvent.VK_W && !isShooting) {
             isShooting = true;
             direction = 4;
             Music.dragonFire();
-            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this));
+            controller.addEntity(new Fire(player1.getX(), player1.getY(), direction, this, this.controller));
         }
     }
 

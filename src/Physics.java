@@ -2,34 +2,21 @@ import java.util.LinkedList;
 
 public class Physics {
 
-    public static boolean Collision(FriendlyEntity friendly, LinkedList<EnemyEntity> enemies) {
+    public static boolean Collision(FriendlyEntity friendly, EnemyEntity enemy) {
 
-        for (int i = 0; i < enemies.size(); i++) {
-            if(friendly.getBounds().intersects(enemies.get(i).getBounds())) {
-                return true;
-            }
+        if (friendly.getBounds().intersects(enemy.getBounds())) {
+            return true;
         }
+
         return false;
     }
 
-    public static boolean Collision(EnemyEntity friendly, LinkedList<FriendlyEntity> enemies) {
+    public static boolean Collision(EnemyEntity enemy, FriendlyEntity friendly) {
 
-        for (int i = 0; i < enemies.size(); i++) {
-            if(friendly.getBounds().intersects(enemies.get(i).getBounds())) {
-                return true;
-            }
+        if (enemy.getBounds().intersects(friendly.getBounds())) {
+            return true;
         }
-        return false;
-    }
 
-    public static boolean CaveAttacked(CaveEntity friendly, LinkedList<EnemyEntity> enemies) {
-
-        for (int i = 0; i < enemies.size(); i++) {
-            if(friendly.getBounds().intersects(enemies.get(i).getBounds())) {
-                enemies.remove(enemies.get(i));
-                return true;
-            }
-        }
         return false;
     }
 }

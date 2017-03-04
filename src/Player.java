@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Player extends DefaultObject implements FriendlyEntity {
 
@@ -13,7 +14,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
 
     private SpriteSheet ss;
     private BufferedImage[] dragon = new BufferedImage[16];
-    Animation animation;
+    private Animation animation;
 
     public Player(double x, double y, Game game, Controller controller, int health) {
         super(x,y);
@@ -73,10 +74,22 @@ public class Player extends DefaultObject implements FriendlyEntity {
             Game.State = Game.STATE.END;
         }
 
-        if (Physics.Collision(this, this.game.enemyEN)) {
-            this.health -= 10;
-            if (this.health <= 0) {
-                Game.State = Game.STATE.END;
+
+        for (int i = 0; i < this.game.enemyEN.size(); i++) {
+            EnemyEntity tempEnt = this.game.enemyEN.get(i);
+
+            if (Physics.Collision(this, tempEnt)) {
+                try {
+                    Music.enemyDie();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                this.controller.removeEntity(tempEnt);
+                this.health -= 10;
+                if (this.health <= 0) {
+                    Game.State = Game.STATE.END;
+                }
+                this.game.setEnemy_killed(this.game.getEnemy_killed() + 1);
             }
         }
 

@@ -89,16 +89,6 @@ public class Enemy extends DefaultObject implements EnemyEntity {
             }
         }
 
-        if (Physics.Collision(this, this.game.friendlyEN)) {
-            try {
-                Music.enemyDie();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            this.controller.RemoveEntity(this);
-            this.game.setEnemy_killed(this.game.getEnemy_killed() + 1);
-        }
-
         this.animation.runAnimation();
     }
 

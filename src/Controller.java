@@ -46,7 +46,8 @@ public class Controller {
         for (int i = 0; i < friendlyEn.size(); i++) {
             entFR = friendlyEn.get(i);
             if (entFR.getX() < 0 || entFR.getY() < 0 || entFR.getX() > 1280 || entFR.getY() > 800) {
-                this.RemoveEntity(entFR);
+                this.removeEntity(entFR);
+                break;
             }
             entFR.tick();
         }
@@ -56,13 +57,6 @@ public class Controller {
             entEN = enemyEn.get(i);
 
             entEN.tick();
-        }
-
-        //FOR ENEMY ENTITY
-        for (int i = 0; i < caveEn.size(); i++) {
-            entCav = caveEn.get(i);
-
-            entCav.tick();
         }
     }
 
@@ -80,13 +74,6 @@ public class Controller {
 
             entEN.render(graphics);
         }
-
-
-        for (int i = 0; i < caveEn.size(); i++) {
-            entCav = caveEn.get(i);
-
-            entCav.render(graphics);
-        }
     }
 
 
@@ -94,7 +81,7 @@ public class Controller {
         friendlyEn.add(block);
     }
 
-    public void RemoveEntity(FriendlyEntity block) {
+    public void removeEntity(FriendlyEntity block) {
         friendlyEn.remove(block);
     }
 
@@ -102,29 +89,15 @@ public class Controller {
         enemyEn.add(block);
     }
 
-    public void RemoveEntity(EnemyEntity block) {
+    public void removeEntity(EnemyEntity block) {
         enemyEn.remove(block);
     }
 
-    public void addEntity(CaveEntity block) {
-        caveEn.add(block);
-    }
-
-    public void RemoveEntity(CaveEntity block) {
-        caveEn.remove(block);
-    }
-
     public LinkedList<FriendlyEntity> getFriendly() {
-        return  friendlyEn;
+        return friendlyEn;
     }
 
     public LinkedList<EnemyEntity> getEnemy() {
-        return  enemyEn;
+        return enemyEn;
     }
-
-    public LinkedList<CaveEntity> getCave() {
-        return  caveEn;
-    }
-
-
 }
