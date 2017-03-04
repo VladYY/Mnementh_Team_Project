@@ -3,13 +3,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
-public class Enemy extends DefaultObject implements EnemyEntity{
+public class Enemy extends DefaultObject implements EnemyEntity {
 
-    private Random rnd = new Random();
-    public BufferedImage[] enemy = new BufferedImage[3];
+    private Random rnd;
+    private BufferedImage[] enemy;
     private SpriteSheet ss;
-    private double speedRandom = (this.rnd.nextInt(100) + 1);
-    private double speed = 1;
+    private double speedRandom;
+    private double speed;
     private Game game;
     private Controller controller;
     private Animation animation;
@@ -19,6 +19,10 @@ public class Enemy extends DefaultObject implements EnemyEntity{
         this.game = game;
         this.controller = controller;
 
+        this.rnd = new Random();
+        this.enemy = new BufferedImage[3];
+        this.speed = 1;
+        this.speedRandom = (this.rnd.nextInt(100) + 1);
         this.ss = new SpriteSheet(this.game.getSpriteSheetGorgon());
 
         if (this.x < 600) {
@@ -84,7 +88,7 @@ public class Enemy extends DefaultObject implements EnemyEntity{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            controller.RemoveEntity(this);
+            this.controller.RemoveEntity(this);
             this.game.setEnemy_killed(this.game.getEnemy_killed() + 1);
         }
 
@@ -92,19 +96,18 @@ public class Enemy extends DefaultObject implements EnemyEntity{
     }
 
     public double getX() {
-        return x;
+        return this.x;
     }
 
     public double getY() {
-        return y;
+        return this.y;
     }
 
-    public  Rectangle getBounds() {
-        return new Rectangle((int)this.x , (int)this.y, 32, 32);
+    public Rectangle getBounds() {
+        return new Rectangle((int)this.x , (int)this.y, 42, 65);
     }
 
     public void render(Graphics graphics) {
-
         this.animation.drawAnimation(graphics, this.x, this.y, 0);
     }
 }
