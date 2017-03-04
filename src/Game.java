@@ -213,9 +213,7 @@ public class Game extends Canvas implements Runnable {
         } else if (State == STATE.HELP) {
             graphics.drawImage(imageHelp, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
-        }
-        else if (State == STATE.END)
-        {
+        } else if (State == STATE.END) {
             player1.setVelX(0);
             player1.setVelY(0);
             player1.setX(200);
@@ -226,7 +224,6 @@ public class Game extends Canvas implements Runnable {
             graphics.drawImage(imageDead, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
         }
-
 
         graphics.dispose();
         bs.show();

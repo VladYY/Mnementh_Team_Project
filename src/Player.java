@@ -69,6 +69,10 @@ public class Player extends DefaultObject implements FriendlyEntity {
             y = Game.HEIGHT * 2 - 50;
         }
 
+        if (this.health <= 0) {
+            Game.State = Game.STATE.END;
+        }
+
         if (Physics.Collision(this, game.enemyEN)) {
             this.health -= 10;
             if (this.health <= 0) {
