@@ -110,6 +110,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
     }
 
     public boolean isDirectionChanged() {
+
         return this.directionChanged;
     }
 
