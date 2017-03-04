@@ -20,8 +20,8 @@ public class Player extends DefaultObject implements FriendlyEntity {
 
         this.health = health;
         this.game = game;
-        controller.addEntity(this);
         this.controller = controller;
+        this.controller.addEntity(this);
         this.ss = new SpriteSheet(game.getSpriteSheetDragon());
         this.dragon[0] = this.ss.grabDragonImage(1, 1, 72, 72);
         this.dragon[1] = this.ss.grabDragonImage(2, 1, 72, 72);
@@ -53,27 +53,27 @@ public class Player extends DefaultObject implements FriendlyEntity {
     }
 
     public void tick() {
-        x += velX;
-        y += velY;
+        this.x += this.velX;
+        this.y += this.velY;
 
-        if (x <= 0) {
-            x = 0;
+        if (this.x <= 0) {
+            this.x = 0;
         }
-        if (x >= Game.WIDTH * 2 - 50) {
-            x = (Game.WIDTH * 2) - 50;
+        if (this.x >= Game.WIDTH * 2 - 50) {
+            this.x = (Game.WIDTH * 2) - 50;
         }
-        if (y <= 0) {
-            y = 0;
+        if (this.y <= 0) {
+            this.y = 0;
         }
-        if (y >= Game.HEIGHT * 2 - 50) {
-            y = Game.HEIGHT * 2 - 50;
+        if (this.y >= Game.HEIGHT * 2 - 50) {
+            this.y = Game.HEIGHT * 2 - 50;
         }
 
         if (this.health <= 0) {
             Game.State = Game.STATE.END;
         }
 
-        if (Physics.Collision(this, game.enemyEN)) {
+        if (Physics.Collision(this, this.game.enemyEN)) {
             this.health -= 10;
             if (this.health <= 0) {
                 Game.State = Game.STATE.END;
@@ -127,7 +127,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
     }
 
     public void render(Graphics graphics) {
-        this.animation.drawAnimation(graphics, x, y, 0);
+        this.animation.drawAnimation(graphics, this.x, this.y, 0);
     }
 
     public double getX() {
