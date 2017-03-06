@@ -216,7 +216,6 @@ public class Game extends Canvas implements Runnable {
             player1.setHealth(200);
             setCountEnemy(5);
             this.enemyEN.clear();
-            this.friendlyEN.clear();
             graphics.drawImage(imageDead, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
             if (gameState == GameState.GAME){
