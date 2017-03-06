@@ -77,8 +77,8 @@ public class Player extends DefaultObject implements FriendlyEntity {
         }
 
 
-        for (int i = 0; i < this.game.enemyEN.size(); i++) {
-            EnemyEntity tempEnt = this.game.enemyEN.get(i);
+        for (int i = 0; i < this.game.getEnemyEN().size(); i++) {
+            EnemyEntity tempEnt = this.game.getEnemyEN().get(i);
 
             if (Physics.Collision(this, tempEnt)) {
                 try {
@@ -180,5 +180,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
     public void setHealth(int health) {
         this.health = health;
     }
+
+
 
 }

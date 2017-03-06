@@ -11,15 +11,15 @@ import java.util.LinkedList;
 
 public class Game extends Canvas implements Runnable {
 
-    private final String TITLE = "Mnementh the game";
     public static final int WIDTH = 640;
     public static final int HEIGHT = 400;
-    public static final int SCALE = 2;
+
+    private static final String TITLE = "Mnementh the game";
+    private static final int SCALE = 2;
     private static final long serialVersionUID = 1L;
 
     public static GameState gameState = GameState.MENU;
     public static StateSound stateSound = StateSound.ON;
-    private static int direction;
 
     private boolean running = false;
     private Thread thread;
@@ -38,8 +38,8 @@ public class Game extends Canvas implements Runnable {
 
     private boolean isShooting = false;
 
-    public LinkedList<FriendlyEntity> friendlyEN;
-    public LinkedList<EnemyEntity> enemyEN;
+    private LinkedList<FriendlyEntity> friendlyEN;
+    private LinkedList<EnemyEntity> enemyEN;
 
     private  int countEnemy = 5;
     private int enemyKilled = 0;
@@ -215,7 +215,8 @@ public class Game extends Canvas implements Runnable {
             player1.setY(200);
             player1.setHealth(200);
             setCountEnemy(5);
-            enemyEN.clear();
+            this.enemyEN.clear();
+            this.friendlyEN.clear();
             graphics.drawImage(imageDead, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
             if (gameState == GameState.GAME){
@@ -231,6 +232,7 @@ public class Game extends Canvas implements Runnable {
     public void keyPressed(KeyEvent k) throws IOException {
         int key = k.getKeyCode();
 
+        int direction;
         if (key == KeyEvent.VK_RIGHT) {
             player1.setVelX(2);
             if (!this.player1.getDirection().equals("right")) {
@@ -322,7 +324,10 @@ public class Game extends Canvas implements Runnable {
     }
 
     public BufferedImage getSpriteSheetDragon() {
-        return this.spriteSheetDragon; }
+        return this.spriteSheetDragon;
+    }
 
-
+    public LinkedList<EnemyEntity> getEnemyEN() {
+        return this.enemyEN;
+    }
 }
