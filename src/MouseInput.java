@@ -1,5 +1,3 @@
-import javafx.scene.control.Alert;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -79,7 +77,7 @@ public class MouseInput implements MouseListener {
             if (mx >= Game.WIDTH / 2 + 190 && mx <= Game.WIDTH / 2 + 490) {
                 if (my >= 340 && my <= 440) {
                     //TODO
-                    Game.enemy_killed = 0;
+//                    Game.setEnemyKilled(0);
                     Game.State = Game.STATE.GAME;
                 }
             }

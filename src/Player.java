@@ -89,7 +89,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
                 if (this.health <= 0) {
                     Game.State = Game.STATE.END;
                 }
-                this.game.setEnemy_killed(this.game.getEnemy_killed() + 1);
+                this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
             }
         }
 

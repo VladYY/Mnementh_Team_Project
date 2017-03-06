@@ -39,8 +39,8 @@ public class Game extends Canvas implements Runnable {
     public LinkedList<EnemyEntity> enemyEN;
 //    public LinkedList<CaveEntity> caveEN;
 
-    public static int countEnemy = 5;
-    public static int enemy_killed = 0;
+    private  int countEnemy = 5;
+    private int enemyKilled = 0;
 
     public static void main(String[] args) throws Exception {
         Game game = new Game();
@@ -184,7 +184,7 @@ public class Game extends Canvas implements Runnable {
             graphics.setColor(Color.white);
             Font fnt1 = new Font("arial", Font.BOLD, 30);
             graphics.setFont(fnt1);
-            graphics.drawString("Kills:" + enemy_killed, 1150, 35);
+            graphics.drawString("Kills:" + enemyKilled, 1150, 35);
 
             //HP BAR
             graphics.setColor(Color.RED);
@@ -212,10 +212,13 @@ public class Game extends Canvas implements Runnable {
             player1.setX(200);
             player1.setY(200);
             player1.setHealth(200);
-            Game.countEnemy = 5;
+            setCountEnemy(5);
             enemyEN.clear();
             graphics.drawImage(imageDead, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
+            if (State == STATE.GAME){
+                setEnemyKilled(0);
+            }
         }
 
         graphics.dispose();
@@ -300,12 +303,12 @@ public class Game extends Canvas implements Runnable {
         this.countEnemy = countEnemy;
     }
 
-    public int getEnemy_killed() {
-        return this.enemy_killed;
+    public int getEnemyKilled() {
+        return this.enemyKilled;
     }
 
-    public void setEnemy_killed(int enemy_killed) {
-        this.enemy_killed = enemy_killed;
+    public void setEnemyKilled(int enemyKilled) {
+        this.enemyKilled = enemyKilled;
     }
 
     public BufferedImage getBattlegroundImage() {

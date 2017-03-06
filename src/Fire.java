@@ -44,7 +44,7 @@ public class Fire extends DefaultObject implements FriendlyEntity {
                 }
                 this.controller.removeEntity(tempEnt);
                 this.controller.removeEntity(this);
-                this.game.setEnemy_killed(this.game.getEnemy_killed() + 1);
+                this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
             }
         }
     }

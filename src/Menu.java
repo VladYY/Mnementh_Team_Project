@@ -3,7 +3,7 @@ import sun.audio.AudioPlayer;
 import java.awt.*;
 
 public class Menu {
-    private Game game;
+    Game game = new Game();
 
     public Rectangle playButton = new Rectangle(Game.WIDTH / 2 + 270, 150, 100, 50);
     public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 + 270, 250, 100, 50);
@@ -99,7 +99,7 @@ public class Menu {
             graphics.setColor(Color.white);
             Font fnt1 = new Font("arial", Font.ITALIC, 60);
             graphics.setFont(fnt1);
-            graphics.drawString("" + Game.enemy_killed, Game.WIDTH / 2 + 315, 340);
+            graphics.drawString("" + game.getEnemyKilled(), Game.WIDTH / 2 + 315, 340);
             graphics.setColor(Color.white);
             graphics.drawString("Play again", Game.WIDTH / 2 + 200, 430);
             graphics.drawRect(Game.WIDTH / 2 + 190, 355, 300, 100);
