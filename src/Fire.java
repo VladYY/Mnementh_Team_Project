@@ -18,6 +18,14 @@ public class Fire extends DefaultObject implements FriendlyEntity {
         this.controller = controller;
     }
 
+    public double getX() {
+        return this.x;
+    }
+
+    public double getY() {
+        return this.y;
+    }
+
     public void tick() {
         switch (this.direction) {
             case 1:
@@ -36,12 +44,14 @@ public class Fire extends DefaultObject implements FriendlyEntity {
 
         for (int i = 0; i < this.game.enemyEN.size(); i++) {
             EnemyEntity tempEnt = this.game.enemyEN.get(i);
+            
             if (Physics.Collision(this, tempEnt)){
                 try {
-                Music.enemyDie();
+                    Music.enemyDie();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
                 this.controller.removeEntity(tempEnt);
                 this.controller.removeEntity(this);
                 this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
@@ -53,15 +63,7 @@ public class Fire extends DefaultObject implements FriendlyEntity {
         graphics.drawImage(this.image, (int)this.x, (int)this.y, null);
     }
 
-    public double getX() {
-        return this.x;
-    }
-
     public  Rectangle getBounds() {
         return new Rectangle((int)this.x, (int)this.y, 32, 32);
-    }
-
-    public double getY() {
-        return this.y;
     }
 }
