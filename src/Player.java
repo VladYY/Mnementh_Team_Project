@@ -1,3 +1,5 @@
+import enums.GameState;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -71,7 +73,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
         }
 
         if (this.health <= 0) {
-            Game.State = Game.STATE.END;
+            Game.gameState = GameState.END;
         }
 
 
@@ -87,7 +89,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
                 this.controller.removeEntity(tempEnt);
                 this.health -= 10;
                 if (this.health <= 0) {
-                    Game.State = Game.STATE.END;
+                    Game.gameState = GameState.END;
                 }
                 this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
             }

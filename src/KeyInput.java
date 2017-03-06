@@ -1,3 +1,5 @@
+import enums.GameState;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -11,7 +13,7 @@ public class KeyInput extends KeyAdapter {
     }
 
     public void keyPressed(KeyEvent k) {
-        if (Game.State == Game.STATE.GAME) {
+        if (Game.gameState == GameState.GAME) {
             try {
                 game.keyPressed(k);
             } catch (IOException e) {

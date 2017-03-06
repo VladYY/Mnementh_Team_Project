@@ -1,3 +1,5 @@
+import enums.GameState;
+import enums.StateSound;
 import sun.audio.AudioPlayer;
 
 import java.awt.*;
@@ -41,7 +43,7 @@ public class Menu {
 
         Graphics2D g2d = (Graphics2D) graphics;
 
-        if (game.State == Game.STATE.MENU) {
+        if (Game.gameState == GameState.MENU) {
 
             Font fnt0 = new Font("arial", Font.BOLD, 50);
             graphics.setFont(fnt0);
@@ -61,19 +63,19 @@ public class Menu {
             g2d.draw(quitButton);
 
             //Sound ON/OFF
-            if (Game.StateSound == Game.STATESOUND.ON) {
+            if (Game.stateSound == StateSound.ON) {
                 graphics.drawString("SOUND ON", soundButton.x + 19, soundButton.y + 35);
                 AudioPlayer.player.start(Music.audioStream);
             }
 
-            if (Game.StateSound == Game.STATESOUND.OFF) {
+            if (Game.stateSound == StateSound.OFF) {
                 graphics.drawString("SOUND OFF", soundButton.x + 19, soundButton.y + 35);
                 AudioPlayer.player.stop(Music.audioStream);
             }
             g2d.draw(soundButton);
 
 
-        } else if (game.State == Game.STATE.HELP) {
+        } else if (Game.gameState == GameState.HELP) {
             String helpString = "The player1 (a bronze dragon named Mnementh) have the task to protect the dragon cave (the object that must be defended) and avoid his own death. Each time the dragon hit directly an enemy, losing 5% of his total health, but of course the enemy dies – you can’t hit a dragon like this. When an enemy reach the cave, it disappear in the deep darkness and takes 10% of dragon’s total health. Every next wave is bigger and bigger. You must slay all enemies you can. Protect the cave! Protect the treasure in it!";
 
             Font fnt1 = new Font("arial", Font.BOLD, 30);
@@ -94,7 +96,7 @@ public class Menu {
             graphics.drawString("Back", backButton.x + 14, backButton.y + 35);
             g2d.draw(backButton);
         }
-        if (game.State == Game.STATE.END) {
+        if (Game.gameState == GameState.END) {
 
             graphics.setColor(Color.white);
             Font fnt1 = new Font("arial", Font.ITALIC, 60);

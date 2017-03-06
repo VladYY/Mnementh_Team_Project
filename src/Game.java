@@ -1,3 +1,6 @@
+import enums.GameState;
+import enums.StateSound;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -8,15 +11,15 @@ import java.util.LinkedList;
 
 public class Game extends Canvas implements Runnable {
 
-    public final String TITLE = "Mnementh the game";
+    private final String TITLE = "Mnementh the game";
     public static final int WIDTH = 640;
     public static final int HEIGHT = 400;
     public static final int SCALE = 2;
     private static final long serialVersionUID = 1L;
 
-    public static STATE State = STATE.MENU;
-    public static STATESOUND StateSound = STATESOUND.ON;
-    public static int direction;
+    public static GameState gameState = GameState.MENU;
+    public static StateSound stateSound = StateSound.ON;
+    private static int direction;
 
     private boolean running = false;
     private Thread thread;
@@ -37,7 +40,6 @@ public class Game extends Canvas implements Runnable {
 
     public LinkedList<FriendlyEntity> friendlyEN;
     public LinkedList<EnemyEntity> enemyEN;
-//    public LinkedList<CaveEntity> caveEN;
 
     private  int countEnemy = 5;
     private int enemyKilled = 0;
@@ -59,14 +61,10 @@ public class Game extends Canvas implements Runnable {
 
         Music.music();
         game.start();
-        if (Game.State == STATE.END)
+        if (Game.gameState == GameState.END)
         {
             game.stop();
         }
-    }
-
-    public Player getPlayer1() {
-        return this.player1;
     }
 
     public void init() {
@@ -92,6 +90,10 @@ public class Game extends Canvas implements Runnable {
 
         // Test add enemy
         controller.createEnemy(this.countEnemy);
+    }
+
+    public Player getPlayer1() {
+        return this.player1;
     }
 
     private synchronized void start() {
@@ -151,7 +153,7 @@ public class Game extends Canvas implements Runnable {
 
 
     private void tick() {
-        if (State == STATE.GAME) {
+        if (gameState == GameState.GAME) {
             player1.tick();
             controller.tick();
         }
@@ -175,7 +177,7 @@ public class Game extends Canvas implements Runnable {
         Graphics graphics = bs.getDrawGraphics();
 
 
-        if (State == STATE.GAME) {
+        if (gameState == GameState.GAME) {
             battleground.render(graphics);
             player1.render(graphics);
             controller.render(graphics);
@@ -200,13 +202,13 @@ public class Game extends Canvas implements Runnable {
             graphics.setFont(fnt1);
             graphics.drawString(player1.getHealth()/2 + "%", 75, 42);
 
-        } else if (State == STATE.MENU) {
+        } else if (gameState == GameState.MENU) {
             graphics.drawImage(image, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
-        } else if (State == STATE.HELP) {
+        } else if (gameState == GameState.HELP) {
             graphics.drawImage(imageHelp, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
-        } else if (State == STATE.END) {
+        } else if (gameState == GameState.END) {
             player1.setVelX(0);
             player1.setVelY(0);
             player1.setX(200);
@@ -216,7 +218,7 @@ public class Game extends Canvas implements Runnable {
             enemyEN.clear();
             graphics.drawImage(imageDead, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
-            if (State == STATE.GAME){
+            if (gameState == GameState.GAME){
                 setEnemyKilled(0);
             }
         }
@@ -272,7 +274,7 @@ public class Game extends Canvas implements Runnable {
     public void keyReleased(KeyEvent k) {
         int key = k.getKeyCode();
 
-        if (State == STATE.GAME) {
+        if (gameState == GameState.GAME) {
             if (key == KeyEvent.VK_RIGHT) {
                 player1.setVelX(0);
             } else if (key == KeyEvent.VK_LEFT) {
@@ -282,7 +284,7 @@ public class Game extends Canvas implements Runnable {
             } else if (key == KeyEvent.VK_UP) {
                 player1.setVelY(0);
             } else if (key == KeyEvent.VK_ESCAPE) {
-                State = State.MENU;
+                gameState = gameState.MENU;
             }else if (key == KeyEvent.VK_D) {
                 isShooting = false;
             } else if (key == KeyEvent.VK_A) {
@@ -322,15 +324,5 @@ public class Game extends Canvas implements Runnable {
     public BufferedImage getSpriteSheetDragon() {
         return this.spriteSheetDragon; }
 
-    public static enum STATE {
-        MENU,
-        GAME,
-        HELP, END
-    }
-
-    public static enum STATESOUND {
-        ON,
-        OFF
-    }
 
 }
