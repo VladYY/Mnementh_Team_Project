@@ -37,9 +37,9 @@ public class Game extends Canvas implements Runnable {
 
     public LinkedList<FriendlyEntity> friendlyEN;
     public LinkedList<EnemyEntity> enemyEN;
-    public LinkedList<CaveEntity> caveEN;
+//    public LinkedList<CaveEntity> caveEN;
 
-    public static int count_enemy = 5;
+    public static int countEnemy = 5;
     public static int enemy_killed = 0;
 
     public static void main(String[] args) throws Exception {
@@ -91,7 +91,7 @@ public class Game extends Canvas implements Runnable {
         enemyEN = controller.getEnemy();
 
         // Test add enemy
-        controller.createEnemy(this.count_enemy);
+        controller.createEnemy(this.countEnemy);
     }
 
     private synchronized void start() {
@@ -148,13 +148,7 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
 
-    public int getCount_enemy() {
-        return count_enemy;
-    }
 
-    public void setCount_enemy(int count_enemy) {
-        this.count_enemy = count_enemy;
-    }
 
     private void tick() {
         if (State == STATE.GAME) {
@@ -165,8 +159,8 @@ public class Game extends Canvas implements Runnable {
 
 
         if (this.controller.getEnemy().size() == 0) {
-            this.setCount_enemy(this.getCount_enemy() + 1);
-            this.controller.createEnemy(this.count_enemy);
+            this.setCountEnemy(this.getCountEnemy() + 1);
+            this.controller.createEnemy(this.countEnemy);
         }
     }
     //Rendering the game.
@@ -218,7 +212,7 @@ public class Game extends Canvas implements Runnable {
             player1.setX(200);
             player1.setY(200);
             player1.setHealth(200);
-            Game.count_enemy = 5;
+            Game.countEnemy = 5;
             enemyEN.clear();
             graphics.drawImage(imageDead, 0, 0, getWidth(), getHeight(), this);
             menu.render(graphics);
@@ -298,6 +292,13 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    public int getCountEnemy() {
+        return countEnemy;
+    }
+
+    public void setCountEnemy(int countEnemy) {
+        this.countEnemy = countEnemy;
+    }
 
     public int getEnemy_killed() {
         return this.enemy_killed;
