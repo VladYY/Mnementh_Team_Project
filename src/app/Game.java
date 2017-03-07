@@ -20,9 +20,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.LinkedList;
 
 public class Game extends Canvas implements Runnable {
@@ -198,41 +196,51 @@ public class Game extends Canvas implements Runnable {
             if (!this.player1.getDirection().equals("right")) {
                 this.player1.setDirection("right");
                 this.player1.setDirectionChanged();
+
             }
+
         } else if (key == KeyEvent.VK_LEFT) {
             this.player1.setVelX(-2);
             if (!this.player1.getDirection().equals("left")) {
                 this.player1.setDirection("left");
                 this.player1.setDirectionChanged();
+
             }
+
         } else if (key == KeyEvent.VK_DOWN) {
             this.player1.setVelY(2);
+
         } else if (key == KeyEvent.VK_UP) {
             this.player1.setVelY(-2);
+
         } else if (key == KeyEvent.VK_D && !this.isShooting) {
             this.isShooting = true;
             direction = 1;
             Music.dragonFire();
             this.controller.addEntity(
                     new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+
         } else if (key == KeyEvent.VK_A && !this.isShooting) {
             this.isShooting = true;
             direction = 2;
             Music.dragonFire();
             this.controller.addEntity(
                     new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+
         } else if (key == KeyEvent.VK_S && !this.isShooting) {
             this.isShooting = true;
             direction = 3;
             Music.dragonFire();
             this.controller.addEntity(
                     new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+
         } else if (key == KeyEvent.VK_W && !this.isShooting) {
             this.isShooting = true;
             direction = 4;
             Music.dragonFire();
             this.controller.addEntity(
                     new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+
         }
     }
 
@@ -326,7 +334,7 @@ public class Game extends Canvas implements Runnable {
             graphics.setColor(Color.white);
             Font fnt2 = new Font("arial", Font.BOLD, 25);
             graphics.setFont(fnt2);
-            graphics.drawString("Highscore: " + this.highScore, 1100, 65);
+            graphics.drawString("Highscore: " + highScore, 1020, 65);
 
             //HP BAR
             graphics.setColor(Color.RED);
@@ -349,6 +357,7 @@ public class Game extends Canvas implements Runnable {
             graphics.drawImage(this.imageHelp, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
         } else if (Game.gameState == GameState.END) {
+            checkScore();
             this.player1.setVelX(0);
             this.player1.setVelY(0);
             this.player1.setX(200);
@@ -358,8 +367,11 @@ public class Game extends Canvas implements Runnable {
             this.enemyEntities.clear();
             graphics.drawImage(this.imageDead, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
+
+
             if (Game.gameState == GameState.GAME) {
                 setEnemyKilled(0);
+
             }
         }
 
@@ -376,16 +388,51 @@ public class Game extends Canvas implements Runnable {
             reader = new BufferedReader(readFile);
             return reader.readLine();
         } catch (Exception e) {
-            return "0";
+            return "Nobody:0";
         } finally {
             try {
-                if (reader != null) {
+                if (reader != null)
                     reader.close();
-                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
     }
+
+    public void checkScore() {
+
+        if (enemyKilled >= Integer.parseInt(highScore.split(":")[1])) {
+            //user has set a new record
+
+            String name = JOptionPane.showInputDialog("You set a new highscore. What is your name?");
+            highScore = name + ":" + enemyKilled;
+
+            File scoreFile = new File("highscore.dat");
+            if (!scoreFile.exists()) {
+                try {
+                    scoreFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            FileWriter writeFile = null;
+            BufferedWriter writer = null;
+            try {
+                writeFile = new FileWriter(scoreFile);
+                writer = new BufferedWriter(writeFile);
+                writer.write(this.highScore);
+            } catch (Exception e) {
+                //errors
+            } finally {
+                try {
+                    if (writer != null) {
+                        writer.close();
+                    }
+                } catch (Exception e) {}
+
+            }
+        }
+    }
 }
+
