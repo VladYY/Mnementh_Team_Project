@@ -227,13 +227,13 @@ public class Game extends Canvas implements Runnable {
             this.player1.setVelX(2);
             if (!this.player1.getDirection().equals("right")) {
                 this.player1.setDirection("right");
-                this.player1.setDirectionChanged(true);
+                this.player1.setDirectionChanged();
             }
         } else if (key == KeyEvent.VK_LEFT) {
             this.player1.setVelX(-2);
             if (!this.player1.getDirection().equals("left")) {
                 this.player1.setDirection("left");
-                this.player1.setDirectionChanged(true);
+                this.player1.setDirectionChanged();
             }
         } else if (key == KeyEvent.VK_DOWN) {
             this.player1.setVelY(2);

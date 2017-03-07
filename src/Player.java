@@ -8,13 +8,13 @@ public class Player extends DefaultObject implements FriendlyEntity {
 
     private double velX = 0;
     private double velY = 0;
-    public int health;
+    private int health;
     private Game game;
     private String direction = "right";
     private Controller controller;
     private boolean directionChanged = false;
 
-    private SpriteSheet ss;
+    private SpriteSheet spriteSheet;
     private BufferedImage[] dragon = new BufferedImage[16];
     private Animation animation;
 
@@ -25,24 +25,24 @@ public class Player extends DefaultObject implements FriendlyEntity {
         this.game = game;
         this.controller = controller;
         this.controller.addEntity(this);
-        this.ss = new SpriteSheet(game.getSpriteSheetDragon());
-        this.dragon[0] = this.ss.grabDragonImage(1, 1, 72, 72);
-        this.dragon[1] = this.ss.grabDragonImage(2, 1, 72, 72);
-        this.dragon[2] = this.ss.grabDragonImage(3, 1, 72, 72);
-        this.dragon[3] = this.ss.grabDragonImage(4, 1, 72, 72);
-        this.dragon[4] = this.ss.grabDragonImage(5, 1, 72, 72);
-        this.dragon[5] = this.ss.grabDragonImage(6, 1, 72, 72);
-        this.dragon[6] = this.ss.grabDragonImage(7, 1, 72, 72);
-        this.dragon[7] = this.ss.grabDragonImage(8, 1, 72, 72);
+        this.spriteSheet = new SpriteSheet(game.getSpriteSheetDragon());
+        this.dragon[0] = this.spriteSheet.grabDragonImage(1, 1, 72, 72);
+        this.dragon[1] = this.spriteSheet.grabDragonImage(2, 1, 72, 72);
+        this.dragon[2] = this.spriteSheet.grabDragonImage(3, 1, 72, 72);
+        this.dragon[3] = this.spriteSheet.grabDragonImage(4, 1, 72, 72);
+        this.dragon[4] = this.spriteSheet.grabDragonImage(5, 1, 72, 72);
+        this.dragon[5] = this.spriteSheet.grabDragonImage(6, 1, 72, 72);
+        this.dragon[6] = this.spriteSheet.grabDragonImage(7, 1, 72, 72);
+        this.dragon[7] = this.spriteSheet.grabDragonImage(8, 1, 72, 72);
 
-        this.dragon[8] = this.ss.grabDragonImage(1, 2, 72, 72);
-        this.dragon[9] = this.ss.grabDragonImage(2, 2, 72, 72);
-        this.dragon[10] = this.ss.grabDragonImage(3, 2, 72, 72);
-        this.dragon[11] = this.ss.grabDragonImage(4, 2, 72, 72);
-        this.dragon[12] = this.ss.grabDragonImage(5, 2, 72, 72);
-        this.dragon[13] = this.ss.grabDragonImage(6, 2, 72, 72);
-        this.dragon[14] = this.ss.grabDragonImage(7, 2, 72, 72);
-        this.dragon[15] = this.ss.grabDragonImage(8, 2, 72, 72);
+        this.dragon[8] = this.spriteSheet.grabDragonImage(1, 2, 72, 72);
+        this.dragon[9] = this.spriteSheet.grabDragonImage(2, 2, 72, 72);
+        this.dragon[10] = this.spriteSheet.grabDragonImage(3, 2, 72, 72);
+        this.dragon[11] = this.spriteSheet.grabDragonImage(4, 2, 72, 72);
+        this.dragon[12] = this.spriteSheet.grabDragonImage(5, 2, 72, 72);
+        this.dragon[13] = this.spriteSheet.grabDragonImage(6, 2, 72, 72);
+        this.dragon[14] = this.spriteSheet.grabDragonImage(7, 2, 72, 72);
+        this.dragon[15] = this.spriteSheet.grabDragonImage(8, 2, 72, 72);
 
         this.animation = new Animation(5,
                 this.dragon[0],
@@ -76,7 +76,6 @@ public class Player extends DefaultObject implements FriendlyEntity {
             Game.gameState = GameState.END;
         }
 
-
         for (int i = 0; i < this.game.getEnemyEntities().size(); i++) {
             EnemyEntity tempEnt = this.game.getEnemyEntities().get(i);
 
@@ -86,16 +85,18 @@ public class Player extends DefaultObject implements FriendlyEntity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
                 this.controller.removeEntity(tempEnt);
                 this.health -= 10;
                 if (this.health <= 0) {
                     Game.gameState = GameState.END;
                 }
+
                 this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
             }
         }
 
-        if (this.directionChanged && this.direction.equals("left")) {
+        if (this.isDirectionChanged()&& this.direction.equals("left")) {
             this.animation = new Animation(5,
                     this.dragon[8],
                     this.dragon[9],
@@ -107,7 +108,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
                     this.dragon[15]);
 
             this.directionChanged = false;
-        } else if (this.directionChanged && this.direction.equals("right")) {
+        } else if (this.isDirectionChanged() && this.direction.equals("right")) {
             this.animation = new Animation(5,
                     this.dragon[0],
                     this.dragon[1],
@@ -124,13 +125,8 @@ public class Player extends DefaultObject implements FriendlyEntity {
         this.animation.runAnimation();
     }
 
-    public boolean isDirectionChanged() {
-
-        return this.directionChanged;
-    }
-
-    public void setDirectionChanged(boolean directionChanged) {
-        this.directionChanged = directionChanged;
+    public void setDirectionChanged() {
+        this.directionChanged = true;
     }
 
     public String getDirection() {
@@ -139,10 +135,6 @@ public class Player extends DefaultObject implements FriendlyEntity {
 
     public void setDirection(String direction) {
         this.direction = direction;
-    }
-
-    public void render(Graphics graphics) {
-        this.animation.drawAnimation(graphics, super.getX(), super.getY(), 0);
     }
 
     public double getX() {
@@ -165,10 +157,6 @@ public class Player extends DefaultObject implements FriendlyEntity {
         this.velX = velX;
     }
 
-    public  Rectangle getBounds() {
-        return new Rectangle((int)super.getX() , (int)super.getY(), 72, 72);
-    }
-
     public void setVelY(double velY) {
         this.velY = velY;
     }
@@ -181,6 +169,15 @@ public class Player extends DefaultObject implements FriendlyEntity {
         this.health = health;
     }
 
+    private boolean isDirectionChanged() {
+        return this.directionChanged;
+    }
 
+    public void render(Graphics graphics) {
+        this.animation.drawAnimation(graphics, super.getX(), super.getY(), 0);
+    }
 
+    public  Rectangle getBounds() {
+        return new Rectangle((int)super.getX() , (int)super.getY(), 72, 72);
+    }
 }

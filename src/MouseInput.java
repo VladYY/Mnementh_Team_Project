@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 
 public class MouseInput implements MouseListener {
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
