@@ -38,17 +38,25 @@ public class Controller {
     public void createEnemy(int count_enemy) {
         int spawnIndex = 0;
         for (int i = 0; i < count_enemy; i++) {
-             if (spawnIndex == 0) {
+            boolean isHunter = false;
+
+            if (i % 3 == 0 && i > 0) {
+                isHunter = true;
+            }
+
+            if (spawnIndex == 0) {
                 //Spawn from left
-                addEntity(new Enemy(this.random.nextInt(25-1)+1, this.random.nextInt(800-500)+500, this.game, this));
+                addEntity(
+                        new Enemy(this.random.nextInt(25-1)+1, this.random.nextInt(800-500)+500, this.game, this, isHunter));
                 spawnIndex++;
             } else if (spawnIndex == 1) {
                 //Spawn from right
-                addEntity(new Enemy(this.random.nextInt(1200-1180)+1180, this.random.nextInt(800-500)+500, this.game, this));
+                addEntity(
+                        new Enemy(this.random.nextInt(1200-1180)+1180, this.random.nextInt(800-500)+500, this.game, this, isHunter));
                 spawnIndex++;
             } else if (spawnIndex == 2) {
                 //Spawn from down
-                addEntity(new Enemy(this.random.nextInt(1200), 800, this.game, this));
+                addEntity(new Enemy(this.random.nextInt(1200), 800, this.game, this, isHunter));
 
                 spawnIndex = 0;
             }

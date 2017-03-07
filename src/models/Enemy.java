@@ -20,8 +20,9 @@ public class Enemy extends DefaultObject implements EnemyEntity {
     private Game game;
     private Controller controller;
     private Animation animation;
+    private boolean isHunter;
 
-    public Enemy(double x, double y, Game game, Controller controller) {
+    public Enemy(double x, double y, Game game, Controller controller, boolean isHunter) {
         super(x,y);
         this.game = game;
         this.controller = controller;
@@ -31,15 +32,24 @@ public class Enemy extends DefaultObject implements EnemyEntity {
         this.speed = 1;
         this.speedRandom = (this.rnd.nextInt(100) + 1);
         this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetGorgon());
+        this.isHunter = isHunter;
 
-        if (super.getX() < 600) {
+        if (super.getX() < 600 && !this.isHunter) {
             this.enemyImages[0] = this.spriteSheet.grabImage(1, 1, 42, 65);
             this.enemyImages[1] = this.spriteSheet.grabImage(2, 1, 42, 65);
-            this.enemyImages[2] = spriteSheet.grabImage(3, 1, 42, 65);
-        } else {
+            this.enemyImages[2] = this.spriteSheet.grabImage(3, 1, 42, 65);
+        } else if (super.getX() >= 600 && !this.isHunter){
             this.enemyImages[0] = this.spriteSheet.grabImage(1, 2, 42, 65);
             this.enemyImages[1] = this.spriteSheet.grabImage(2, 2, 42, 65);
             this.enemyImages[2] = this.spriteSheet.grabImage(3, 2, 42, 65);
+        } else if(super.getX() < 600 && this.isHunter) {
+            this.enemyImages[0] = this.spriteSheet.grabImage(1, 3, 42, 65);
+            this.enemyImages[1] = this.spriteSheet.grabImage(2, 3, 42, 65);
+            this.enemyImages[2] = this.spriteSheet.grabImage(3, 3, 42, 65);
+        } else if(super.getX() >= 600 && this.isHunter) {
+            this.enemyImages[0] = this.spriteSheet.grabImage(1, 4, 42, 65);
+            this.enemyImages[1] = this.spriteSheet.grabImage(2, 4, 42, 65);
+            this.enemyImages[2] = this.spriteSheet.grabImage(3, 4, 42, 65);
         }
 
         this.animation = new Animation(5, this.enemyImages[0], this.enemyImages[1], this.enemyImages[2]);
@@ -65,36 +75,54 @@ public class Enemy extends DefaultObject implements EnemyEntity {
 
         int caveX = 600;
         int caveY = 120;
+        if(!this.isHunter) {
+            if (super.getX() < caveX && super.getY() < caveY) {
+                super.setX(super.getX() + this.speed);
+                super.setY(super.getY() + this.speed);
+            } else if (super.getX() > caveX && super.getY() < caveY) {
+                super.setX(super.getX() - this.speed);
+                super.setY(super.getY() + this.speed);
+            } else if (super.getY() > caveY && super.getX() > caveX) {
+                super.setX(super.getX() - this.speed);
+                super.setY(super.getY() - this.speed);
+            } else if (super.getY() > caveY && super.getX() < caveX) {
+                super.setX(super.getX() + this.speed);
+                super.setY(super.getY() - this.speed);
+            } else if (super.getX() > caveX) {
+                super.setX(super.getX() - this.speed);
+            } else if (super.getX() < caveX) {
+                super.setX(super.getX() + this.speed);
+            } else if (super.getY() < caveY) {
+                super.setY(super.getY() + this.speed);
+            } else if (super.getY() > caveY) {
+                super.setY(super.getY() - this.speed);
+            }
 
-        if (super.getX() < caveX && super.getY() < caveY) {
-            super.setX(super.getX() + this.speed);
-            super.setY(super.getY() + this.speed);
-        } else if (super.getX() > caveX && super.getY() < caveY) {
-            super.setX(super.getX() - this.speed);
-            super.setY(super.getY() + this.speed);
-        } else if (super.getY() > caveY && super.getX() > caveX) {
-            super.setX(super.getX() - this.speed);
-            super.setY(super.getY() - this.speed);
-        } else if (super.getY() > caveY && super.getX() < caveX) {
-            super.setX(super.getX() + this.speed);
-            super.setY(super.getY() - this.speed);
-        } else if (super.getX() > caveX) {
-            super.setX(super.getX() - this.speed);
-        } else if (super.getX() < caveX) {
-            super.setX(super.getX() + this.speed);
-        } else if (super.getY() < caveY) {
-            super.setY(super.getY() + this.speed);
-        } else if (super.getY() > caveY) {
-            super.setY(super.getY() - this.speed);
-        }
+            if (super.getX() >= 550 && super.getX() <= 652) {
+                if(super.getY() >= 70 && super.getY() <= 172) {
+                    this.controller.removeEntity(this);
+                    int playerHealth = this.game.getPlayer1Health();
+                    this.game.setPlayer1Health(playerHealth - 20);
+                }
+            }
+        } else {
+            if(super.getX() < this.game.getPlayer1X()) {
+                super.setX(super.getX() + 1);
+            }
 
-        if (super.getX() >= 550 && super.getX() <= 652) {
-            if(super.getY() >= 70 && super.getY() <= 172) {
-                this.controller.removeEntity(this);
-                int playerHealth = this.game.getPlayer1Health();
-                this.game.setPlayer1Health(playerHealth - 20);
+            if(super.getX() > this.game.getPlayer1X()) {
+                super.setX(super.getX() - 1);
+            }
+
+            if(super.getY() > this.game.getPlayer1Y()) {
+                super.setY(super.getY() - 1);
+            }
+
+            if(super.getY() < this.game.getPlayer1Y()) {
+                super.setY(super.getY() + 1);
             }
         }
+
 
         this.animation.runAnimation();
     }
