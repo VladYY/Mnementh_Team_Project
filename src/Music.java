@@ -10,8 +10,8 @@ import java.io.InputStream;
  * Created by MARIO on 2/13/2017.
  */
 public class Music {
-    public static AudioStream audioStream;
 
+    public static AudioStream audioStream;
 
     public static void music() throws IOException {
         String gongFile = "./resources/audio/Forest_Night.wav";

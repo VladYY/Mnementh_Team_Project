@@ -83,8 +83,8 @@ public class Enemy extends DefaultObject implements EnemyEntity {
         if (super.getX() >= 550 && super.getX() <= 652) {
             if(super.getY() >= 70 && super.getY() <= 172) {
                 this.controller.removeEntity(this);
-                int playerHealth = this.game.getPlayer1().getHealth();
-                this.game.getPlayer1().setHealth(playerHealth - 20);
+                int playerHealth = this.game.getPlayer1Health();
+                this.game.setPlayer1Health(playerHealth - 20);
             }
         }
 

@@ -44,6 +44,46 @@ public class Game extends Canvas implements Runnable {
     private  int countEnemy = 5;
     private int enemyKilled = 0;
 
+    public int getCountEnemy() {
+        return this.countEnemy;
+    }
+
+    public void setCountEnemy(int countEnemy) {
+        this.countEnemy = countEnemy;
+    }
+
+    public int getEnemyKilled() {
+        return this.enemyKilled;
+    }
+
+    public void setEnemyKilled(int enemyKilled) {
+        this.enemyKilled = enemyKilled;
+    }
+
+    public BufferedImage getBattlegroundImage() {
+        return this.battlegroundImage;
+    }
+
+    public BufferedImage getSpriteSheetGorgon() {
+        return this.spriteSheetGorgon;
+    }
+
+    public BufferedImage getSpriteSheetDragon() {
+        return this.spriteSheetDragon;
+    }
+
+    public LinkedList<EnemyEntity> getEnemyEntities() {
+        return this.enemyEntities;
+    }
+
+    public int getPlayer1Health() {
+        return this.player1.getHealth();
+    }
+
+    public void setPlayer1Health(int health) {
+        this.player1.setHealth(health);
+    }
+
     public static void main(String[] args) throws Exception {
         Game game = new Game();
 
@@ -91,28 +131,6 @@ public class Game extends Canvas implements Runnable {
         this.controller.createEnemy(this.countEnemy);
     }
 
-    private synchronized void start() {
-        if (this.running) {
-            return;
-        }
-        this.running = true;
-        this.thread = new Thread(this);
-        this.thread.start();
-    }
-
-    private synchronized void stop() {
-        if (!this.running) {
-            return;
-        }
-        this.running = false;
-        try {
-            this.thread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.exit(1);
-    }
-
     // GAME LOOP.
     public void run() {
         init();
@@ -143,79 +161,6 @@ public class Game extends Canvas implements Runnable {
             }
         }
         stop();
-    }
-
-    private void tick() {
-        if (Game.gameState == GameState.GAME) {
-            this.player1.tick();
-            this.controller.tick();
-        }
-
-        if (this.controller.getEnemy().size() == 0) {
-            this.setCountEnemy(this.getCountEnemy() + 1);
-            this.controller.createEnemy(this.countEnemy);
-        }
-    }
-
-    //Rendering the game.
-    private void render() {
-        BufferStrategy bs = this.getBufferStrategy();
-
-        if (bs == null) {
-            this.createBufferStrategy(3);
-            return;
-        }
-
-        Graphics graphics = bs.getDrawGraphics();
-
-        if (Game.gameState == GameState.GAME) {
-            this.battleground.render(graphics);
-            this.player1.render(graphics);
-            this.controller.render(graphics);
-
-            //Score
-            graphics.setColor(Color.white);
-            Font fnt1 = new Font("arial", Font.BOLD, 30);
-            graphics.setFont(fnt1);
-            graphics.drawString("Kills:" + this.enemyKilled, 1150, 35);
-
-            //HP BAR
-            graphics.setColor(Color.RED);
-            graphics.fillRect(5, 5, 200, 50);
-
-            graphics.setColor(Color.GREEN);
-            graphics.fillRect(5, 5, this.player1.getHealth(), 50);
-
-            graphics.setColor(Color.WHITE);
-            graphics.drawRect(5, 5, 200, 50);
-
-            graphics.setColor(Color.white);
-            graphics.setFont(fnt1);
-            graphics.drawString(this.player1.getHealth()/2 + "%", 75, 42);
-
-        } else if (Game.gameState == GameState.MENU) {
-            graphics.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), this);
-            this.menu.render(graphics);
-        } else if (Game.gameState == GameState.HELP) {
-            graphics.drawImage(this.imageHelp, 0, 0, this.getWidth(), this.getHeight(), this);
-            this.menu.render(graphics);
-        } else if (Game.gameState == GameState.END) {
-            this.player1.setVelX(0);
-            this.player1.setVelY(0);
-            this.player1.setX(200);
-            this.player1.setY(200);
-            this.player1.setHealth(200);
-            this.setCountEnemy(5);
-            this.enemyEntities.clear();
-            graphics.drawImage(this.imageDead, 0, 0, this.getWidth(), this.getHeight(), this);
-            this.menu.render(graphics);
-            if (Game.gameState == GameState.GAME){
-                setEnemyKilled(0);
-            }
-        }
-
-        graphics.dispose();
-        bs.show();
     }
 
     //Movement
@@ -292,39 +237,98 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    public int getCountEnemy() {
-        return this.countEnemy;
+    private synchronized void start() {
+        if (this.running) {
+            return;
+        }
+        this.running = true;
+        this.thread = new Thread(this);
+        this.thread.start();
     }
 
-    public void setCountEnemy(int countEnemy) {
-        this.countEnemy = countEnemy;
+    private synchronized void stop() {
+        if (!this.running) {
+            return;
+        }
+        this.running = false;
+        try {
+            this.thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.exit(1);
     }
 
-    public int getEnemyKilled() {
-        return this.enemyKilled;
+    private void tick() {
+        if (Game.gameState == GameState.GAME) {
+            this.player1.tick();
+            this.controller.tick();
+        }
+
+        if (this.controller.getEnemy().size() == 0) {
+            this.setCountEnemy(this.getCountEnemy() + 1);
+            this.controller.createEnemy(this.countEnemy);
+        }
     }
 
-    public void setEnemyKilled(int enemyKilled) {
-        this.enemyKilled = enemyKilled;
-    }
+    //Rendering the game.
+    private void render() {
+        BufferStrategy bs = this.getBufferStrategy();
 
-    public BufferedImage getBattlegroundImage() {
-        return this.battlegroundImage;
-    }
+        if (bs == null) {
+            this.createBufferStrategy(3);
+            return;
+        }
 
-    public BufferedImage getSpriteSheetGorgon() {
-        return this.spriteSheetGorgon;
-    }
+        Graphics graphics = bs.getDrawGraphics();
 
-    public BufferedImage getSpriteSheetDragon() {
-        return this.spriteSheetDragon;
-    }
+        if (Game.gameState == GameState.GAME) {
+            this.battleground.render(graphics);
+            this.player1.render(graphics);
+            this.controller.render(graphics);
 
-    public LinkedList<EnemyEntity> getEnemyEntities() {
-        return this.enemyEntities;
-    }
+            //Score
+            graphics.setColor(Color.white);
+            Font fnt1 = new Font("arial", Font.BOLD, 30);
+            graphics.setFont(fnt1);
+            graphics.drawString("Kills:" + this.enemyKilled, 1150, 35);
 
-    public Player getPlayer1() {
-        return this.player1;
+            //HP BAR
+            graphics.setColor(Color.RED);
+            graphics.fillRect(5, 5, 200, 50);
+
+            graphics.setColor(Color.GREEN);
+            graphics.fillRect(5, 5, this.player1.getHealth(), 50);
+
+            graphics.setColor(Color.WHITE);
+            graphics.drawRect(5, 5, 200, 50);
+
+            graphics.setColor(Color.white);
+            graphics.setFont(fnt1);
+            graphics.drawString(this.player1.getHealth()/2 + "%", 75, 42);
+
+        } else if (Game.gameState == GameState.MENU) {
+            graphics.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), this);
+            this.menu.render(graphics);
+        } else if (Game.gameState == GameState.HELP) {
+            graphics.drawImage(this.imageHelp, 0, 0, this.getWidth(), this.getHeight(), this);
+            this.menu.render(graphics);
+        } else if (Game.gameState == GameState.END) {
+            this.player1.setVelX(0);
+            this.player1.setVelY(0);
+            this.player1.setX(200);
+            this.player1.setY(200);
+            this.player1.setHealth(200);
+            this.setCountEnemy(5);
+            this.enemyEntities.clear();
+            graphics.drawImage(this.imageDead, 0, 0, this.getWidth(), this.getHeight(), this);
+            this.menu.render(graphics);
+            if (Game.gameState == GameState.GAME){
+                setEnemyKilled(0);
+            }
+        }
+
+        graphics.dispose();
+        bs.show();
     }
 }
