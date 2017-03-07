@@ -99,6 +99,10 @@ public class Game extends Canvas implements Runnable {
         this.player1.setHealth(health);
     }
 
+    public double getPlayer1X() { return this.player1.getX(); }
+
+    public double getPlayer1Y() { return this.player1.getY(); }
+
     public static void main(String[] args) throws Exception {
         Game game = new Game();
 
