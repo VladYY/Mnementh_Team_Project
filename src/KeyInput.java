@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class KeyInput extends KeyAdapter {
 
-    Game game;
+    private Game game;
 
     public KeyInput(Game game) {
         this.game = game;
@@ -15,13 +15,14 @@ public class KeyInput extends KeyAdapter {
     public void keyPressed(KeyEvent k) {
         if (Game.gameState == GameState.GAME) {
             try {
-                game.keyPressed(k);
+                this.game.keyPressed(k);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
     public void keyReleased(KeyEvent k) {
-        game.keyReleased(k);
+        this.game.keyReleased(k);
     }
 }

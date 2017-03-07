@@ -5,16 +5,23 @@ import sun.audio.AudioPlayer;
 import java.awt.*;
 
 public class Menu {
-    Game game = new Game();
 
-    public Rectangle playButton = new Rectangle(Game.WIDTH / 2 + 270, 150, 100, 50);
-    public Rectangle helpButton = new Rectangle(Game.WIDTH / 2 + 270, 250, 100, 50);
-    public Rectangle quitButton = new Rectangle(Game.WIDTH / 2 + 270, 350, 100, 50);
-    public Rectangle backButton = new Rectangle(900, 600, 100, 50);
-    public Rectangle soundButton = new Rectangle(1050, 25, 200, 50);
+    private Game game = new Game();
+
+    private Rectangle playButton;
+    private Rectangle helpButton;
+    private Rectangle quitButton;
+    private Rectangle backButton;
+    private Rectangle soundButton;
 
     public Menu(Game game) {
         this.game = game;
+
+        this.playButton = new Rectangle(Game.WIDTH / 2 + 270, 150, 100, 50);
+        this.helpButton = new Rectangle(Game.WIDTH / 2 + 270, 250, 100, 50);
+        this.quitButton = new Rectangle(Game.WIDTH / 2 + 270, 350, 100, 50);
+        this.backButton = new Rectangle(900, 600, 100, 50);
+        this.soundButton = new Rectangle(1050, 25, 200, 50);
     }
 
     public static void drawStringMultiLine(Graphics2D g, String text, int lineWidth, int x, int y) {
@@ -44,7 +51,6 @@ public class Menu {
         Graphics2D g2d = (Graphics2D) graphics;
 
         if (Game.gameState == GameState.MENU) {
-
             Font fnt0 = new Font("arial", Font.BOLD, 50);
             graphics.setFont(fnt0);
             graphics.setColor(Color.white);
@@ -55,28 +61,34 @@ public class Menu {
             graphics.setFont(fnt1);
 
             //Main Menu
-            graphics.drawString("Play", playButton.x + 19, playButton.y + 35);
-            graphics.drawString("Help", helpButton.x + 19, helpButton.y + 35);
-            graphics.drawString("Quit", quitButton.x + 19, quitButton.y + 35);
-            g2d.draw(playButton);
-            g2d.draw(helpButton);
-            g2d.draw(quitButton);
+            graphics.drawString("Play", this.playButton.x + 19, this.playButton.y + 35);
+            graphics.drawString("Help", this.helpButton.x + 19, this.helpButton.y + 35);
+            graphics.drawString("Quit", this.quitButton.x + 19, this.quitButton.y + 35);
+            g2d.draw(this.playButton);
+            g2d.draw(this.helpButton);
+            g2d.draw(this.quitButton);
 
             //Sound ON/OFF
             if (Game.stateSound == StateSound.ON) {
-                graphics.drawString("SOUND ON", soundButton.x + 19, soundButton.y + 35);
+                graphics.drawString("SOUND ON", this.soundButton.x + 19, this.soundButton.y + 35);
                 AudioPlayer.player.start(Music.audioStream);
             }
 
             if (Game.stateSound == StateSound.OFF) {
-                graphics.drawString("SOUND OFF", soundButton.x + 19, soundButton.y + 35);
+                graphics.drawString("SOUND OFF", this.soundButton.x + 19, this.soundButton.y + 35);
                 AudioPlayer.player.stop(Music.audioStream);
             }
-            g2d.draw(soundButton);
 
+            g2d.draw(this.soundButton);
 
         } else if (Game.gameState == GameState.HELP) {
-            String helpString = "The player1 (a bronze dragon named Mnementh) have the task to protect the dragon cave (the object that must be defended) and avoid his own death. Each time the dragon hit directly an enemy, losing 5% of his total health, but of course the enemy dies – you can’t hit a dragon like this. When an enemy reach the cave, it disappear in the deep darkness and takes 10% of dragon’s total health. Every next wave is bigger and bigger. You must slay all enemies you can. Protect the cave! Protect the treasure in it!";
+            String helpString =
+                "The player1 (a bronze dragon named Mnementh) have the task to protect the dragon cave" +
+                    " (the object that must be defended) and avoid his own death. Each time the dragon hit" +
+                    " directly an enemy, losing 5% of his total health, but of course the enemy dies – you " +
+                    "can’t hit a dragon like this. When an enemy reach the cave, it disappear in the deep " +
+                    "darkness and takes 10% of dragon’s total health. Every next wave is bigger and bigger. " +
+                    "You must slay all enemies you can. Protect the cave! Protect the treasure in it!";
 
             Font fnt1 = new Font("arial", Font.BOLD, 30);
 
@@ -93,22 +105,20 @@ public class Menu {
 
             graphics.setFont(fnt1);
             graphics.setColor(Color.white);
-            graphics.drawString("Back", backButton.x + 14, backButton.y + 35);
-            g2d.draw(backButton);
+            graphics.drawString("Back",this.backButton.x + 14, this.backButton.y + 35);
+            g2d.draw(this.backButton);
         }
-        if (Game.gameState == GameState.END) {
 
+        if (Game.gameState == GameState.END) {
             graphics.setColor(Color.white);
             Font fnt1 = new Font("arial", Font.ITALIC, 60);
             graphics.setFont(fnt1);
-            graphics.drawString("" + game.getEnemyKilled(), Game.WIDTH / 2 + 315, 340);
+            graphics.drawString("" + this.game.getEnemyKilled(), Game.WIDTH / 2 + 315, 340);
             graphics.setColor(Color.white);
             graphics.drawString("Play again", Game.WIDTH / 2 + 200, 430);
             graphics.drawRect(Game.WIDTH / 2 + 190, 355, 300, 100);
         }
-
     }
-
 }
 
 
