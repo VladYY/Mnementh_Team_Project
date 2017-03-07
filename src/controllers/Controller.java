@@ -1,6 +1,7 @@
 package controllers;
 
 import app.Game;
+import enums.GameState;
 import interfaces.EnemyEntity;
 import interfaces.FriendlyEntity;
 import models.Enemy;
@@ -44,22 +45,30 @@ public class Controller {
                 isHunter = true;
             }
 
-            if (spawnIndex == 0) {
+            if (spawnIndex == 0 && Game.gameState == GameState.GAME_LEVEL_ONE) {
                 //Spawn from left
                 addEntity(
                         new Enemy(this.random.nextInt(25-1)+1, this.random.nextInt(800-500)+500, this.game, this, isHunter));
                 spawnIndex++;
-            } else if (spawnIndex == 1) {
+            } else if (spawnIndex == 1 && Game.gameState == GameState.GAME_LEVEL_ONE) {
                 //Spawn from right
                 addEntity(
                         new Enemy(this.random.nextInt(1200-1180)+1180, this.random.nextInt(800-500)+500, this.game, this, isHunter));
                 spawnIndex++;
-            } else if (spawnIndex == 2) {
+            } else if (spawnIndex == 2 && Game.gameState == GameState.GAME_LEVEL_ONE) {
                 //Spawn from down
                 addEntity(new Enemy(this.random.nextInt(1200), 800, this.game, this, isHunter));
 
                 spawnIndex = 0;
             }
+
+            if (Game.gameState == GameState.GAME_LEVEL_TWO) {
+                //Spawn from left
+                addEntity(
+                        new Enemy(this.random.nextInt(25-1)+1, this.random.nextInt(800-500)+500, this.game, this, isHunter));
+            }
+
+
         }
     }
 
@@ -68,9 +77,9 @@ public class Controller {
         for (int i = 0; i < this.friendlyEntities.size(); i++) {
             this.friendlyEntity = this.friendlyEntities.get(i);
             if (this.friendlyEntity.getX() < 0
-                || this.friendlyEntity.getY() < 0
-                || this.friendlyEntity.getX() > 1280
-                || this.friendlyEntity.getY() > 800) {
+                    || this.friendlyEntity.getY() < 0
+                    || this.friendlyEntity.getX() > 1280
+                    || this.friendlyEntity.getY() > 800) {
 
                 this.removeEntity(this.friendlyEntity);
                 break;

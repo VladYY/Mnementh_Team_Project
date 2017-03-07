@@ -40,8 +40,8 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage image = ImageLoader.loadImage("/resources/gfx/Mnementh-Dragon.jpg");
     private BufferedImage imageDead = ImageLoader.loadImage("/resources/gfx/Dragonborn6.jpg");
     private BufferedImage imageHelp = ImageLoader.loadImage("/resources/gfx/Dragon3.jpg");
-    //    private BufferedImage battlegroundImage = ImageLoader.loadImage("/resources/gfx/battleGround.png");
-    private BufferedImage battlegroundImage = ImageLoader.loadImage("/resources/gfx/CaveLevel.jpg");
+    private BufferedImage battlegroundImage = ImageLoader.loadImage("/resources/gfx/battleGround.png");
+    private BufferedImage battlegroundImage2 = ImageLoader.loadImage("/resources/gfx/CaveLevel.jpg");
     private BufferedImage spriteSheetGorgon = null;
     private BufferedImage spriteSheetDragon = null;
 
@@ -154,7 +154,7 @@ public class Game extends Canvas implements Runnable {
         this.controller.createEnemy(this.countEnemy);
     }
 
-    // GAME LOOP.
+    // GAME_LEVEL_ONE LOOP.
     public void run() {
         init();
         long lastTime = System.nanoTime();
@@ -247,7 +247,7 @@ public class Game extends Canvas implements Runnable {
     public void keyReleased(KeyEvent k) {
         int key = k.getKeyCode();
 
-        if (Game.gameState == GameState.GAME) {
+        if (Game.gameState == GameState.GAME_LEVEL_ONE) {
             if (key == KeyEvent.VK_RIGHT) {
                 this.player1.setVelX(0);
             } else if (key == KeyEvent.VK_LEFT) {
@@ -293,7 +293,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
-        if (Game.gameState == GameState.GAME) {
+        if (Game.gameState == GameState.GAME_LEVEL_ONE) {
             this.player1.tick();
             this.controller.tick();
         }
@@ -319,7 +319,7 @@ public class Game extends Canvas implements Runnable {
 
         Graphics graphics = bs.getDrawGraphics();
 
-        if (Game.gameState == GameState.GAME) {
+        if (Game.gameState == GameState.GAME_LEVEL_ONE) {
             this.battleground.render(graphics);
             this.player1.render(graphics);
             this.controller.render(graphics);
@@ -372,7 +372,7 @@ public class Game extends Canvas implements Runnable {
             this.menu.render(graphics);
 
 
-            if (Game.gameState == GameState.GAME) {
+            if (Game.gameState == GameState.GAME_LEVEL_ONE) {
                 setEnemyKilled(0);
 
             }

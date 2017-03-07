@@ -32,7 +32,7 @@ public class MouseInput implements MouseListener {
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
-                    Game.gameState = GameState.GAME;
+                    Game.gameState = GameState.GAME_LEVEL_ONE;
                 }
             }
 
@@ -80,7 +80,7 @@ public class MouseInput implements MouseListener {
             //PlayAgain Button
             if (mx >= Game.WIDTH / 2 + 190 && mx <= Game.WIDTH / 2 + 490) {
                 if (my >= 340 && my <= 440) {
-                    Game.gameState = GameState.GAME;
+                    Game.gameState = GameState.GAME_LEVEL_ONE;
                 }
             }
         }
