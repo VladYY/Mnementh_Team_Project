@@ -9,12 +9,9 @@ public class Controller {
 
     private LinkedList<FriendlyEntity> friendlyEn = new LinkedList<>(); //ea
     private LinkedList<EnemyEntity> enemyEn = new LinkedList<>();       //eb
-    private LinkedList<CaveEntity> caveEn = new LinkedList<>();       //eb
 
     FriendlyEntity entFR;
     EnemyEntity entEN;
-
-    CaveEntity entCav;
 
     public Controller(Game game) {
 
