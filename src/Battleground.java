@@ -11,10 +11,11 @@ public class Battleground {
         this.x = 0;
         this.y = 0;
         DragonImage battlegroundImage = new DragonImage(game.getBattlegroundImage());
-        battleground = battlegroundImage.grabImage();
+        this.battleground = battlegroundImage.grabImage();
 
     }
+
     public void render(Graphics graphics) {
-        graphics.drawImage(battleground, x, y, null);
+        graphics.drawImage(this.battleground, this.x, this.y, null);
     }
 }

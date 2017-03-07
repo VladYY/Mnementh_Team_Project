@@ -56,20 +56,20 @@ public class Player extends DefaultObject implements FriendlyEntity {
     }
 
     public void tick() {
-        this.x += this.velX;
-        this.y += this.velY;
+        super.setX(super.getX() + this.velX);
+        super.setY(super.getY() + this.velY);
 
-        if (this.x <= 0) {
-            this.x = 0;
+        if (super.getX() <= 0) {
+            super.setX(0);
         }
-        if (this.x >= Game.WIDTH * 2 - 50) {
-            this.x = (Game.WIDTH * 2) - 50;
+        if (super.getX() >= Game.WIDTH * 2 - 50) {
+            super.setX(Game.WIDTH * 2 - 50);
         }
-        if (this.y <= 0) {
-            this.y = 0;
+        if (super.getY() <= 0) {
+            super.setY(0);
         }
-        if (this.y >= Game.HEIGHT * 2 - 50) {
-            this.y = Game.HEIGHT * 2 - 50;
+        if (super.getY() >= Game.HEIGHT * 2 - 50) {
+            super.setY(Game.HEIGHT * 2 - 50);
         }
 
         if (this.health <= 0) {
@@ -142,23 +142,23 @@ public class Player extends DefaultObject implements FriendlyEntity {
     }
 
     public void render(Graphics graphics) {
-        this.animation.drawAnimation(graphics, this.x, this.y, 0);
+        this.animation.drawAnimation(graphics, super.getX(), super.getY(), 0);
     }
 
     public double getX() {
-        return this.x;
+        return super.getX();
     }
 
     public void setX(double x) {
-        this.x = x;
+        super.setX(x);
     }
 
     public double getY() {
-        return this.y;
+        return super.getY();
     }
 
     public void setY(double y) {
-        this.y = y;
+        super.setY(y);
     }
 
     public void setVelX(double velX) {
@@ -166,7 +166,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
     }
 
     public  Rectangle getBounds() {
-        return new Rectangle((int)this.x , (int)this.y, 72, 72);
+        return new Rectangle((int)super.getX() , (int)super.getY(), 72, 72);
     }
 
     public void setVelY(double velY) {

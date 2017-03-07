@@ -19,26 +19,26 @@ public class Fire extends DefaultObject implements FriendlyEntity {
     }
 
     public double getX() {
-        return this.x;
+        return super.getX();
     }
 
     public double getY() {
-        return this.y;
+        return super.getY();
     }
 
     public void tick() {
         switch (this.direction) {
             case 1:
-                this.x += 10;
+                super.setX(super.getX() + 10);
                 break;
             case 2:
-                this.x -= 10;
+                super.setX(super.getX() - 10);
                 break;
             case 3:
-                this.y += 10;
+                super.setY(super.getY() + 10);
                 break;
             case 4:
-                this.y -= 10;
+                super.setY(super.getY() - 10);
                 break;
         }
 
@@ -60,10 +60,10 @@ public class Fire extends DefaultObject implements FriendlyEntity {
     }
 
     public void render(Graphics graphics) {
-        graphics.drawImage(this.image, (int)this.x, (int)this.y, null);
+        graphics.drawImage(this.image, (int)super.getX(), (int)super.getY(), null);
     }
 
     public  Rectangle getBounds() {
-        return new Rectangle((int)this.x, (int)this.y, 32, 32);
+        return new Rectangle((int)super.getX(), (int)super.getY(), 32, 32);
     }
 }

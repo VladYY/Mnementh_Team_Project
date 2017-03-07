@@ -24,7 +24,7 @@ public class Enemy extends DefaultObject implements EnemyEntity {
         this.speedRandom = (this.rnd.nextInt(100) + 1);
         this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetGorgon());
 
-        if (this.x < 600) {
+        if (super.getX() < 600) {
             this.enemyImages[0] = this.spriteSheet.grabImage(1, 1, 42, 65);
             this.enemyImages[1] = this.spriteSheet.grabImage(2, 1, 42, 65);
             this.enemyImages[2] = spriteSheet.grabImage(3, 1, 42, 65);
@@ -58,30 +58,30 @@ public class Enemy extends DefaultObject implements EnemyEntity {
         int caveX = 600;
         int caveY = 120;
 
-        if (this.x < caveX && this.y < caveY) {
-            this.x += this.speed;
-            this.y += this.speed;
-        } else if (this.x > caveX && this.y < caveY) {
-            this.x -= this.speed;
-            this.y += this.speed;
-        } else if (this.y > caveY && this.x > caveX) {
-            this.x -= this.speed;
-            this.y -= this.speed;
-        } else if (this.y > caveY && this.x < caveX) {
-            this.x += this.speed;
-            this.y -= this.speed;
-        } else if (this.x > caveX) {
-            this.x -= this.speed;
-        } else if (this.x < caveX) {
-            this.x += this.speed;
-        } else if (this.y < caveY) {
-            this.y += this.speed;
-        } else if (this.y > caveY) {
-            this.y -= this.speed;
+        if (super.getX() < caveX && super.getY() < caveY) {
+            super.setX(super.getX() + this.speed);
+            super.setY(super.getY() + this.speed);
+        } else if (super.getX() > caveX && super.getY() < caveY) {
+            super.setX(super.getX() - this.speed);
+            super.setY(super.getY() + this.speed);
+        } else if (super.getY() > caveY && super.getX() > caveX) {
+            super.setX(super.getX() - this.speed);
+            super.setY(super.getY() - this.speed);
+        } else if (super.getY() > caveY && super.getX() < caveX) {
+            super.setX(super.getX() + this.speed);
+            super.setY(super.getY() - this.speed);
+        } else if (super.getX() > caveX) {
+            super.setX(super.getX() - this.speed);
+        } else if (super.getX() < caveX) {
+            super.setX(super.getX() + this.speed);
+        } else if (super.getY() < caveY) {
+            super.setY(super.getY() + this.speed);
+        } else if (super.getY() > caveY) {
+            super.setY(super.getY() - this.speed);
         }
 
-        if (this.x >= 550 && this.x <= 652) {
-            if(this.y >= 70 && this.y <= 172) {
+        if (super.getX() >= 550 && super.getX() <= 652) {
+            if(super.getY() >= 70 && super.getY() <= 172) {
                 this.controller.removeEntity(this);
                 int playerHealth = this.game.getPlayer1().getHealth();
                 this.game.getPlayer1().setHealth(playerHealth - 20);
@@ -92,10 +92,10 @@ public class Enemy extends DefaultObject implements EnemyEntity {
     }
 
     public void render(Graphics graphics) {
-        this.animation.drawAnimation(graphics, this.x, this.y, 0);
+        this.animation.drawAnimation(graphics, super.getX(), super.getY(), 0);
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int)this.x , (int)this.y, 42, 65);
+        return new Rectangle((int)super.getX() , (int)super.getY(), 42, 65);
     }
 }
