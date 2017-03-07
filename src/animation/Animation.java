@@ -27,7 +27,7 @@ public class Animation {
         this.img1 = img1;
         this.img2 = img2;
         this.img3 = img3;
-        frames = 3;
+        this.frames = 3;
     }
 
     public Animation(int speed,
@@ -50,61 +50,61 @@ public class Animation {
         this.img7 = img7;
         this.img8 = img8;
 
-        frames = 8;
+        this.frames = 8;
     }
 
 
     public void runAnimation(){
-        index++;
-        if(index > speed){
-            index = 0;
+        this.index++;
+        if(this.index > this.speed){
+            this.index = 0;
             nextFrame();
         }
     }
 
     public void nextFrame(){
-            switch (frames) {
+            switch (this.frames) {
                 case 3 :
-                    if(count == 0)
-                        currentImg = img1;
-                    if(count == 1)
-                        currentImg = img2;
-                    if(count == 2)
-                        currentImg = img3;
+                    if(this.count == 0)
+                        this.currentImg = this.img1;
+                    if(this.count == 1)
+                        this.currentImg = this.img2;
+                    if(this.count == 2)
+                        this.currentImg = this.img3;
 
-                    count++;
+                    this.count++;
 
-                    if(count > frames)
-                        count = 0;
+                    if(this.count > this.frames)
+                        this.count = 0;
                     break;
                 case 8:
-                    if(count == 0)
-                        currentImg = img1;
-                    if(count == 1)
-                        currentImg = img2;
-                    if(count == 2)
-                        currentImg = img3;
-                    if(count == 3)
-                        currentImg = img4;
-                    if(count == 4)
-                        currentImg = img5;
-                    if(count == 5)
-                        currentImg = img6;
-                    if(count == 6)
-                        currentImg = img7;
-                    if(count == 7)
-                        currentImg = img8;
+                    if(this.count == 0)
+                        this.currentImg = this.img1;
+                    if(this.count == 1)
+                        this.currentImg = this.img2;
+                    if(this.count == 2)
+                        this.currentImg = this.img3;
+                    if(this.count == 3)
+                        this.currentImg = this.img4;
+                    if(this.count == 4)
+                        this.currentImg = this.img5;
+                    if(this.count == 5)
+                        this.currentImg = this.img6;
+                    if(this.count == 6)
+                        this.currentImg = this.img7;
+                    if(this.count == 7)
+                        this.currentImg = this.img8;
 
-                    count++;
+                    this.count++;
 
-                    if(count > frames)
-                        count = 0;
+                    if(this.count > this.frames)
+                        this.count = 0;
                     break;
             }
     }
 
     public void drawAnimation(Graphics g, double x, double y, int offset){
-        g.drawImage(currentImg, (int)x - offset, (int)y, null);
+        g.drawImage(this.currentImg, (int)x - offset, (int)y, null);
     }
 }
 

@@ -23,9 +23,11 @@
       <file leaf-file-name="Animation.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/animation/Animation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-              <folding />
+            <state relative-caret-position="187">
+              <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -667,12 +669,12 @@
       <workItem from="1487010760843" duration="609000" />
       <workItem from="1487188232653" duration="6365000" />
       <workItem from="1488813173358" duration="94000" />
-      <workItem from="1488872723516" duration="9877000" />
+      <workItem from="1488872723516" duration="10118000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20093000" />
+    <option name="totallyTimeSpent" value="20334000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1132,9 +1134,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/animation/Animation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="18" lean-forward="false" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="187">
+          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

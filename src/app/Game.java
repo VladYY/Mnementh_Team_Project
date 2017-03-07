@@ -20,7 +20,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.io.*;
 import java.util.LinkedList;
 
 public class Game extends Canvas implements Runnable {
@@ -55,8 +55,10 @@ public class Game extends Canvas implements Runnable {
     private LinkedList<FriendlyEntity> friendlyEntities;
     private LinkedList<EnemyEntity> enemyEntities;
 
-    private  int countEnemy = 5;
+    private int countEnemy = 5;
     private int enemyKilled = 0;
+
+    private String highScore = "";
 
     public int getCountEnemy() {
         return this.countEnemy;
@@ -115,8 +117,7 @@ public class Game extends Canvas implements Runnable {
 
         Music.music();
         game.start();
-        if (Game.gameState == GameState.END)
-        {
+        if (Game.gameState == GameState.END) {
             game.stop();
         }
     }
@@ -203,25 +204,25 @@ public class Game extends Canvas implements Runnable {
             direction = 1;
             Music.dragonFire();
             this.controller.addEntity(
-                new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
         } else if (key == KeyEvent.VK_A && !this.isShooting) {
             this.isShooting = true;
             direction = 2;
             Music.dragonFire();
             this.controller.addEntity(
-                new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
         } else if (key == KeyEvent.VK_S && !this.isShooting) {
             this.isShooting = true;
             direction = 3;
             Music.dragonFire();
             this.controller.addEntity(
-                new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
         } else if (key == KeyEvent.VK_W && !this.isShooting) {
             this.isShooting = true;
             direction = 4;
             Music.dragonFire();
             this.controller.addEntity(
-                new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
         }
     }
 
@@ -239,7 +240,7 @@ public class Game extends Canvas implements Runnable {
                 this.player1.setVelY(0);
             } else if (key == KeyEvent.VK_ESCAPE) {
                 Game.gameState = GameState.MENU;
-            }else if (key == KeyEvent.VK_D) {
+            } else if (key == KeyEvent.VK_D) {
                 this.isShooting = false;
             } else if (key == KeyEvent.VK_A) {
                 this.isShooting = false;
@@ -294,6 +295,10 @@ public class Game extends Canvas implements Runnable {
             return;
         }
 
+        if (highScore.equals("")) {
+            highScore = this.getHighScore();
+        }
+
         Graphics graphics = bs.getDrawGraphics();
 
         if (Game.gameState == GameState.GAME) {
@@ -307,6 +312,13 @@ public class Game extends Canvas implements Runnable {
             graphics.setFont(fnt1);
             graphics.drawString("Kills:" + this.enemyKilled, 1150, 35);
 
+            //HightScore
+            graphics.setColor(Color.white);
+            Font fnt2 = new Font("arial", Font.BOLD, 25);
+            graphics.setFont(fnt2);
+            graphics.drawString("Highscore: " + this.highScore, 1100, 65);
+
+
             //HP BAR
             graphics.setColor(Color.RED);
             graphics.fillRect(5, 5, 200, 50);
@@ -319,7 +331,7 @@ public class Game extends Canvas implements Runnable {
 
             graphics.setColor(Color.white);
             graphics.setFont(fnt1);
-            graphics.drawString(this.player1.getHealth()/2 + "%", 75, 42);
+            graphics.drawString(this.player1.getHealth() / 2 + "%", 75, 42);
 
         } else if (Game.gameState == GameState.MENU) {
             graphics.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), this);
@@ -337,12 +349,35 @@ public class Game extends Canvas implements Runnable {
             this.enemyEntities.clear();
             graphics.drawImage(this.imageDead, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
-            if (Game.gameState == GameState.GAME){
+            if (Game.gameState == GameState.GAME) {
                 setEnemyKilled(0);
             }
         }
 
         graphics.dispose();
         bs.show();
+    }
+
+    public String getHighScore() {
+        //format: Brandon:100
+        FileReader readFile = null;
+        BufferedReader reader = null;
+        try {
+            readFile = new FileReader("highscore.dat");
+            reader = new BufferedReader(readFile);
+            return reader.readLine();
+        } catch (Exception e) {
+            return "0";
+        } finally {
+            try {
+                if (reader != null){
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 }
