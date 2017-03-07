@@ -40,7 +40,8 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage image = ImageLoader.loadImage("/resources/gfx/Mnementh-Dragon.jpg");
     private BufferedImage imageDead = ImageLoader.loadImage("/resources/gfx/Dragonborn6.jpg");
     private BufferedImage imageHelp = ImageLoader.loadImage("/resources/gfx/Dragon3.jpg");
-    private BufferedImage battlegroundImage = ImageLoader.loadImage("/resources/gfx/battleGround.png");
+//    private BufferedImage battlegroundImage = ImageLoader.loadImage("/resources/gfx/battleGround.png");
+    private BufferedImage battlegroundImage = ImageLoader.loadImage("/resources/gfx/CaveLevel.jpg");
     private BufferedImage spriteSheetGorgon = null;
     private BufferedImage spriteSheetDragon = null;
 
