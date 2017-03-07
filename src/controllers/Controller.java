@@ -40,7 +40,7 @@ public class Controller {
         for (int i = 0; i < count_enemy; i++) {
             boolean isHunter = false;
 
-            if (i % 3 == 0 && i > 0) {
+            if (i % 5 == 0 && i > 0) {
                 isHunter = true;
             }
 

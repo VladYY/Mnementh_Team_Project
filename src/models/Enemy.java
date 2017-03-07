@@ -107,19 +107,19 @@ public class Enemy extends DefaultObject implements EnemyEntity {
             }
         } else {
             if(super.getX() < this.game.getPlayer1X()) {
-                super.setX(super.getX() + 1);
+                super.setX(super.getX() + this.speed);
             }
 
             if(super.getX() > this.game.getPlayer1X()) {
-                super.setX(super.getX() - 1);
+                super.setX(super.getX() - this.speed);
             }
 
             if(super.getY() > this.game.getPlayer1Y()) {
-                super.setY(super.getY() - 1);
+                super.setY(super.getY() - this.speed);
             }
 
             if(super.getY() < this.game.getPlayer1Y()) {
-                super.setY(super.getY() + 1);
+                super.setY(super.getY() + this.speed);
             }
         }
 
