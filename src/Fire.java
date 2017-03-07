@@ -42,8 +42,8 @@ public class Fire extends DefaultObject implements FriendlyEntity {
                 break;
         }
 
-        for (int i = 0; i < this.game.getEnemyEN().size(); i++) {
-            EnemyEntity tempEnt = this.game.getEnemyEN().get(i);
+        for (int i = 0; i < this.game.getEnemyEntities().size(); i++) {
+            EnemyEntity tempEnt = this.game.getEnemyEntities().get(i);
 
             if (Physics.Collision(this, tempEnt)){
                 try {

@@ -38,8 +38,8 @@ public class Game extends Canvas implements Runnable {
     private boolean isShooting = false;
     private boolean running = false;
 
-    private LinkedList<FriendlyEntity> friendlyEN;
-    private LinkedList<EnemyEntity> enemyEN;
+    private LinkedList<FriendlyEntity> friendlyEntities;
+    private LinkedList<EnemyEntity> enemyEntities;
 
     private  int countEnemy = 5;
     private int enemyKilled = 0;
@@ -81,12 +81,12 @@ public class Game extends Canvas implements Runnable {
 
         this.controller = new Controller(this);
         this.battleground = new Battleground(this);
-        this.player1 = new Player(200, 200, this, controller, 200);
+        this.player1 = new Player(200, 200, this, this.controller, 200);
 
         this.menu = new Menu(this);
 
-        this.friendlyEN = this.controller.getFriendly();
-        this.enemyEN = this.controller.getEnemy();
+        this.friendlyEntities = this.controller.getFriendly();
+        this.enemyEntities = this.controller.getEnemy();
 
         this.controller.createEnemy(this.countEnemy);
     }
@@ -162,7 +162,7 @@ public class Game extends Canvas implements Runnable {
         BufferStrategy bs = this.getBufferStrategy();
 
         if (bs == null) {
-            createBufferStrategy(3);
+            this.createBufferStrategy(3);
             return;
         }
 
@@ -194,10 +194,10 @@ public class Game extends Canvas implements Runnable {
             graphics.drawString(this.player1.getHealth()/2 + "%", 75, 42);
 
         } else if (Game.gameState == GameState.MENU) {
-            graphics.drawImage(this.image, 0, 0, getWidth(), getHeight(), this);
+            graphics.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
         } else if (Game.gameState == GameState.HELP) {
-            graphics.drawImage(this.imageHelp, 0, 0, getWidth(), getHeight(), this);
+            graphics.drawImage(this.imageHelp, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
         } else if (Game.gameState == GameState.END) {
             this.player1.setVelX(0);
@@ -205,9 +205,9 @@ public class Game extends Canvas implements Runnable {
             this.player1.setX(200);
             this.player1.setY(200);
             this.player1.setHealth(200);
-            setCountEnemy(5);
-            this.enemyEN.clear();
-            graphics.drawImage(this.imageDead, 0, 0, getWidth(), getHeight(), this);
+            this.setCountEnemy(5);
+            this.enemyEntities.clear();
+            graphics.drawImage(this.imageDead, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
             if (Game.gameState == GameState.GAME){
                 setEnemyKilled(0);
@@ -320,8 +320,8 @@ public class Game extends Canvas implements Runnable {
         return this.spriteSheetDragon;
     }
 
-    public LinkedList<EnemyEntity> getEnemyEN() {
-        return this.enemyEN;
+    public LinkedList<EnemyEntity> getEnemyEntities() {
+        return this.enemyEntities;
     }
 
     public Player getPlayer1() {
