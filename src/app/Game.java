@@ -357,7 +357,10 @@ public class Game extends Canvas implements Runnable {
             graphics.drawImage(this.imageHelp, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
         } else if (Game.gameState == GameState.END) {
-            checkScore();
+            if (enemyKilled >= Integer.parseInt(highScore.split(":")[1])){
+                checkScore();
+            }
+
             this.player1.setVelX(0);
             this.player1.setVelY(0);
             this.player1.setX(200);
