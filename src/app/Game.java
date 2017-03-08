@@ -161,7 +161,7 @@ public class Game extends Canvas implements Runnable {
         try {
             this.spriteSheetGorgon = loader.loadImage("/resources/gfx/fixed_gorgon_sheet.png");
             this.spriteSheetDragon = loader.loadImage("/resources/gfx/fixed_dragon_sheet.png");
-            this.spriteSheetBoss = loader.loadImage("/resources/gfx/bossSprite.png");
+            this.spriteSheetBoss = loader.loadImage("/resources/gfx/fixed_boss_sprite.png");
         } catch (IOException e) {
             e.printStackTrace();
         }

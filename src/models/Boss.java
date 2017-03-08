@@ -31,22 +31,22 @@ public class Boss extends DefaultObject implements BossEntity {
         this.controller = controller;
         this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetBoss());
 
-        this.boss[0] = this.spriteSheet.grabDragonImage(1, 1, 72, 72);
-        this.boss[1] = this.spriteSheet.grabDragonImage(2, 1, 72, 72);
-        this.boss[2] = this.spriteSheet.grabDragonImage(3, 1, 72, 72);
-        this.boss[3] = this.spriteSheet.grabDragonImage(4, 1, 72, 72);
-        this.boss[4] = this.spriteSheet.grabDragonImage(5, 1, 72, 72);
-        this.boss[5] = this.spriteSheet.grabDragonImage(6, 1, 72, 72);
-        this.boss[6] = this.spriteSheet.grabDragonImage(7, 1, 72, 72);
-        this.boss[7] = this.spriteSheet.grabDragonImage(8, 1, 72, 72);
-        this.boss[8] = this.spriteSheet.grabDragonImage(1, 2, 72, 72);
-        this.boss[9] = this.spriteSheet.grabDragonImage(2, 2, 72, 72);
-        this.boss[10] = this.spriteSheet.grabDragonImage(3, 2, 72, 72);
-        this.boss[11] = this.spriteSheet.grabDragonImage(4, 2, 72, 72);
-        this.boss[12] = this.spriteSheet.grabDragonImage(5, 2, 72, 72);
-        this.boss[13] = this.spriteSheet.grabDragonImage(6, 2, 72, 72);
-        this.boss[14] = this.spriteSheet.grabDragonImage(7, 2, 72, 72);
-        this.boss[15] = this.spriteSheet.grabDragonImage(8, 2, 72, 72);
+        this.boss[0] = this.spriteSheet.grabBossImage(1, 1, 144, 144);
+        this.boss[1] = this.spriteSheet.grabBossImage(2, 1, 144, 144);
+        this.boss[2] = this.spriteSheet.grabBossImage(3, 1, 144, 144);
+        this.boss[3] = this.spriteSheet.grabBossImage(4, 1, 144, 144);
+        this.boss[4] = this.spriteSheet.grabBossImage(5, 1, 144, 144);
+        this.boss[5] = this.spriteSheet.grabBossImage(6, 1, 144, 144);
+        this.boss[6] = this.spriteSheet.grabBossImage(7, 1, 144, 144);
+        this.boss[7] = this.spriteSheet.grabBossImage(8, 1, 144, 144);
+        this.boss[8] = this.spriteSheet.grabBossImage(1, 2, 144, 144);
+        this.boss[9] = this.spriteSheet.grabBossImage(2, 2, 144, 144);
+        this.boss[10] = this.spriteSheet.grabBossImage(3, 2, 144, 144);
+        this.boss[11] = this.spriteSheet.grabBossImage(4, 2, 144, 144);
+        this.boss[12] = this.spriteSheet.grabBossImage(5, 2, 144, 144);
+        this.boss[13] = this.spriteSheet.grabBossImage(6, 2, 144, 144);
+        this.boss[14] = this.spriteSheet.grabBossImage(7, 2, 144, 144);
+        this.boss[15] = this.spriteSheet.grabBossImage(8, 2, 144, 144);
 
         this.animationLeft = new Animation(5,
                 this.boss[0],
