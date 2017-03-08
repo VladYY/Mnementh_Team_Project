@@ -62,25 +62,23 @@ public class Enemy extends DefaultObject implements EnemyEntity {
 
             this.animationRight = new Animation(5, this.enemyImages[0], this.enemyImages[1], this.enemyImages[2]);
         }
-
-
     }
 
     public void tick() {
 
-        if (this.speedRandom > 1 && this.speedRandom <41) {
+        if (this.speedRandom > 1 && this.speedRandom < 41) {
             this.speed = 1;
         }
 
-        if (this.speedRandom > 40 && this.speedRandom <81) {
+        if (this.speedRandom > 40 && this.speedRandom < 81) {
             this.speed = 2;
         }
 
-        if (this.speedRandom > 80 && this.speedRandom <96) {
+        if (this.speedRandom > 80 && this.speedRandom < 96) {
             this.speed = 3;
         }
 
-        if (this.speedRandom > 95 && this.speedRandom <100) {
+        if (this.speedRandom > 95 && this.speedRandom < 100) {
             this.speed = 4;
         }
 

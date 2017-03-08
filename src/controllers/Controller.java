@@ -2,11 +2,14 @@ package controllers;
 
 import app.Game;
 import enums.GameState;
+import interfaces.BossEntity;
 import interfaces.EnemyEntity;
 import interfaces.FriendlyEntity;
+import models.Boss;
 import models.Enemy;
 
 import java.awt.*;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -17,15 +20,18 @@ public class Controller {
 
     private LinkedList<FriendlyEntity> friendlyEntities;
     private LinkedList<EnemyEntity> enemyEntities;
+    private LinkedList<BossEntity> bossEntities;
 
     private FriendlyEntity friendlyEntity;
     private EnemyEntity enemyEntity;
+    private BossEntity bossEntity;
 
     public Controller(Game game) {
         this.game = game;
         this.random = new Random();
         this.friendlyEntities = new LinkedList<>();
         this.enemyEntities = new LinkedList<>();
+        this.bossEntities = new LinkedList<>();
     }
 
     public LinkedList<FriendlyEntity> getFriendly() {
@@ -36,38 +42,47 @@ public class Controller {
         return this.enemyEntities;
     }
 
+    public LinkedList<BossEntity> getBoss() { return this.bossEntities; }
+
     public void createEnemy(int count_enemy) {
-        int spawnIndex = 0;
-        for (int i = 0; i < count_enemy; i++) {
-            boolean isHunter = false;
+        if(!this.game.isBossActive()) {
+            int spawnIndex = 0;
+            for (int i = 0; i < count_enemy; i++) {
+                boolean isHunter = false;
 
-            if (i % 5 == 0 && i > 0) {
-                isHunter = true;
+                if (i % 5 == 0 && i > 0) {
+                    isHunter = true;
+                }
+
+                if (spawnIndex == 0 && Game.gameState == GameState.GAME_LEVEL_ONE) {
+                    //Spawn from left
+                    this.addEntity(
+                            new Enemy(this.random.nextInt(25-1)+1, this.random.nextInt(800-500)+500, this.game, this, isHunter));
+                    spawnIndex++;
+                } else if (spawnIndex == 1 && Game.gameState == GameState.GAME_LEVEL_ONE) {
+                    //Spawn from right
+                    this.addEntity(
+                            new Enemy(this.random.nextInt(1200-1180)+1180, this.random.nextInt(800-500)+500, this.game, this, isHunter));
+                    spawnIndex++;
+                } else if (spawnIndex == 2 && Game.gameState == GameState.GAME_LEVEL_ONE) {
+                    //Spawn from down
+                    this.addEntity(new Enemy(this.random.nextInt(1200), 800, this.game, this, isHunter));
+
+                    spawnIndex = 0;
+                }
+
+                if (Game.gameState == GameState.GAME_LEVEL_TWO) {
+                    //Spawn from left
+                    addEntity(
+                            new Enemy(this.random.nextInt(25-1)+1, this.random.nextInt(800-500)+500, this.game, this, isHunter));
+                }
             }
+        } else if(this.game.isBossActive() && !this.game.isBossSpawned()){
 
-            if (spawnIndex == 0 && Game.gameState == GameState.GAME_LEVEL_ONE) {
-                //Spawn from left
-                addEntity(
-                        new Enemy(this.random.nextInt(25-1)+1, this.random.nextInt(800-500)+500, this.game, this, isHunter));
-                spawnIndex++;
-            } else if (spawnIndex == 1 && Game.gameState == GameState.GAME_LEVEL_ONE) {
-                //Spawn from right
-                addEntity(
-                        new Enemy(this.random.nextInt(1200-1180)+1180, this.random.nextInt(800-500)+500, this.game, this, isHunter));
-                spawnIndex++;
-            } else if (spawnIndex == 2 && Game.gameState == GameState.GAME_LEVEL_ONE) {
-                //Spawn from down
-                addEntity(new Enemy(this.random.nextInt(1200), 800, this.game, this, isHunter));
-
-                spawnIndex = 0;
-            }
-
-            if (Game.gameState == GameState.GAME_LEVEL_TWO) {
-                //Spawn from left
-                addEntity(
-                        new Enemy(this.random.nextInt(25-1)+1, this.random.nextInt(800-500)+500, this.game, this, isHunter));
-            }
+            this.addEntity(new Boss(800, 600, this.game, this, 1000));
+            this.game.setBossSpawned(true);
         }
+
     }
 
     public void tick() {
@@ -92,6 +107,13 @@ public class Controller {
 
             this.enemyEntity.tick();
         }
+
+        //FOR BOSS ENTITY
+        for (int i = 0; i < this.bossEntities.size(); i++) {
+            this.bossEntity = this.bossEntities.get(i);
+
+            this.bossEntity.tick();
+        }
     }
 
     public void render(Graphics graphics) {
@@ -108,6 +130,13 @@ public class Controller {
 
             this.enemyEntity.render(graphics);
         }
+
+        //FOR BOSS ENTITY
+        for (int i = 0; i < this.bossEntities.size(); i++) {
+            this.bossEntity = this.bossEntities.get(i);
+
+            this.bossEntity.render(graphics);
+        }
     }
 
     public void addEntity(FriendlyEntity block) {
@@ -120,6 +149,10 @@ public class Controller {
 
     public void addEntity(EnemyEntity block) {
         this.enemyEntities.add(block);
+    }
+
+    public void addEntity(BossEntity block) {
+        this.bossEntities.add(block);
     }
 
     public void removeEntity(EnemyEntity block) {

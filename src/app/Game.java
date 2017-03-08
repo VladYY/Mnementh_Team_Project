@@ -8,6 +8,7 @@ import image.loaders.BufferedImageLoader;
 import image.loaders.ImageLoader;
 import inputs.KeyInput;
 import inputs.MouseInput;
+import interfaces.BossEntity;
 import interfaces.EnemyEntity;
 import interfaces.FriendlyEntity;
 import menu.Menu;
@@ -44,18 +45,22 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage battlegroundImage2 = ImageLoader.loadImage("/resources/gfx/CaveLevel.jpg");
     private BufferedImage spriteSheetGorgon = null;
     private BufferedImage spriteSheetDragon = null;
+    private BufferedImage spriteSheetBoss = null;
 
     private Battleground battleground;
     private Player player1;
     private Menu menu;
     private Controller controller;
 
+    private boolean isBossActive = false;
+    private boolean isBossSpawned = false;
     private boolean isShooting = false;
     private boolean running = false;
     private boolean setHighScore = false;
 
     private LinkedList<FriendlyEntity> friendlyEntities;
     private LinkedList<EnemyEntity> enemyEntities;
+    private LinkedList<BossEntity> bossEntities;
 
     private int countEnemy = 5;
     private int enemyKilled = 0;
@@ -89,6 +94,10 @@ public class Game extends Canvas implements Runnable {
         return this.spriteSheetDragon;
     }
 
+    public BufferedImage getSpriteSheetBoss() {
+        return this.spriteSheetBoss;
+    }
+
     public LinkedList<EnemyEntity> getEnemyEntities() {
         return this.enemyEntities;
     }
@@ -107,6 +116,22 @@ public class Game extends Canvas implements Runnable {
 
     public double getPlayer1Y() {
         return this.player1.getY();
+    }
+
+    public boolean isBossActive() {
+        return this.isBossActive;
+    }
+
+    public void setBossActive(boolean bossActive) {
+        this.isBossActive = bossActive;
+    }
+
+    public boolean isBossSpawned() {
+        return this.isBossSpawned;
+    }
+
+    public void setBossSpawned(boolean bossSpawned) {
+        this.isBossSpawned = bossSpawned;
     }
 
     public static void main(String[] args) throws Exception {
@@ -136,6 +161,7 @@ public class Game extends Canvas implements Runnable {
         try {
             this.spriteSheetGorgon = loader.loadImage("/resources/gfx/fixed_gorgon_sheet.png");
             this.spriteSheetDragon = loader.loadImage("/resources/gfx/fixed_dragon_sheet.png");
+            this.spriteSheetBoss = loader.loadImage("/resources/gfx/bossSprite.png");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -151,6 +177,7 @@ public class Game extends Canvas implements Runnable {
 
         this.friendlyEntities = this.controller.getFriendly();
         this.enemyEntities = this.controller.getEnemy();
+        this.bossEntities = this.controller.getBoss();
 
         this.controller.createEnemy(this.countEnemy);
     }
@@ -303,10 +330,16 @@ public class Game extends Canvas implements Runnable {
             }
         }
 
-        if (this.controller.getEnemy().size() == 0 && (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO)) {
-            this.setCountEnemy(this.getCountEnemy() + 1);
-            this.controller.createEnemy(this.countEnemy);
+        if(this.getEnemyKilled() < 5) {
+            if (this.controller.getEnemy().size() == 0 && (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO)) {
+                this.setCountEnemy(this.getCountEnemy() + 1);
+                this.controller.createEnemy(this.countEnemy);
+            }
+        } else {
+            this.setBossActive(true);
+            this.controller.createEnemy(1);
         }
+
     }
 
     //Rendering the game.
