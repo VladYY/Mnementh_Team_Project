@@ -335,7 +335,7 @@ public class Game extends Canvas implements Runnable {
                 this.setCountEnemy(this.getCountEnemy() + 1);
                 this.controller.createEnemy(this.countEnemy);
             }
-        } else {
+        } else if(this.controller.getEnemy().size() == 0) {
             this.setBossActive(true);
             this.controller.createEnemy(1);
         }
