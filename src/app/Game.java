@@ -330,6 +330,7 @@ public class Game extends Canvas implements Runnable {
             }
         }
 
+        // Controlling if boss is created under some enemy killed number
         if(this.getEnemyKilled() < 5) {
             if (this.controller.getEnemy().size() == 0 && (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO)) {
                 this.setCountEnemy(this.getCountEnemy() + 1);
