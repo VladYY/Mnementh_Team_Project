@@ -52,6 +52,7 @@ public class Game extends Canvas implements Runnable {
 
     private boolean isShooting = false;
     private boolean running = false;
+    private boolean setHighScore = false;
 
     private LinkedList<FriendlyEntity> friendlyEntities;
     private LinkedList<EnemyEntity> enemyEntities;
@@ -296,6 +297,10 @@ public class Game extends Canvas implements Runnable {
         if (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO) {
             this.player1.tick();
             this.controller.tick();
+
+            if(this.setHighScore) {
+                this.setHighScore = false;
+            }
         }
 
         if (this.controller.getEnemy().size() == 0 && (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO)) {
@@ -313,8 +318,8 @@ public class Game extends Canvas implements Runnable {
             return;
         }
 
-        if (highScore.equals("")) {
-            highScore = this.getHighScore();
+        if (this.highScore.equals("")) {
+            this.highScore = this.getHighScore();
         }
 
         if (getEnemyKilled() == 2){
@@ -361,8 +366,8 @@ public class Game extends Canvas implements Runnable {
             graphics.drawImage(this.imageHelp, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
         } else if (Game.gameState == GameState.END) {
-            if (enemyKilled >= Integer.parseInt(highScore.split(":")[1])){
-                checkScore();
+            if (enemyKilled >= Integer.parseInt(highScore.split(":")[1]) && !this.setHighScore){
+                this.checkScore();
             }
 
             this.player1.setVelX(0);
@@ -377,8 +382,7 @@ public class Game extends Canvas implements Runnable {
 
 
             if (Game.gameState == GameState.GAME_LEVEL_ONE) {
-                setEnemyKilled(0);
-
+                this.setEnemyKilled(0);
             }
         } else if (Game.gameState == GameState.GAME_LEVEL_TWO) {
             this.player1.render(graphics);
@@ -419,7 +423,7 @@ public class Game extends Canvas implements Runnable {
 
     public void checkScore() {
 
-        if (enemyKilled >= Integer.parseInt(highScore.split(":")[1])) {
+        if (this.enemyKilled >= Integer.parseInt(this.highScore.split(":")[1])) {
             //user has set a new record
 
             String name = JOptionPane.showInputDialog("You set a new highscore. What is your name?");
@@ -449,6 +453,8 @@ public class Game extends Canvas implements Runnable {
                 } catch (Exception e) {}
 
             }
+
+            this.setHighScore = true;
         }
     }
 }
