@@ -145,7 +145,7 @@ public class Enemy extends DefaultObject implements EnemyEntity {
         if(!this.isHunter) {
             this.animation.drawAnimation(graphics, super.getX(), super.getY(), 0);
         } else {
-            if(isRight) {
+            if(this.isRight) {
                 this.animationRight.drawAnimation(graphics, super.getX(), super.getY(), 0);
             } else {
                 this.animationLeft.drawAnimation(graphics, super.getX(), super.getY(), 0);
