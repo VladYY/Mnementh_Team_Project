@@ -35,7 +35,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
         this.game = game;
         this.controller = controller;
         this.controller.addEntity(this);
-        this.spriteSheet = new SpriteSheet(game.getSpriteSheetDragon());
+        this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetDragon());
         this.dragon[0] = this.spriteSheet.grabDragonImage(1, 1, 72, 72);
         this.dragon[1] = this.spriteSheet.grabDragonImage(2, 1, 72, 72);
         this.dragon[2] = this.spriteSheet.grabDragonImage(3, 1, 72, 72);

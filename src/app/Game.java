@@ -343,7 +343,7 @@ public class Game extends Canvas implements Runnable {
             graphics.setColor(Color.white);
             Font fnt2 = new Font("arial", Font.BOLD, 25);
             graphics.setFont(fnt2);
-            graphics.drawString("Highscore: " + highScore, 1020, 65);
+            graphics.drawString("Highscore: " + this.highScore, 1020, 65);
 
             //HP BAR
             graphics.setColor(Color.RED);
@@ -366,7 +366,7 @@ public class Game extends Canvas implements Runnable {
             graphics.drawImage(this.imageHelp, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
         } else if (Game.gameState == GameState.END) {
-            if (enemyKilled >= Integer.parseInt(highScore.split(":")[1]) && !this.setHighScore){
+            if (this.enemyKilled >= Integer.parseInt(this.highScore.split(":")[1]) && !this.setHighScore){
                 this.checkScore();
                 this.setEnemyKilled(0);
             }
@@ -405,7 +405,6 @@ public class Game extends Canvas implements Runnable {
     }
 
     public String getHighScore() {
-        //format: Brandon:100
         FileReader readFile = null;
         BufferedReader reader = null;
         try {
@@ -431,7 +430,7 @@ public class Game extends Canvas implements Runnable {
             //user has set a new record
 
             String name = JOptionPane.showInputDialog("You set a new highscore. What is your name?");
-            highScore = name + ":" + enemyKilled;
+            this.highScore = name + ":" + this.enemyKilled;
 
             File scoreFile = new File("highscore.dat");
             if (!scoreFile.exists()) {
