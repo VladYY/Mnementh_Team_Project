@@ -45,17 +45,17 @@ public class Controller {
                 isHunter = true;
             }
 
-            if (spawnIndex == 0) {
+            if (spawnIndex == 0 && Game.gameState == GameState.GAME_LEVEL_ONE) {
                 //Spawn from left
                 addEntity(
                         new Enemy(this.random.nextInt(25-1)+1, this.random.nextInt(800-500)+500, this.game, this, isHunter));
                 spawnIndex++;
-            } else if (spawnIndex == 1) {
+            } else if (spawnIndex == 1 && Game.gameState == GameState.GAME_LEVEL_ONE) {
                 //Spawn from right
                 addEntity(
                         new Enemy(this.random.nextInt(1200-1180)+1180, this.random.nextInt(800-500)+500, this.game, this, isHunter));
                 spawnIndex++;
-            } else if (spawnIndex == 2) {
+            } else if (spawnIndex == 2 && Game.gameState == GameState.GAME_LEVEL_ONE) {
                 //Spawn from down
                 addEntity(new Enemy(this.random.nextInt(1200), 800, this.game, this, isHunter));
 

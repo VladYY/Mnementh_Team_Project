@@ -293,12 +293,12 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
-        if (Game.gameState == GameState.GAME_LEVEL_ONE) {
+        if (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO) {
             this.player1.tick();
             this.controller.tick();
         }
 
-        if (this.controller.getEnemy().size() == 0) {
+        if (this.controller.getEnemy().size() == 0 && (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO)) {
             this.setCountEnemy(this.getCountEnemy() + 1);
             this.controller.createEnemy(this.countEnemy);
         }
@@ -315,6 +315,10 @@ public class Game extends Canvas implements Runnable {
 
         if (highScore.equals("")) {
             highScore = this.getHighScore();
+        }
+
+        if (getEnemyKilled() == 2){
+            Game.gameState = GameState.GAME_LEVEL_TWO;
         }
 
         Graphics graphics = bs.getDrawGraphics();
@@ -376,6 +380,16 @@ public class Game extends Canvas implements Runnable {
                 setEnemyKilled(0);
 
             }
+        } else if (Game.gameState == GameState.GAME_LEVEL_TWO) {
+            this.player1.render(graphics);
+            this.controller.render(graphics);
+            this.player1.setVelX(0);
+            this.player1.setVelY(0);
+            this.player1.setX(200);
+            this.player1.setY(200);
+            this.setCountEnemy(5);
+            this.enemyEntities.clear();
+            graphics.drawImage(this.battlegroundImage2, 0, 0, this.getWidth(), this.getHeight(), this);
         }
 
         graphics.dispose();
