@@ -322,7 +322,7 @@ public class Game extends Canvas implements Runnable {
             this.highScore = this.getHighScore();
         }
 
-        if (getEnemyKilled() == 2){
+        if (getEnemyKilled() == 10000){
             Game.gameState = GameState.GAME_LEVEL_TWO;
         }
 
@@ -368,6 +368,10 @@ public class Game extends Canvas implements Runnable {
         } else if (Game.gameState == GameState.END) {
             if (enemyKilled >= Integer.parseInt(highScore.split(":")[1]) && !this.setHighScore){
                 this.checkScore();
+                this.setEnemyKilled(0);
+            }
+            else{
+                this.setEnemyKilled(0);
             }
 
             this.player1.setVelX(0);
