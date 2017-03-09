@@ -67,6 +67,9 @@ public class Game extends Canvas implements Runnable {
     private int enemyKilled = 0;
     private String highScore = "";
 
+    public Game() {
+    }
+
     public int getCountEnemy() {
         return this.countEnemy;
     }
@@ -438,6 +441,9 @@ public class Game extends Canvas implements Runnable {
             //user has set a new record
 
             String name = JOptionPane.showInputDialog("You set a new highscore. What is your name?");
+            if(name.isEmpty()) {
+                name = "No name";
+            }
             this.highScore = name + ":" + this.enemyKilled;
 
             File scoreFile = new File("highscore.dat");
