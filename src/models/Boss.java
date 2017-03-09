@@ -36,8 +36,8 @@ public class Boss extends DefaultObject implements BossEntity {
         this.health = health;
         this.damage = damage;
         this.game = game;
-        this.velX = 1.5;
-        this.velY = 1.5;
+        this.velX = 2D;
+        this.velY = 2D;
         this.controller = controller;
         this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetBoss());
         this.boss = new BufferedImage[16];
