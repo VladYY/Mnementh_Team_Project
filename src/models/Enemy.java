@@ -3,6 +3,7 @@ package models;
 import animation.Animation;
 import app.Game;
 import controllers.Controller;
+import enums.GameState;
 import interfaces.EnemyEntity;
 import spitesheets.SpriteSheet;
 
@@ -82,8 +83,21 @@ public class Enemy extends DefaultObject implements EnemyEntity {
             this.speed = 4;
         }
 
-        int caveX = 600;
-        int caveY = 120;
+        int caveX = 0;
+        int caveY = 0;
+
+        if (Game.gameState == GameState.GAME_LEVEL_ONE) {
+            caveX = 600;
+            caveY = 120;
+        }
+
+        if (Game.gameState == GameState.GAME_LEVEL_TWO) {
+            caveX = 0;
+            caveY = 400;
+        }
+
+
+
         if(!this.isHunter) {
             if (super.getX() < caveX && super.getY() < caveY) {
                 super.setX(super.getX() + this.speed);
@@ -107,11 +121,23 @@ public class Enemy extends DefaultObject implements EnemyEntity {
                 super.setY(super.getY() - this.speed);
             }
 
+            if (Game.gameState == GameState.GAME_LEVEL_ONE) {
             if (super.getX() >= 550 && super.getX() <= 652) {
                 if(super.getY() >= 70 && super.getY() <= 172) {
                     this.controller.removeEntity(this);
                     int playerHealth = this.game.getPlayer1Health();
                     this.game.setPlayer1Health(playerHealth - 20);
+                }
+            }
+            }
+
+            if (Game.gameState == GameState.GAME_LEVEL_TWO) {
+                if (super.getX() >= 0 && super.getX() <= 20) {
+                    if(super.getY() >= 350 && super.getY() <= 450) {
+                        this.controller.removeEntity(this);
+                        int playerHealth = this.game.getPlayer1Health();
+                        this.game.setPlayer1Health(playerHealth - 20);
+                    }
                 }
             }
 

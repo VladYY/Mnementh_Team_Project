@@ -74,7 +74,7 @@ public class Controller {
                 if (Game.gameState == GameState.GAME_LEVEL_TWO) {
                     //Spawn from left
                     addEntity(
-                            new Enemy(this.random.nextInt(25-1)+1, this.random.nextInt(800-500)+500, this.game, this, isHunter));
+                            new Enemy(this.random.nextInt(1200-1180)+1180, this.random.nextInt(600-1)+1, this.game, this, isHunter));
                 }
             }
         } else if(this.game.isBossActive() && !this.game.isBossSpawned()){
