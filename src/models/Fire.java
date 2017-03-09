@@ -61,7 +61,6 @@ public class Fire extends DefaultObject implements FriendlyEntity {
         this.detectEnemyCollision();
 
         this.detectBossCollision();
-
     }
 
     public void render(Graphics graphics) {

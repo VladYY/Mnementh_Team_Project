@@ -7,11 +7,6 @@ import enums.StateSound;
 import sun.audio.AudioPlayer;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -114,13 +109,16 @@ public class Menu {
 
             graphics.setFont(fnt2);
             graphics.setColor(Color.white);
-            drawStringMultiLine((Graphics2D) graphics, helpString, helpString.length() * 2 - (helpString.length() / 2), (game.WIDTH / 2), 250);
+            drawStringMultiLine((Graphics2D) graphics,
+                    helpString,
+                    helpString.length() * 2 - (helpString.length() / 2),
+                    (game.WIDTH / 2), 250);
 
             graphics.setFont(fnt1);
             graphics.setColor(Color.white);
             graphics.drawString("Back", this.backButton.x + 14, this.backButton.y + 35);
             g2d.draw(this.backButton);
-        }else if (Game.gameState == GameState.END) {
+        } else if (Game.gameState == GameState.END) {
             graphics.setColor(Color.white);
             Font fnt1 = new Font("arial", Font.ITALIC, 60);
             graphics.setFont(fnt1);
@@ -141,8 +139,6 @@ public class Menu {
                 placeIndex++;
                 size += 50;
             }
-
-
         }
     }
 }

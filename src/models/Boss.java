@@ -127,7 +127,6 @@ public class Boss extends DefaultObject implements BossEntity {
         graphics.drawString(this.health / 9 + "%", 620, 42);
         graphics.setFont(fnt2);
         graphics.drawString("Gnarl", 820, 37);
-
     }
 
     public Rectangle getBounds() {

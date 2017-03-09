@@ -87,10 +87,17 @@ public class Controller {
     }
 
     public void tick() {
-        if(this.game.isBossActive() && this.game.isBossSpawned() && this.bossEntities.size() == 0) {
+        if(this.game.isBossActive() && this.game.isBossSpawned() && this.bossEntities.size() == 0
+                && Game.gameState == GameState.GAME_LEVEL_ONE){
             this.game.setBossActive(false);
             this.game.setBossSpawned(false);
             Game.gameState = GameState.GAME_LEVEL_TWO;
+            this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
+        } else if(this.game.isBossActive() && this.game.isBossSpawned() && this.bossEntities.size() == 0
+                && Game.gameState == GameState.GAME_LEVEL_TWO) {
+            this.game.setBossActive(false);
+            this.game.setBossSpawned(false);
+            Game.gameState = GameState.END;
             this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
         }
 
