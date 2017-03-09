@@ -18,7 +18,6 @@ public class Animation {
     private BufferedImage img7;
     private BufferedImage img8;
 
-
     private BufferedImage currentImg;
     
     //3 frame
@@ -58,53 +57,53 @@ public class Animation {
         this.index++;
         if(this.index > this.speed){
             this.index = 0;
-            nextFrame();
+            this.nextFrame();
         }
-    }
-
-    public void nextFrame(){
-            switch (this.frames) {
-                case 3 :
-                    if(this.count == 0)
-                        this.currentImg = this.img1;
-                    if(this.count == 1)
-                        this.currentImg = this.img2;
-                    if(this.count == 2)
-                        this.currentImg = this.img3;
-
-                    this.count++;
-
-                    if(this.count > this.frames)
-                        this.count = 0;
-                    break;
-                case 8:
-                    if(this.count == 0)
-                        this.currentImg = this.img1;
-                    if(this.count == 1)
-                        this.currentImg = this.img2;
-                    if(this.count == 2)
-                        this.currentImg = this.img3;
-                    if(this.count == 3)
-                        this.currentImg = this.img4;
-                    if(this.count == 4)
-                        this.currentImg = this.img5;
-                    if(this.count == 5)
-                        this.currentImg = this.img6;
-                    if(this.count == 6)
-                        this.currentImg = this.img7;
-                    if(this.count == 7)
-                        this.currentImg = this.img8;
-
-                    this.count++;
-
-                    if(this.count > this.frames)
-                        this.count = 0;
-                    break;
-            }
     }
 
     public void drawAnimation(Graphics g, double x, double y, int offset){
         g.drawImage(this.currentImg, (int)x - offset, (int)y, null);
+    }
+
+    private void nextFrame(){
+        switch (this.frames) {
+            case 3 :
+                if(this.count == 0)
+                    this.currentImg = this.img1;
+                if(this.count == 1)
+                    this.currentImg = this.img2;
+                if(this.count == 2)
+                    this.currentImg = this.img3;
+
+                this.count++;
+
+                if(this.count > this.frames)
+                    this.count = 0;
+                break;
+            case 8:
+                if(this.count == 0)
+                    this.currentImg = this.img1;
+                if(this.count == 1)
+                    this.currentImg = this.img2;
+                if(this.count == 2)
+                    this.currentImg = this.img3;
+                if(this.count == 3)
+                    this.currentImg = this.img4;
+                if(this.count == 4)
+                    this.currentImg = this.img5;
+                if(this.count == 5)
+                    this.currentImg = this.img6;
+                if(this.count == 6)
+                    this.currentImg = this.img7;
+                if(this.count == 7)
+                    this.currentImg = this.img8;
+
+                this.count++;
+
+                if(this.count > this.frames)
+                    this.count = 0;
+                break;
+        }
     }
 }
 

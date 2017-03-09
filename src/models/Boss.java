@@ -20,10 +20,15 @@ public class Boss extends DefaultObject implements BossEntity {
     private Controller controller;
 
     private SpriteSheet spriteSheet;
-    private BufferedImage[] boss = new BufferedImage[16];
+    private BufferedImage[] boss;
 
     private Animation animationLeft;
     private Animation animationRight;
+    private Animation animationAttackLeft;
+    private Animation animationAttackRight;
+
+    private boolean isAttackingLeft;
+    private boolean isAttackingRight;
 
     public Boss(double x, double y, Game game, Controller controller, int health, int damage) {
         super(x,y);
@@ -35,6 +40,10 @@ public class Boss extends DefaultObject implements BossEntity {
         this.velY = 1.5;
         this.controller = controller;
         this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetBoss());
+        this.boss = new BufferedImage[16];
+
+        this.isAttackingLeft = false;
+        this.isAttackingRight = false;
 
         this.setAnimation();
     }
@@ -48,6 +57,9 @@ public class Boss extends DefaultObject implements BossEntity {
     }
 
     public void tick() {
+
+        this.isAttackingLeft = false;
+        this.isAttackingRight = false;
 
         if(super.getX() <= this.game.getPlayer1X()) {
             super.setX(super.getX() + this.velX);
@@ -70,13 +82,24 @@ public class Boss extends DefaultObject implements BossEntity {
         if(Physics.Collision(this, this.game.getPlayer1())) {
             int currentPlayerHealth = this.game.getPlayer1Health();
             this.game.setPlayer1Health((currentPlayerHealth - this.damage));
+
+            if(super.getX() < this.game.getPlayer1X()) {
+                this.isAttackingLeft = true;
+                this.animationAttackLeft.runAnimation();
+            } else {
+                this.isAttackingRight = true;
+                this.animationAttackRight.runAnimation();
+            }
         }
 
     }
 
     public void render(Graphics graphics) {
-
-        if(super.getX() > this.game.getPlayer1X()) {
+        if(isAttackingRight) {
+            this.animationAttackRight.drawAnimation(graphics, super.getX(), super.getY(), 0);
+        } else if(isAttackingLeft) {
+            this.animationAttackLeft.drawAnimation(graphics, super.getX(), super.getY(), 0);
+        } else if(super.getX() > this.game.getPlayer1X()) {
             this.animationRight.drawAnimation(graphics, super.getX(), super.getY(), 0);
         } else {
             this.animationLeft.drawAnimation(graphics, super.getX(), super.getY(), 0);
@@ -136,6 +159,43 @@ public class Boss extends DefaultObject implements BossEntity {
             this.boss[7]);
 
         this.animationRight = new Animation(5,
+            this.boss[8],
+            this.boss[9],
+            this.boss[10],
+            this.boss[11],
+            this.boss[12],
+            this.boss[13],
+            this.boss[14],
+            this.boss[15]);
+
+        this.boss[0] = this.spriteSheet.grabBossImage(1, 3, 144, 144);
+        this.boss[1] = this.spriteSheet.grabBossImage(2, 3, 144, 144);
+        this.boss[2] = this.spriteSheet.grabBossImage(3, 3, 144, 144);
+        this.boss[3] = this.spriteSheet.grabBossImage(4, 3, 144, 144);
+        this.boss[4] = this.spriteSheet.grabBossImage(5, 3, 144, 144);
+        this.boss[5] = this.spriteSheet.grabBossImage(6, 3, 144, 144);
+        this.boss[6] = this.spriteSheet.grabBossImage(7, 3, 144, 144);
+        this.boss[7] = this.spriteSheet.grabBossImage(8, 3, 144, 144);
+        this.boss[8] = this.spriteSheet.grabBossImage(1, 4, 144, 144);
+        this.boss[9] = this.spriteSheet.grabBossImage(2, 4, 144, 144);
+        this.boss[10] = this.spriteSheet.grabBossImage(3, 4, 144, 144);
+        this.boss[11] = this.spriteSheet.grabBossImage(4, 4, 144, 144);
+        this.boss[12] = this.spriteSheet.grabBossImage(5, 4, 144, 144);
+        this.boss[13] = this.spriteSheet.grabBossImage(6, 4, 144, 144);
+        this.boss[14] = this.spriteSheet.grabBossImage(7, 4, 144, 144);
+        this.boss[15] = this.spriteSheet.grabBossImage(8, 4, 144, 144);
+
+        this.animationAttackLeft = new Animation(5,
+            this.boss[0],
+            this.boss[1],
+            this.boss[2],
+            this.boss[3],
+            this.boss[4],
+            this.boss[5],
+            this.boss[6],
+            this.boss[7]);
+
+        this.animationAttackRight = new Animation(5,
             this.boss[8],
             this.boss[9],
             this.boss[10],
