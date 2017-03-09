@@ -93,7 +93,7 @@ public class Enemy extends DefaultObject implements EnemyEntity {
 
         if (Game.gameState == GameState.GAME_LEVEL_TWO) {
             caveX = 0;
-            caveY = 400;
+            caveY = this.rnd.nextInt(700-100)+100;
         }
 
 
@@ -133,7 +133,7 @@ public class Enemy extends DefaultObject implements EnemyEntity {
 
             if (Game.gameState == GameState.GAME_LEVEL_TWO) {
                 if (super.getX() >= 0 && super.getX() <= 20) {
-                    if(super.getY() >= 350 && super.getY() <= 450) {
+                    if(super.getY() >= 100 && super.getY() <= 700) {
                         this.controller.removeEntity(this);
                         int playerHealth = this.game.getPlayer1Health();
                         this.game.setPlayer1Health(playerHealth - 20);
