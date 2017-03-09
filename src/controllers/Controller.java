@@ -77,7 +77,8 @@ public class Controller {
                             new Enemy(this.random.nextInt(1200-1180)+1180, this.random.nextInt(600-1)+1, this.game, this, isHunter));
                 }
             }
-        } else if(this.game.isBossActive() && !this.game.isBossSpawned()){
+        } else if(this.game.isBossActive() && !this.game.isBossSpawned() &&
+                (this.game.gameState == GameState.GAME_LEVEL_ONE || this.game.gameState == GameState.GAME_LEVEL_TWO)){
 
             this.addEntity(new Boss(1150, 400, this.game, this, 900, 1));
             this.game.setBossSpawned(true);
@@ -90,7 +91,7 @@ public class Controller {
             this.game.setBossActive(false);
             this.game.setBossSpawned(false);
             Game.gameState = GameState.GAME_LEVEL_TWO;
-            this.game.setEnemyKilled(0);
+            //this.game.setEnemyKilled(0);
         }
         //FOR FRIENDLY ENTITY
         for (int i = 0; i < this.friendlyEntities.size(); i++) {

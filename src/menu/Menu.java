@@ -121,6 +121,7 @@ public class Menu {
             graphics.setColor(Color.white);
             graphics.drawString("Play again", Game.WIDTH / 2 + 200, 430);
             graphics.drawRect(Game.WIDTH / 2 + 190, 355, 300, 100);
+            this.game.setEnemyKilled(0);
         }
     }
 }

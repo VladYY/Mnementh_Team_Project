@@ -189,15 +189,13 @@ public class Game extends Canvas implements Runnable {
         this.controller = new Controller(this);
         this.battleground = new Battleground(this.battlegroundImage);
         this.battlegroundNextLevel = new Battleground(this.battlegroundImage2);
-        this.player1 = new Player(200, 200, this, this.controller, 200, 5);
+        this.player1 = new Player(200, 200, this, this.controller, 200, 50);
 
         this.menu = new Menu(this);
 
         this.friendlyEntities = this.controller.getFriendly();
         this.enemyEntities = this.controller.getEnemy();
         this.bossEntities = this.controller.getBoss();
-
-        this.controller.createEnemy(this.countEnemy);
     }
 
     // GAME LOOP
@@ -343,19 +341,25 @@ public class Game extends Canvas implements Runnable {
             if(this.setHighScore) {
                 this.setHighScore = false;
             }
-        }
 
-        // Controlling if boss is created under some enemy killed number
-        if(this.getEnemyKilled() < 5) {
-            if (this.controller.getEnemy().size() == 0 && (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO)) {
-                this.setCountEnemy(this.getCountEnemy() + 1);
-                this.controller.createEnemy(this.countEnemy);
+            // Controlling if boss is created under some enemy killed number
+            if(this.getEnemyKilled() < 10 && Game.gameState == GameState.GAME_LEVEL_ONE) {
+                if (this.controller.getEnemy().size() == 0 && Game.gameState == GameState.GAME_LEVEL_ONE) {
+                    this.setCountEnemy(this.getCountEnemy() + 1);
+                    this.controller.createEnemy(this.countEnemy);
+                }
+            } else if(this.getEnemyKilled() < 40 && Game.gameState == GameState.GAME_LEVEL_TWO) {
+                if (this.controller.getEnemy().size() == 0 && Game.gameState == GameState.GAME_LEVEL_TWO) {
+                    this.setCountEnemy(this.getCountEnemy() + 1);
+                    this.controller.createEnemy(this.countEnemy);
+                }
             }
-        } else if(this.controller.getEnemy().size() == 0) {
-            this.setBossActive(true);
-            this.controller.createEnemy(1);
-        }
 
+            else if(this.controller.getEnemy().size() == 0) {
+                this.setBossActive(true);
+                this.controller.createEnemy(1);
+            }
+        }
     }
 
     //Rendering the game.
@@ -400,7 +404,7 @@ public class Game extends Canvas implements Runnable {
             graphics.drawImage(this.imageDead, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
 
-            this.setEnemyKilled(0);
+            //this.setEnemyKilled(0);
         } else if (Game.gameState == GameState.GAME_LEVEL_TWO) {
             this.battlegroundNextLevel.render(graphics);
             this.renderElements(graphics);

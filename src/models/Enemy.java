@@ -96,8 +96,6 @@ public class Enemy extends DefaultObject implements EnemyEntity {
             caveY = this.rnd.nextInt(700-100)+100;
         }
 
-
-
         if(!this.isHunter) {
             if (super.getX() < caveX && super.getY() < caveY) {
                 super.setX(super.getX() + this.speed);
