@@ -86,6 +86,10 @@ public class Player extends DefaultObject implements FriendlyEntity {
         this.health = health;
     }
 
+    public void resetHealth() {
+        this.health = 200;
+    }
+
     public void tick() {
         super.setX(super.getX() + this.velX);
         super.setY(super.getY() + this.velY);

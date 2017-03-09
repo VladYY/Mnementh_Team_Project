@@ -189,7 +189,7 @@ public class Game extends Canvas implements Runnable {
         this.controller = new Controller(this);
         this.battleground = new Battleground(this.battlegroundImage);
         this.battlegroundNextLevel = new Battleground(this.battlegroundImage2);
-        this.player1 = new Player(200, 200, this, this.controller, 200, 50);
+        this.player1 = new Player(200, 200, this, this.controller, 200, 15);
 
         this.menu = new Menu(this);
 
