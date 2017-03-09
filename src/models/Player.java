@@ -20,13 +20,13 @@ public class Player extends DefaultObject implements FriendlyEntity {
     private double velY = 0;
     private int health;
     private Game game;
-    private String direction = "right";
+    private String direction;
     private Controller controller;
-    private boolean directionChanged = false;
 
     private SpriteSheet spriteSheet;
     private BufferedImage[] dragon = new BufferedImage[16];
-    private Animation animation;
+    private Animation animationRight;
+    private Animation animationLeft;
 
     public Player(double x, double y, Game game, Controller controller, int health) {
         super(x,y);
@@ -36,33 +36,8 @@ public class Player extends DefaultObject implements FriendlyEntity {
         this.controller = controller;
         this.controller.addEntity(this);
         this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetDragon());
-        this.dragon[0] = this.spriteSheet.grabDragonImage(1, 1, 72, 72);
-        this.dragon[1] = this.spriteSheet.grabDragonImage(2, 1, 72, 72);
-        this.dragon[2] = this.spriteSheet.grabDragonImage(3, 1, 72, 72);
-        this.dragon[3] = this.spriteSheet.grabDragonImage(4, 1, 72, 72);
-        this.dragon[4] = this.spriteSheet.grabDragonImage(5, 1, 72, 72);
-        this.dragon[5] = this.spriteSheet.grabDragonImage(6, 1, 72, 72);
-        this.dragon[6] = this.spriteSheet.grabDragonImage(7, 1, 72, 72);
-        this.dragon[7] = this.spriteSheet.grabDragonImage(8, 1, 72, 72);
-
-        this.dragon[8] = this.spriteSheet.grabDragonImage(1, 2, 72, 72);
-        this.dragon[9] = this.spriteSheet.grabDragonImage(2, 2, 72, 72);
-        this.dragon[10] = this.spriteSheet.grabDragonImage(3, 2, 72, 72);
-        this.dragon[11] = this.spriteSheet.grabDragonImage(4, 2, 72, 72);
-        this.dragon[12] = this.spriteSheet.grabDragonImage(5, 2, 72, 72);
-        this.dragon[13] = this.spriteSheet.grabDragonImage(6, 2, 72, 72);
-        this.dragon[14] = this.spriteSheet.grabDragonImage(7, 2, 72, 72);
-        this.dragon[15] = this.spriteSheet.grabDragonImage(8, 2, 72, 72);
-
-        this.animation = new Animation(5,
-                this.dragon[0],
-                this.dragon[1],
-                this.dragon[2],
-                this.dragon[3],
-                this.dragon[4],
-                this.dragon[5],
-                this.dragon[6],
-                this.dragon[7]);
+        this.direction = "right";
+        this.setAnimation();
     }
 
     public void tick() {
@@ -106,37 +81,11 @@ public class Player extends DefaultObject implements FriendlyEntity {
             }
         }
 
-        if (this.isDirectionChanged()&& this.direction.equals("left")) {
-            this.animation = new Animation(5,
-                    this.dragon[8],
-                    this.dragon[9],
-                    this.dragon[10],
-                    this.dragon[11],
-                    this.dragon[12],
-                    this.dragon[13],
-                    this.dragon[14],
-                    this.dragon[15]);
-
-            this.directionChanged = false;
-        } else if (this.isDirectionChanged() && this.direction.equals("right")) {
-            this.animation = new Animation(5,
-                    this.dragon[0],
-                    this.dragon[1],
-                    this.dragon[2],
-                    this.dragon[3],
-                    this.dragon[4],
-                    this.dragon[5],
-                    this.dragon[6],
-                    this.dragon[7]);
-
-            this.directionChanged = false;
+        if (this.direction.equals("left")) {
+            this.animationLeft.runAnimation();
+        } else if (this.direction.equals("right")) {
+            this.animationRight.runAnimation();
         }
-
-        this.animation.runAnimation();
-    }
-
-    public void setDirectionChanged() {
-        this.directionChanged = true;
     }
 
     public String getDirection() {
@@ -179,15 +128,55 @@ public class Player extends DefaultObject implements FriendlyEntity {
         this.health = health;
     }
 
-    private boolean isDirectionChanged() {
-        return this.directionChanged;
-    }
-
     public void render(Graphics graphics) {
-        this.animation.drawAnimation(graphics, super.getX(), super.getY(), 0);
+        if(this.direction.equals("left")) {
+            this.animationLeft.drawAnimation(graphics, super.getX(), super.getY(), 0);
+        } else {
+            this.animationRight.drawAnimation(graphics, super.getX(), super.getY(), 0);
+        }
     }
 
     public  Rectangle getBounds() {
         return new Rectangle((int)super.getX() , (int)super.getY(), 72, 72);
+    }
+
+    private void setAnimation() {
+        this.dragon[0] = this.spriteSheet.grabDragonImage(1, 1, 72, 72);
+        this.dragon[1] = this.spriteSheet.grabDragonImage(2, 1, 72, 72);
+        this.dragon[2] = this.spriteSheet.grabDragonImage(3, 1, 72, 72);
+        this.dragon[3] = this.spriteSheet.grabDragonImage(4, 1, 72, 72);
+        this.dragon[4] = this.spriteSheet.grabDragonImage(5, 1, 72, 72);
+        this.dragon[5] = this.spriteSheet.grabDragonImage(6, 1, 72, 72);
+        this.dragon[6] = this.spriteSheet.grabDragonImage(7, 1, 72, 72);
+        this.dragon[7] = this.spriteSheet.grabDragonImage(8, 1, 72, 72);
+
+        this.dragon[8] = this.spriteSheet.grabDragonImage(1, 2, 72, 72);
+        this.dragon[9] = this.spriteSheet.grabDragonImage(2, 2, 72, 72);
+        this.dragon[10] = this.spriteSheet.grabDragonImage(3, 2, 72, 72);
+        this.dragon[11] = this.spriteSheet.grabDragonImage(4, 2, 72, 72);
+        this.dragon[12] = this.spriteSheet.grabDragonImage(5, 2, 72, 72);
+        this.dragon[13] = this.spriteSheet.grabDragonImage(6, 2, 72, 72);
+        this.dragon[14] = this.spriteSheet.grabDragonImage(7, 2, 72, 72);
+        this.dragon[15] = this.spriteSheet.grabDragonImage(8, 2, 72, 72);
+
+        this.animationLeft = new Animation(5,
+            this.dragon[8],
+            this.dragon[9],
+            this.dragon[10],
+            this.dragon[11],
+            this.dragon[12],
+            this.dragon[13],
+            this.dragon[14],
+            this.dragon[15]);
+
+        this.animationRight = new Animation(5,
+            this.dragon[0],
+            this.dragon[1],
+            this.dragon[2],
+            this.dragon[3],
+            this.dragon[4],
+            this.dragon[5],
+            this.dragon[6],
+            this.dragon[7]);
     }
 }
