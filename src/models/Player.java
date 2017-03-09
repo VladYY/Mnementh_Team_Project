@@ -19,6 +19,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
     private double velX = 0;
     private double velY = 0;
     private int health;
+    private int damage;
     private Game game;
     private String direction;
     private Controller controller;
@@ -28,16 +29,61 @@ public class Player extends DefaultObject implements FriendlyEntity {
     private Animation animationRight;
     private Animation animationLeft;
 
-    public Player(double x, double y, Game game, Controller controller, int health) {
+    public Player(double x, double y, Game game, Controller controller, int health, int damage) {
         super(x,y);
 
         this.health = health;
+        this.damage = damage;
         this.game = game;
         this.controller = controller;
         this.controller.addEntity(this);
         this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetDragon());
         this.direction = "right";
         this.setAnimation();
+    }
+
+    public int getDamage() {
+        return this.damage;
+    }
+
+    public String getDirection() {
+        return this.direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public double getX() {
+        return super.getX();
+    }
+
+    public void setX(double x) {
+        super.setX(x);
+    }
+
+    public double getY() {
+        return super.getY();
+    }
+
+    public void setY(double y) {
+        super.setY(y);
+    }
+
+    public void setVelX(double velX) {
+        this.velX = velX;
+    }
+
+    public void setVelY(double velY) {
+        this.velY = velY;
+    }
+
+    public int getHealth() {
+        return this.health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public void tick() {
@@ -86,46 +132,6 @@ public class Player extends DefaultObject implements FriendlyEntity {
         } else if (this.direction.equals("right")) {
             this.animationRight.runAnimation();
         }
-    }
-
-    public String getDirection() {
-        return this.direction;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
-
-    public double getX() {
-        return super.getX();
-    }
-
-    public void setX(double x) {
-        super.setX(x);
-    }
-
-    public double getY() {
-        return super.getY();
-    }
-
-    public void setY(double y) {
-        super.setY(y);
-    }
-
-    public void setVelX(double velX) {
-        this.velX = velX;
-    }
-
-    public void setVelY(double velY) {
-        this.velY = velY;
-    }
-
-    public int getHealth() {
-        return this.health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
     }
 
     public void render(Graphics graphics) {

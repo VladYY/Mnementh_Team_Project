@@ -175,7 +175,7 @@ public class Game extends Canvas implements Runnable {
 
         this.controller = new Controller(this);
         this.battleground = new Battleground(this);
-        this.player1 = new Player(200, 200, this, this.controller, 200);
+        this.player1 = new Player(200, 200, this, this.controller, 200, 5);
 
         this.menu = new Menu(this);
 
@@ -223,6 +223,7 @@ public class Game extends Canvas implements Runnable {
         int key = k.getKeyCode();
 
         int direction;
+        int damage = this.player1.getDamage();
         if (key == KeyEvent.VK_RIGHT) {
             this.player1.setVelX(2);
             if (!this.player1.getDirection().equals("right")) {
@@ -246,28 +247,28 @@ public class Game extends Canvas implements Runnable {
             direction = 1;
             Music.dragonFire();
             this.controller.addEntity(
-                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller, damage));
 
         } else if (key == KeyEvent.VK_A && !this.isShooting) {
             this.isShooting = true;
             direction = 2;
             Music.dragonFire();
             this.controller.addEntity(
-                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller, damage));
 
         } else if (key == KeyEvent.VK_S && !this.isShooting) {
             this.isShooting = true;
             direction = 3;
             Music.dragonFire();
             this.controller.addEntity(
-                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller, damage));
 
         } else if (key == KeyEvent.VK_W && !this.isShooting) {
             this.isShooting = true;
             direction = 4;
             Music.dragonFire();
             this.controller.addEntity(
-                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller));
+                    new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller, damage));
 
         }
     }

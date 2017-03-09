@@ -19,13 +19,19 @@ public class Fire extends DefaultObject implements FriendlyEntity {
     private int direction;
     private Game game;
     private Controller controller;
+    private int damage;
 
-    public Fire(double x, double y, int direction, Game game, Controller controller) throws IOException {
+    public Fire(double x, double y, int direction, Game game, Controller controller, int damage) throws IOException {
         super(x,y);
         this.direction = direction;
         this.image = ImageIO.read(getClass().getResourceAsStream("/resources/gfx/fire.png"));
         this.game = game;
         this.controller = controller;
+        this.damage = damage;
+    }
+
+    public int getDamage() {
+        return this.damage;
     }
 
     public double getX() {
@@ -54,12 +60,25 @@ public class Fire extends DefaultObject implements FriendlyEntity {
 
         this.detectEnemyCollision();
 
+        this.detectBossCollision();
+
+    }
+
+    public void render(Graphics graphics) {
+        graphics.drawImage(this.image, (int)super.getX(), (int)super.getY(), null);
+    }
+
+    public  Rectangle getBounds() {
+        return new Rectangle((int)super.getX(), (int)super.getY(), 32, 32);
+    }
+
+    private void detectBossCollision() {
         for (int i = 0; i < this.game.getBossEntities().size(); i++) {
             BossEntity tempEnt = this.game.getBossEntities().get(i);
 
             if (Physics.Collision(this, tempEnt)){
                 this.controller.removeEntity(this);
-                tempEnt.setHealth(tempEnt.getHealth() - 1);
+                tempEnt.setHealth(tempEnt.getHealth() - this.getDamage());
             }
 
             if(tempEnt.getHealth() <= 0) {
@@ -71,15 +90,6 @@ public class Fire extends DefaultObject implements FriendlyEntity {
                 this.controller.removeEntity(tempEnt);
             }
         }
-
-    }
-
-    public void render(Graphics graphics) {
-        graphics.drawImage(this.image, (int)super.getX(), (int)super.getY(), null);
-    }
-
-    public  Rectangle getBounds() {
-        return new Rectangle((int)super.getX(), (int)super.getY(), 32, 32);
     }
 
     private void detectEnemyCollision() {
