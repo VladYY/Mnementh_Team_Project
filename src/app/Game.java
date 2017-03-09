@@ -375,7 +375,7 @@ public class Game extends Canvas implements Runnable {
             graphics.setFont(fnt2);
             graphics.drawString("Highscore: " + this.highScore, 1020, 65);
 
-            //HP BAR
+            //Player HP BAR
             graphics.setColor(Color.RED);
             graphics.fillRect(5, 5, 200, 50);
 

@@ -79,7 +79,7 @@ public class Controller {
             }
         } else if(this.game.isBossActive() && !this.game.isBossSpawned()){
 
-            this.addEntity(new Boss(800, 600, this.game, this, 1000));
+            this.addEntity(new Boss(800, 600, this.game, this, 300));
             this.game.setBossSpawned(true);
         }
 

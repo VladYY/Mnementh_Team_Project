@@ -99,9 +99,28 @@ public class Boss extends DefaultObject implements BossEntity {
             this.animationLeft.drawAnimation(graphics, super.getX(), super.getY(), 0);
         }
 
+        //Boss HP BAR
+        Font fnt1 = new Font("arial", Font.BOLD, 30);
+        Font fnt2 = new Font("arial", Font.BOLD, 20);
+
+        graphics.setColor(Color.RED);
+        graphics.fillRect(505, 5, 300, 50);
+
+        graphics.setColor(Color.GREEN);
+        graphics.fillRect(505, 5, this.health, 50);
+
+        graphics.setColor(Color.WHITE);
+        graphics.drawRect(505, 5, 300, 50);
+
+        graphics.setColor(Color.white);
+        graphics.setFont(fnt1);
+        graphics.drawString(this.health / 2 + "%", 620, 42);
+        graphics.setFont(fnt2);
+        graphics.drawString("Gnarl", 820, 37);
+
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int)super.getX() , (int)super.getY(), 72, 72);
+        return new Rectangle((int)super.getX() , (int)super.getY(), 144, 144);
     }
 }
