@@ -87,6 +87,7 @@ public class Fire extends DefaultObject implements FriendlyEntity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
                 this.controller.removeEntity(tempEnt);
             }
         }

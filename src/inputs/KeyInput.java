@@ -16,7 +16,7 @@ public class KeyInput extends KeyAdapter {
     }
 
     public void keyPressed(KeyEvent k) {
-        if (Game.gameState == GameState.GAME_LEVEL_ONE) {
+        if (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO) {
             try {
                 this.game.keyPressed(k);
             } catch (IOException e) {

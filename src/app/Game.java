@@ -48,6 +48,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage spriteSheetBoss = null;
 
     private Battleground battleground;
+    private Battleground battlegroundNextLevel;
     private Player player1;
     private Menu menu;
     private Controller controller;
@@ -84,6 +85,10 @@ public class Game extends Canvas implements Runnable {
 
     public BufferedImage getBattlegroundImage() {
         return this.battlegroundImage;
+    }
+
+    public BufferedImage getBattlegroundNextImage() {
+        return this.battlegroundImage2;
     }
 
     public BufferedImage getSpriteSheetGorgon() {
@@ -178,7 +183,8 @@ public class Game extends Canvas implements Runnable {
         this.addMouseListener(new MouseInput());
 
         this.controller = new Controller(this);
-        this.battleground = new Battleground(this);
+        this.battleground = new Battleground(this.battlegroundImage);
+        this.battlegroundNextLevel = new Battleground(this.battlegroundImage2);
         this.player1 = new Player(200, 200, this, this.controller, 200, 5);
 
         this.menu = new Menu(this);
@@ -280,7 +286,7 @@ public class Game extends Canvas implements Runnable {
     public void keyReleased(KeyEvent k) {
         int key = k.getKeyCode();
 
-        if (Game.gameState == GameState.GAME_LEVEL_ONE) {
+        if (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO) {
             if (key == KeyEvent.VK_RIGHT) {
                 this.player1.setVelX(0);
             } else if (key == KeyEvent.VK_LEFT) {
@@ -361,10 +367,6 @@ public class Game extends Canvas implements Runnable {
             this.highScore = this.getHighScore();
         }
 
-        if (getEnemyKilled() == 10000){
-            Game.gameState = GameState.GAME_LEVEL_TWO;
-        }
-
         Graphics graphics = bs.getDrawGraphics();
 
         if (Game.gameState == GameState.GAME_LEVEL_ONE) {
@@ -428,15 +430,36 @@ public class Game extends Canvas implements Runnable {
                 this.setEnemyKilled(0);
             }
         } else if (Game.gameState == GameState.GAME_LEVEL_TWO) {
+            this.battlegroundNextLevel.render(graphics);
             this.player1.render(graphics);
             this.controller.render(graphics);
-            this.player1.setVelX(0);
-            this.player1.setVelY(0);
-            this.player1.setX(200);
-            this.player1.setY(200);
-            this.setCountEnemy(5);
-            this.enemyEntities.clear();
-            graphics.drawImage(this.battlegroundImage2, 0, 0, this.getWidth(), this.getHeight(), this);
+
+            //Score
+            graphics.setColor(Color.white);
+            Font fnt1 = new Font("arial", Font.BOLD, 30);
+            graphics.setFont(fnt1);
+            graphics.drawString("Kills:" + this.enemyKilled, 1150, 35);
+
+            //highscore
+            graphics.setColor(Color.white);
+            Font fnt2 = new Font("arial", Font.BOLD, 25);
+            graphics.setFont(fnt2);
+            graphics.drawString("Highscore: " + this.highScore, 1020, 65);
+
+            //Player HP BAR
+            graphics.setColor(Color.RED);
+            graphics.fillRect(5, 5, 200, 50);
+
+            graphics.setColor(Color.GREEN);
+            graphics.fillRect(5, 5, this.player1.getHealth(), 50);
+
+            graphics.setColor(Color.WHITE);
+            graphics.drawRect(5, 5, 200, 50);
+
+            graphics.setColor(Color.white);
+            graphics.setFont(fnt1);
+            graphics.drawString(this.player1.getHealth() / 2 + "%", 75, 42);
+
         }
 
         graphics.dispose();

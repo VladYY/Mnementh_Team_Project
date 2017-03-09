@@ -50,7 +50,7 @@ public class Controller {
             for (int i = 0; i < count_enemy; i++) {
                 boolean isHunter = false;
 
-                if (i % 5 == 0 && i > 0) {
+                if (i % 4 == 0 && i > 0) {
                     isHunter = true;
                 }
 
@@ -86,6 +86,12 @@ public class Controller {
     }
 
     public void tick() {
+        if(this.game.isBossActive() && this.game.isBossSpawned() && this.bossEntities.size() == 0) {
+            this.game.setBossActive(false);
+            this.game.setBossSpawned(false);
+            Game.gameState = GameState.GAME_LEVEL_TWO;
+            this.game.setEnemyKilled(0);
+        }
         //FOR FRIENDLY ENTITY
         for (int i = 0; i < this.friendlyEntities.size(); i++) {
             this.friendlyEntity = this.friendlyEntities.get(i);

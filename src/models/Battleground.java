@@ -10,12 +10,11 @@ public class Battleground {
     private BufferedImage battleground;
     private int x, y;
 
-    public Battleground(Game game) {
+    public Battleground(BufferedImage battleground) {
 
         this.x = 0;
         this.y = 0;
-        DragonImage battlegroundImage = new DragonImage(game.getBattlegroundImage());
-        this.battleground = battlegroundImage.grabImage();
+        this.battleground = battleground;
 
     }
 
