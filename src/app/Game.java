@@ -59,6 +59,7 @@ public class Game extends Canvas implements Runnable {
     private boolean isShooting = false;
     private boolean running = false;
     private boolean setHighScore = false;
+    private boolean isPaused;
 
     private LinkedList<FriendlyEntity> friendlyEntities;
     private LinkedList<EnemyEntity> enemyEntities;
@@ -67,7 +68,6 @@ public class Game extends Canvas implements Runnable {
     private int countEnemy = 5;
     private int enemyKilled = 0;
     private String highScore = "";
-    private boolean isPaused;
 
     public Game() {
     }
