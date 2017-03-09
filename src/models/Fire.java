@@ -82,7 +82,7 @@ public class Fire extends DefaultObject implements FriendlyEntity {
 
             if(tempEnt.getHealth() <= 0) {
                 try {
-                    Music.enemyDie();
+                    Music.bossDies();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

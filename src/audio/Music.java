@@ -43,12 +43,22 @@ public class Music {
     }
 
     public static void dragonRoar() throws IOException {
-        String dragoRoar = "./resources/audio/DragonRoar.wav";
-        InputStream in = new FileInputStream(dragoRoar);
+        String dragonRoar = "./resources/audio/DragonRoar.wav";
+        InputStream in = new FileInputStream(dragonRoar);
         AudioStream audioStream4 = new AudioStream(in);
 
         if (Game.stateSound == StateSound.ON) {
         AudioPlayer.player.start(audioStream4);
+        }
+    }
+
+    public static void bossDies() throws IOException {
+        String bossDies = "./resources/audio/BossDies.wav";
+        InputStream in  = new FileInputStream(bossDies);
+        AudioStream audioStream5 = new AudioStream(in);
+
+        if (Game.stateSound == StateSound.ON) {
+            AudioPlayer.player.start(audioStream5);
         }
     }
 }
