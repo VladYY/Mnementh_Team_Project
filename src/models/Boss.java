@@ -113,14 +113,14 @@ public class Boss extends DefaultObject implements BossEntity {
         graphics.fillRect(505, 5, 300, 50);
 
         graphics.setColor(Color.GREEN);
-        graphics.fillRect(505, 5, this.health, 50);
+        graphics.fillRect(505, 5, this.health / 3, 50);
 
         graphics.setColor(Color.WHITE);
         graphics.drawRect(505, 5, 300, 50);
 
         graphics.setColor(Color.white);
         graphics.setFont(fnt1);
-        graphics.drawString(this.health / 2 + "%", 620, 42);
+        graphics.drawString(this.health / 9 + "%", 620, 42);
         graphics.setFont(fnt2);
         graphics.drawString("Gnarl", 820, 37);
 

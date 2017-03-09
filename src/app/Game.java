@@ -179,7 +179,7 @@ public class Game extends Canvas implements Runnable {
             e.printStackTrace();
         }
 
-        addKeyListener(new KeyInput(this));
+        this.addKeyListener(new KeyInput(this));
         this.addMouseListener(new MouseInput());
 
         this.controller = new Controller(this);
@@ -371,34 +371,7 @@ public class Game extends Canvas implements Runnable {
 
         if (Game.gameState == GameState.GAME_LEVEL_ONE) {
             this.battleground.render(graphics);
-            this.player1.render(graphics);
-            this.controller.render(graphics);
-
-            //Score
-            graphics.setColor(Color.white);
-            Font fnt1 = new Font("arial", Font.BOLD, 30);
-            graphics.setFont(fnt1);
-            graphics.drawString("Kills:" + this.enemyKilled, 1150, 35);
-
-            //highscore
-            graphics.setColor(Color.white);
-            Font fnt2 = new Font("arial", Font.BOLD, 25);
-            graphics.setFont(fnt2);
-            graphics.drawString("Highscore: " + this.highScore, 1020, 65);
-
-            //Player HP BAR
-            graphics.setColor(Color.RED);
-            graphics.fillRect(5, 5, 200, 50);
-
-            graphics.setColor(Color.GREEN);
-            graphics.fillRect(5, 5, this.player1.getHealth(), 50);
-
-            graphics.setColor(Color.WHITE);
-            graphics.drawRect(5, 5, 200, 50);
-
-            graphics.setColor(Color.white);
-            graphics.setFont(fnt1);
-            graphics.drawString(this.player1.getHealth() / 2 + "%", 75, 42);
+            this.renderElements(graphics);
 
         } else if (Game.gameState == GameState.MENU) {
             graphics.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), this);
@@ -431,34 +404,7 @@ public class Game extends Canvas implements Runnable {
             }
         } else if (Game.gameState == GameState.GAME_LEVEL_TWO) {
             this.battlegroundNextLevel.render(graphics);
-            this.player1.render(graphics);
-            this.controller.render(graphics);
-
-            //Score
-            graphics.setColor(Color.white);
-            Font fnt1 = new Font("arial", Font.BOLD, 30);
-            graphics.setFont(fnt1);
-            graphics.drawString("Kills:" + this.enemyKilled, 1150, 35);
-
-            //highscore
-            graphics.setColor(Color.white);
-            Font fnt2 = new Font("arial", Font.BOLD, 25);
-            graphics.setFont(fnt2);
-            graphics.drawString("Highscore: " + this.highScore, 1020, 65);
-
-            //Player HP BAR
-            graphics.setColor(Color.RED);
-            graphics.fillRect(5, 5, 200, 50);
-
-            graphics.setColor(Color.GREEN);
-            graphics.fillRect(5, 5, this.player1.getHealth(), 50);
-
-            graphics.setColor(Color.WHITE);
-            graphics.drawRect(5, 5, 200, 50);
-
-            graphics.setColor(Color.white);
-            graphics.setFont(fnt1);
-            graphics.drawString(this.player1.getHealth() / 2 + "%", 75, 42);
+            this.renderElements(graphics);
 
         }
 
@@ -521,6 +467,37 @@ public class Game extends Canvas implements Runnable {
 
             this.setHighScore = true;
         }
+    }
+
+    private void renderElements(Graphics graphics) {
+        this.player1.render(graphics);
+        this.controller.render(graphics);
+
+        //Score
+        graphics.setColor(Color.white);
+        Font fnt1 = new Font("arial", Font.BOLD, 30);
+        graphics.setFont(fnt1);
+        graphics.drawString("Kills:" + this.enemyKilled, 1150, 35);
+
+        //highscore
+        graphics.setColor(Color.white);
+        Font fnt2 = new Font("arial", Font.BOLD, 25);
+        graphics.setFont(fnt2);
+        graphics.drawString("Highscore: " + this.highScore, 1020, 65);
+
+        //Player HP BAR
+        graphics.setColor(Color.RED);
+        graphics.fillRect(5, 5, 200, 50);
+
+        graphics.setColor(Color.GREEN);
+        graphics.fillRect(5, 5, this.player1.getHealth(), 50);
+
+        graphics.setColor(Color.WHITE);
+        graphics.drawRect(5, 5, 200, 50);
+
+        graphics.setColor(Color.white);
+        graphics.setFont(fnt1);
+        graphics.drawString(this.player1.getHealth() / 2 + "%", 75, 42);
     }
 }
 
