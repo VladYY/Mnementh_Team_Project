@@ -67,6 +67,7 @@ public class Game extends Canvas implements Runnable {
     private int countEnemy = 5;
     private int enemyKilled = 0;
     private String highScore = "";
+    private boolean isPaused;
 
     public Game() {
     }
@@ -188,7 +189,9 @@ public class Game extends Canvas implements Runnable {
             delta += (now - lastTime) / nanoSeconds;
             lastTime = now;
             if (delta >= 1) {
-                tick();
+                if(!this.isPaused) {
+                    this.tick();
+                }
                 updates++;
                 delta--;
             }
@@ -257,6 +260,12 @@ public class Game extends Canvas implements Runnable {
             this.controller.addEntity(
                     new Fire(this.player1.getX(), this.player1.getY(), direction, this, this.controller, damage));
 
+        } else if (key == KeyEvent.VK_ESCAPE) {
+            if (!this.isPaused) {
+                this.isPaused = true;
+            } else {
+                this.isPaused = false;
+            }
         }
     }
 
@@ -272,8 +281,6 @@ public class Game extends Canvas implements Runnable {
                 this.player1.setVelY(0);
             } else if (key == KeyEvent.VK_UP) {
                 this.player1.setVelY(0);
-            } else if (key == KeyEvent.VK_ESCAPE) {
-                Game.gameState = GameState.MENU;
             } else if (key == KeyEvent.VK_D) {
                 this.isShooting = false;
             } else if (key == KeyEvent.VK_A) {
