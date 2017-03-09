@@ -102,6 +102,10 @@ public class Game extends Canvas implements Runnable {
         return this.enemyEntities;
     }
 
+    public LinkedList<BossEntity> getBossEntities() {
+        return this.bossEntities;
+    }
+
     public int getPlayer1Health() {
         return this.player1.getHealth();
     }

@@ -4,6 +4,7 @@ import app.Game;
 import audio.Music;
 import collisions.Physics;
 import controllers.Controller;
+import interfaces.BossEntity;
 import interfaces.EnemyEntity;
 import interfaces.FriendlyEntity;
 
@@ -51,6 +52,37 @@ public class Fire extends DefaultObject implements FriendlyEntity {
                 break;
         }
 
+        this.detectEnemyCollision();
+
+        for (int i = 0; i < this.game.getBossEntities().size(); i++) {
+            BossEntity tempEnt = this.game.getBossEntities().get(i);
+
+            if (Physics.Collision(this, tempEnt)){
+                this.controller.removeEntity(this);
+                tempEnt.setHealth(tempEnt.getHealth() - 1);
+            }
+
+            if(tempEnt.getHealth() <= 0) {
+                try {
+                    Music.enemyDie();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                this.controller.removeEntity(tempEnt);
+            }
+        }
+
+    }
+
+    public void render(Graphics graphics) {
+        graphics.drawImage(this.image, (int)super.getX(), (int)super.getY(), null);
+    }
+
+    public  Rectangle getBounds() {
+        return new Rectangle((int)super.getX(), (int)super.getY(), 32, 32);
+    }
+
+    private void detectEnemyCollision() {
         for (int i = 0; i < this.game.getEnemyEntities().size(); i++) {
             EnemyEntity tempEnt = this.game.getEnemyEntities().get(i);
 
@@ -66,13 +98,5 @@ public class Fire extends DefaultObject implements FriendlyEntity {
                 this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
             }
         }
-    }
-
-    public void render(Graphics graphics) {
-        graphics.drawImage(this.image, (int)super.getX(), (int)super.getY(), null);
-    }
-
-    public  Rectangle getBounds() {
-        return new Rectangle((int)super.getX(), (int)super.getY(), 32, 32);
     }
 }

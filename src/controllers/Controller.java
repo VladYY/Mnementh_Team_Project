@@ -155,6 +155,10 @@ public class Controller {
         this.bossEntities.add(block);
     }
 
+    public void removeEntity(BossEntity block) {
+        this.bossEntities.remove(block);
+    }
+
     public void removeEntity(EnemyEntity block) {
         this.enemyEntities.remove(block);
     }
