@@ -266,6 +266,8 @@ public class Game extends Canvas implements Runnable {
             } else {
                 this.isPaused = false;
             }
+        } else if (key == KeyEvent.VK_M) {
+            Game.gameState = GameState.MENU;
         }
     }
 
