@@ -16,6 +16,11 @@ public class Physics {
         return friendly.getBounds().intersects(bossEntity.getBounds());
     }
 
+    public static boolean Collision(BossEntity bossEntity, FriendlyEntity friendly) {
+
+        return bossEntity.getBounds().intersects(friendly.getBounds());
+    }
+
     public static boolean Collision(EnemyEntity enemy, FriendlyEntity friendly) {
 
         return enemy.getBounds().intersects(friendly.getBounds());

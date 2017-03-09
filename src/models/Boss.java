@@ -2,6 +2,7 @@ package models;
 
 import animation.Animation;
 import app.Game;
+import collisions.Physics;
 import controllers.Controller;
 import interfaces.BossEntity;
 import spitesheets.SpriteSheet;
@@ -11,9 +12,10 @@ import java.awt.image.BufferedImage;
 
 public class Boss extends DefaultObject implements BossEntity {
 
-    private double velX = 0;
-    private double velY = 0;
+    private double velX;
+    private double velY;
     private int health;
+    private int damage;
     private Game game;
     private Controller controller;
 
@@ -23,11 +25,14 @@ public class Boss extends DefaultObject implements BossEntity {
     private Animation animationLeft;
     private Animation animationRight;
 
-    public Boss(double x, double y, Game game, Controller controller, int health) {
+    public Boss(double x, double y, Game game, Controller controller, int health, int damage) {
         super(x,y);
 
         this.health = health;
+        this.damage = damage;
         this.game = game;
+        this.velX = 1.5;
+        this.velY = 1.5;
         this.controller = controller;
         this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetBoss());
 
@@ -45,21 +50,26 @@ public class Boss extends DefaultObject implements BossEntity {
     public void tick() {
 
         if(super.getX() <= this.game.getPlayer1X()) {
-            super.setX(super.getX() + 1);
+            super.setX(super.getX() + this.velX);
             this.animationLeft.runAnimation();
         }
 
         if(super.getX() > this.game.getPlayer1X()) {
-            super.setX(super.getX() - 1);
+            super.setX(super.getX() - this.velX);
             this.animationRight.runAnimation();
         }
 
         if(super.getY() > this.game.getPlayer1Y()) {
-            super.setY(super.getY() - 1);
+            super.setY(super.getY() - this.velY);
         }
 
         if(super.getY() < this.game.getPlayer1Y()) {
-            super.setY(super.getY() + 1);
+            super.setY(super.getY() + this.velY);
+        }
+
+        if(Physics.Collision(this, this.game.getPlayer1())) {
+            int currentPlayerHealth = this.game.getPlayer1Health();
+            this.game.setPlayer1Health((currentPlayerHealth - this.damage));
         }
 
     }
@@ -94,7 +104,7 @@ public class Boss extends DefaultObject implements BossEntity {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int)super.getX() , (int)super.getY(), 144, 144);
+        return new Rectangle((int)super.getX() , (int)super.getY(), 144, 100);
     }
 
     private void setAnimation() {

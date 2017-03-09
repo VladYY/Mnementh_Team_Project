@@ -114,6 +114,10 @@ public class Game extends Canvas implements Runnable {
         this.player1.setHealth(health);
     }
 
+    public Player getPlayer1() {
+        return this.player1;
+    }
+
     public double getPlayer1X() {
         return this.player1.getX();
     }
