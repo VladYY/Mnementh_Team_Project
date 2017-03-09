@@ -90,6 +90,10 @@ public class Boss extends DefaultObject implements BossEntity {
                 this.isAttackingRight = true;
                 this.animationAttackRight.runAnimation();
             }
+
+            if(this.game.getPlayer1Health() <= 0) {
+                this.controller.removeEntity(this);
+            }
         }
 
     }
