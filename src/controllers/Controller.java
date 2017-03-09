@@ -73,7 +73,7 @@ public class Controller {
 
                 if (Game.gameState == GameState.GAME_LEVEL_TWO) {
                     //Spawn from left
-                    addEntity(
+                    this.addEntity(
                             new Enemy(this.random.nextInt(1200-1180)+1180, this.random.nextInt(600-1)+1, this.game, this, isHunter));
                 }
             }

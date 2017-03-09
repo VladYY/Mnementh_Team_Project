@@ -22,6 +22,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Game extends Canvas implements Runnable {
@@ -199,9 +200,9 @@ public class Game extends Canvas implements Runnable {
         this.controller.createEnemy(this.countEnemy);
     }
 
-    // GAME_LEVEL_ONE LOOP.
+    // GAME LOOP
     public void run() {
-        init();
+        this.init();
         long lastTime = System.nanoTime();
         final double amountOfTicks = 60.0;
         double nanoSeconds = 1000000000 / amountOfTicks;
@@ -218,7 +219,7 @@ public class Game extends Canvas implements Runnable {
                 updates++;
                 delta--;
             }
-            render();
+            this.render();
             frames++;
 
             if (System.currentTimeMillis() - timer > 1000) {
@@ -228,7 +229,7 @@ public class Game extends Canvas implements Runnable {
                 frames = 0;
             }
         }
-        stop();
+        this.stop();
     }
 
     //Movement
@@ -383,12 +384,10 @@ public class Game extends Canvas implements Runnable {
             graphics.drawImage(this.imageHelp, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
         } else if (Game.gameState == GameState.END) {
-            if (this.enemyKilled >= Integer.parseInt(this.highScore.split(":")[1]) && !this.setHighScore){
+            this.setBossSpawned(false);
+            this.setBossActive(false);
+            if (this.enemyKilled > Integer.parseInt(this.highScore.split(":")[1]) && !this.setHighScore) {
                 this.checkScore();
-                this.setEnemyKilled(0);
-            }
-            else{
-                this.setEnemyKilled(0);
             }
 
             this.player1.setVelX(0);
@@ -401,10 +400,7 @@ public class Game extends Canvas implements Runnable {
             graphics.drawImage(this.imageDead, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
 
-
-            if (Game.gameState == GameState.GAME_LEVEL_ONE) {
-                this.setEnemyKilled(0);
-            }
+            this.setEnemyKilled(0);
         } else if (Game.gameState == GameState.GAME_LEVEL_TWO) {
             this.battlegroundNextLevel.render(graphics);
             this.renderElements(graphics);
@@ -441,7 +437,7 @@ public class Game extends Canvas implements Runnable {
             //user has set a new record
 
             String name = JOptionPane.showInputDialog("You set a new highscore. What is your name?");
-            if(name.isEmpty()) {
+            if(name == null || name.isEmpty()) {
                 name = "No name";
             }
             this.highScore = name + ":" + this.enemyKilled;
@@ -454,14 +450,35 @@ public class Game extends Canvas implements Runnable {
                     e.printStackTrace();
                 }
             }
+
+            ArrayList<String> scores = new ArrayList<>();
+            try {
+                FileReader readFile = new FileReader("highscore.dat");
+                BufferedReader reader = new BufferedReader(readFile);
+                String line = reader.readLine();
+                while (line != null) {
+                    scores.add(line);
+                    line = reader.readLine();
+                }
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             FileWriter writeFile = null;
             BufferedWriter writer = null;
             try {
                 writeFile = new FileWriter(scoreFile);
                 writer = new BufferedWriter(writeFile);
-                writer.write(this.highScore);
+                writer.write(this.highScore + "\n");
+                for (String score : scores) {
+                    writer.write(score + "\n");
+                }
             } catch (Exception e) {
                 //errors
+                e.printStackTrace();
             } finally {
                 try {
                     if (writer != null) {
