@@ -411,7 +411,6 @@ public class Game extends Canvas implements Runnable {
         if (Game.gameState == GameState.GAME_LEVEL_ONE) {
             this.battleground.render(graphics);
             this.renderElements(graphics);
-
         } else if (Game.gameState == GameState.MENU) {
             graphics.drawImage(this.image, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
@@ -521,6 +520,10 @@ public class Game extends Canvas implements Runnable {
         Font fnt1 = new Font("arial", Font.BOLD, 30);
         graphics.setFont(fnt1);
         graphics.drawString("Kills:" + this.enemyKilled, 1150, 35);
+
+        if(this.isPaused) {
+            graphics.drawString("PAUSED", 600, 400);
+        }
 
         //highscore
         graphics.setColor(Color.white);
