@@ -173,31 +173,6 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    public void init() {
-        BufferedImageLoader loader = new BufferedImageLoader();
-        try {
-            this.spriteSheetGorgon = loader.loadImage("/resources/gfx/fixed_gorgon_sheet.png");
-            this.spriteSheetDragon = loader.loadImage("/resources/gfx/fixed_dragon_sheet.png");
-            this.spriteSheetBoss = loader.loadImage("/resources/gfx/fixed_boss_sprite.png");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        this.addKeyListener(new KeyInput(this));
-        this.addMouseListener(new MouseInput());
-
-        this.controller = new Controller(this);
-        this.battleground = new Battleground(this.battlegroundImage);
-        this.battlegroundNextLevel = new Battleground(this.battlegroundImage2);
-        this.player1 = new Player(200, 200, this, this.controller, 200, 15);
-
-        this.menu = new Menu(this);
-
-        this.friendlyEntities = this.controller.getFriendly();
-        this.enemyEntities = this.controller.getEnemy();
-        this.bossEntities = this.controller.getBoss();
-    }
-
     // GAME LOOP
     public void run() {
         this.init();
@@ -311,6 +286,31 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    private void init() {
+        BufferedImageLoader loader = new BufferedImageLoader();
+        try {
+            this.spriteSheetGorgon = loader.loadImage("/resources/gfx/fixed_gorgon_sheet.png");
+            this.spriteSheetDragon = loader.loadImage("/resources/gfx/fixed_dragon_sheet.png");
+            this.spriteSheetBoss = loader.loadImage("/resources/gfx/fixed_boss_sprite.png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.addKeyListener(new KeyInput(this));
+        this.addMouseListener(new MouseInput(this));
+
+        this.controller = new Controller(this);
+        this.battleground = new Battleground(this.battlegroundImage);
+        this.battlegroundNextLevel = new Battleground(this.battlegroundImage2);
+        this.player1 = new Player(200, 200, this, this.controller, 200, 15);
+
+        this.menu = new Menu(this);
+
+        this.friendlyEntities = this.controller.getFriendly();
+        this.enemyEntities = this.controller.getEnemy();
+        this.bossEntities = this.controller.getBoss();
+    }
+
     private synchronized void start() {
         if (this.running) {
             return;
@@ -404,7 +404,6 @@ public class Game extends Canvas implements Runnable {
             graphics.drawImage(this.imageDead, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
 
-            //this.setEnemyKilled(0);
         } else if (Game.gameState == GameState.GAME_LEVEL_TWO) {
             this.battlegroundNextLevel.render(graphics);
             this.renderElements(graphics);
@@ -415,7 +414,7 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
 
-    public String getHighScore() {
+    private String getHighScore() {
         FileReader readFile = null;
         BufferedReader reader = null;
         try {
@@ -435,7 +434,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    public void checkScore() {
+    private void checkScore() {
 
         if (this.enemyKilled >= Integer.parseInt(this.highScore.split(":")[1])) {
             //user has set a new record

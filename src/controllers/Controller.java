@@ -92,8 +92,8 @@ public class Controller {
             this.game.setBossSpawned(false);
             Game.gameState = GameState.GAME_LEVEL_TWO;
             this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
-            this.game.getPlayer1().resetHealth();
         }
+
         //FOR FRIENDLY ENTITY
         for (int i = 0; i < this.friendlyEntities.size(); i++) {
             this.friendlyEntity = this.friendlyEntities.get(i);

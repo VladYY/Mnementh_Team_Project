@@ -11,6 +11,12 @@ import java.io.IOException;
 
 public class MouseInput implements MouseListener {
 
+    private Game game;
+
+    public MouseInput(Game game) {
+        this.game = game;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -80,6 +86,7 @@ public class MouseInput implements MouseListener {
             //PlayAgain Button
             if (mx >= Game.WIDTH / 2 + 190 && mx <= Game.WIDTH / 2 + 490) {
                 if (my >= 340 && my <= 440) {
+                    this.game.setEnemyKilled(0);
                     Game.gameState = GameState.GAME_LEVEL_ONE;
                 }
             }
