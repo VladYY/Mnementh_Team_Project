@@ -7,6 +7,13 @@ import enums.StateSound;
 import sun.audio.AudioPlayer;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Menu {
 
@@ -53,6 +60,8 @@ public class Menu {
     public void render(Graphics graphics) {
 
         Graphics2D g2d = (Graphics2D) graphics;
+        ArrayList<String> scores = new ArrayList<>();
+        this.game.getScores(scores);
 
         if (Game.gameState == GameState.MENU) {
             Font fnt0 = new Font("arial", Font.BOLD, 50);
@@ -109,11 +118,9 @@ public class Menu {
 
             graphics.setFont(fnt1);
             graphics.setColor(Color.white);
-            graphics.drawString("Back",this.backButton.x + 14, this.backButton.y + 35);
+            graphics.drawString("Back", this.backButton.x + 14, this.backButton.y + 35);
             g2d.draw(this.backButton);
-        }
-
-        if (Game.gameState == GameState.END) {
+        }else if (Game.gameState == GameState.END) {
             graphics.setColor(Color.white);
             Font fnt1 = new Font("arial", Font.ITALIC, 60);
             graphics.setFont(fnt1);
@@ -121,6 +128,21 @@ public class Menu {
             graphics.setColor(Color.white);
             graphics.drawString("Play again", Game.WIDTH / 2 + 200, 430);
             graphics.drawRect(Game.WIDTH / 2 + 190, 355, 300, 100);
+
+            graphics.drawString("HIGH SCORES", Game.WIDTH / 2 + 100, 520);
+            fnt1 = new Font("arial", Font.ITALIC, 45);
+            graphics.setFont(fnt1);
+            scores = scores.stream().limit(5).collect(Collectors.toCollection(ArrayList::new));
+            int placeIndex = 1;
+            int size = 50;
+            for (String score : scores) {
+                int t = 540 + size;
+                graphics.drawString(placeIndex + ". " + score, Game.WIDTH / 2 + 150, t);
+                placeIndex++;
+                size += 50;
+            }
+
+
         }
     }
 }

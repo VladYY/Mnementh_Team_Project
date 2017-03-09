@@ -286,6 +286,32 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    public void getScores(ArrayList<String> scores) {
+        File scoreFile = new File("highscore.dat");
+        if (!scoreFile.exists()) {
+            try {
+                scoreFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try (FileReader readFile = new FileReader("highscore.dat");
+             BufferedReader reader = new BufferedReader(readFile)){
+
+            String line = reader.readLine();
+            while (line != null) {
+                scores.add(line);
+                line = reader.readLine();
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void init() {
         BufferedImageLoader loader = new BufferedImageLoader();
         try {
@@ -455,21 +481,7 @@ public class Game extends Canvas implements Runnable {
             }
 
             ArrayList<String> scores = new ArrayList<>();
-            try {
-                FileReader readFile = new FileReader("highscore.dat");
-                BufferedReader reader = new BufferedReader(readFile);
-                String line = reader.readLine();
-                while (line != null) {
-                    scores.add(line);
-                    line = reader.readLine();
-                }
-
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            this.getScores(scores);
             FileWriter writeFile = null;
             BufferedWriter writer = null;
             try {
