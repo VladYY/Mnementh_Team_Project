@@ -1,7 +1,5 @@
 package models;
 
-import app.Game;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -12,13 +10,25 @@ public class Battleground {
 
     public Battleground(BufferedImage battleground) {
 
-        this.x = 0;
-        this.y = 0;
-        this.battleground = battleground;
+        this.setX(0);
+        this.setY(0);
+        this.setBattleground(battleground);
 
     }
 
     public void render(Graphics graphics) {
         graphics.drawImage(this.battleground, this.x, this.y, null);
+    }
+
+    private void setBattleground(BufferedImage battleground) {
+        this.battleground = battleground;
+    }
+
+    private void setX(int x) {
+        this.x = x;
+    }
+
+    private void setY(int y) {
+        this.y = y;
     }
 }
