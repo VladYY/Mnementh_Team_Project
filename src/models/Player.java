@@ -16,8 +16,8 @@ import java.io.IOException;
 
 public class Player extends DefaultObject implements FriendlyEntity {
 
-    private double velX = 0;
-    private double velY = 0;
+    private double velX;
+    private double velY;
     private int health;
     private int damage;
     private Game game;
@@ -25,20 +25,23 @@ public class Player extends DefaultObject implements FriendlyEntity {
     private Controller controller;
 
     private SpriteSheet spriteSheet;
-    private BufferedImage[] dragon = new BufferedImage[16];
+    private BufferedImage[] dragon;
     private Animation animationRight;
     private Animation animationLeft;
 
     public Player(double x, double y, Game game, Controller controller, int health, int damage) {
         super(x,y);
 
-        this.health = health;
-        this.damage = damage;
-        this.game = game;
-        this.controller = controller;
-        this.controller.addEntity(this);
-        this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetDragon());
-        this.direction = "right";
+        this.setHealth(health);
+        this.setDamage(damage);
+        this.setGame(game);
+        this.setController(controller);
+        this.getController().addEntity(this);
+        this.setSpriteSheet(new SpriteSheet(this.getGame().getSpriteSheetDragon()));
+        this.setDirection("right");
+        this.setVelX(0);
+        this.setVelY(0);
+        this.setDragon(new BufferedImage[16]);
         this.setAnimation();
     }
 
@@ -52,22 +55,6 @@ public class Player extends DefaultObject implements FriendlyEntity {
 
     public void setDirection(String direction) {
         this.direction = direction;
-    }
-
-    public double getX() {
-        return super.getX();
-    }
-
-    public void setX(double x) {
-        super.setX(x);
-    }
-
-    public double getY() {
-        return super.getY();
-    }
-
-    public void setY(double y) {
-        super.setY(y);
     }
 
     public void setVelX(double velX) {
@@ -144,6 +131,34 @@ public class Player extends DefaultObject implements FriendlyEntity {
 
     public  Rectangle getBounds() {
         return new Rectangle((int)super.getX() , (int)super.getY(), 72, 72);
+    }
+
+    private Game getGame() {
+        return this.game;
+    }
+
+    private Controller getController() {
+        return this.controller;
+    }
+
+    private void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    private void setGame(Game game) {
+        this.game = game;
+    }
+
+    private void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    private void setSpriteSheet(SpriteSheet spriteSheet) {
+        this.spriteSheet = spriteSheet;
+    }
+
+    private void setDragon(BufferedImage[] dragon) {
+        this.dragon = dragon;
     }
 
     private void setAnimation() {
