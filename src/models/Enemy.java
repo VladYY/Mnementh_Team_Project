@@ -28,35 +28,35 @@ public class Enemy extends DefaultObject implements EnemyEntity {
 
     public Enemy(double x, double y, Game game, Controller controller, boolean isHunter) {
         super(x,y);
-        this.game = game;
-        this.controller = controller;
+        this.setGame(game);
+        this.setController(controller);
 
-        this.rnd = new Random();
-        this.enemyImages = new BufferedImage[3];
-        this.speed = 1;
-        this.speedRandom = (this.rnd.nextInt(100) + 1);
-        this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetGorgon());
-        this.isHunter = isHunter;
+        this.setRnd(new Random());
+        this.setEnemyImages(new BufferedImage[3]);
+        this.setSpeed(1);
+        this.setSpeedRandom(this.getRnd().nextInt(100) + 1);
+        this.setSpriteSheet(new SpriteSheet(this.getGame().getSpriteSheetGorgon()));
+        this.setHunter(isHunter);
 
         this.setAnimation();
     }
 
     public void tick() {
 
-        if (this.speedRandom > 1 && this.speedRandom < 41) {
-            this.speed = 1;
+        if (this.getSpeedRandom() > 1 && this.getSpeedRandom() < 41) {
+            this.setSpeed(1);
         }
 
-        if (this.speedRandom > 40 && this.speedRandom < 81) {
-            this.speed = 2;
+        if (this.getSpeedRandom() > 40 && this.getSpeedRandom() < 81) {
+            this.setSpeed(2);
         }
 
-        if (this.speedRandom > 80 && this.speedRandom < 96) {
-            this.speed = 3;
+        if (this.getSpeedRandom() > 80 && this.getSpeedRandom() < 96) {
+            this.setSpeed(3);
         }
 
-        if (this.speedRandom > 95 && this.speedRandom < 100) {
-            this.speed = 4;
+        if (this.getSpeedRandom() > 95 && this.getSpeedRandom() < 100) {
+            this.setSpeed(4);
         }
 
         int caveX = 0;
@@ -69,38 +69,38 @@ public class Enemy extends DefaultObject implements EnemyEntity {
 
         if (Game.gameState == GameState.GAME_LEVEL_TWO) {
             caveX = 0;
-            caveY = this.rnd.nextInt(700-100)+100;
+            caveY = this.getRnd().nextInt(700-100)+100;
         }
 
         if(!this.isHunter) {
             if (super.getX() < caveX && super.getY() < caveY) {
-                super.setX(super.getX() + this.speed);
-                super.setY(super.getY() + this.speed);
+                super.setX(super.getX() + this.getSpeed());
+                super.setY(super.getY() + this.getSpeed());
             } else if (super.getX() > caveX && super.getY() < caveY) {
-                super.setX(super.getX() - this.speed);
-                super.setY(super.getY() + this.speed);
+                super.setX(super.getX() - this.getSpeed());
+                super.setY(super.getY() + this.getSpeed());
             } else if (super.getY() > caveY && super.getX() > caveX) {
-                super.setX(super.getX() - this.speed);
-                super.setY(super.getY() - this.speed);
+                super.setX(super.getX() - this.getSpeed());
+                super.setY(super.getY() - this.getSpeed());
             } else if (super.getY() > caveY && super.getX() < caveX) {
-                super.setX(super.getX() + this.speed);
-                super.setY(super.getY() - this.speed);
+                super.setX(super.getX() + this.getSpeed());
+                super.setY(super.getY() - this.getSpeed());
             } else if (super.getX() > caveX) {
-                super.setX(super.getX() - this.speed);
+                super.setX(super.getX() - this.getSpeed());
             } else if (super.getX() < caveX) {
-                super.setX(super.getX() + this.speed);
+                super.setX(super.getX() + this.getSpeed());
             } else if (super.getY() < caveY) {
-                super.setY(super.getY() + this.speed);
+                super.setY(super.getY() + this.getSpeed());
             } else if (super.getY() > caveY) {
-                super.setY(super.getY() - this.speed);
+                super.setY(super.getY() - this.getSpeed());
             }
 
             if (Game.gameState == GameState.GAME_LEVEL_ONE) {
             if (super.getX() >= 550 && super.getX() <= 652) {
                 if(super.getY() >= 70 && super.getY() <= 172) {
                     this.controller.removeEntity(this);
-                    int playerHealth = this.game.getPlayer1Health();
-                    this.game.setPlayer1Health(playerHealth - 20);
+                    int playerHealth = this.getGame().getPlayer1Health();
+                    this.getGame().setPlayer1Health(playerHealth - 20);
                 }
             }
             }
@@ -109,32 +109,32 @@ public class Enemy extends DefaultObject implements EnemyEntity {
                 if (super.getX() >= 0 && super.getX() <= 20) {
                     if(super.getY() >= 100 && super.getY() <= 700) {
                         this.controller.removeEntity(this);
-                        int playerHealth = this.game.getPlayer1Health();
-                        this.game.setPlayer1Health(playerHealth - 20);
+                        int playerHealth = this.getGame().getPlayer1Health();
+                        this.getGame().setPlayer1Health(playerHealth - 20);
                     }
                 }
             }
 
             this.animation.runAnimation();
         } else {
-            if(super.getX() < this.game.getPlayer1X()) {
-                super.setX(super.getX() + this.speed);
+            if(super.getX() < this.getGame().getPlayer1X()) {
+                super.setX(super.getX() + this.getSpeed());
                 this.animationLeft.runAnimation();
-                this.isRight = false;
+                this.setRight(false);
             }
 
-            if(super.getX() > this.game.getPlayer1X()) {
-                super.setX(super.getX() - this.speed);
+            if(super.getX() > this.getGame().getPlayer1X()) {
+                super.setX(super.getX() - this.getSpeed());
                 this.animationRight.runAnimation();
-                this.isRight = true;
+                this.setRight(true);
             }
 
-            if(super.getY() > this.game.getPlayer1Y()) {
-                super.setY(super.getY() - this.speed);
+            if(super.getY() > this.getGame().getPlayer1Y()) {
+                super.setY(super.getY() - this.getSpeed());
             }
 
-            if(super.getY() < this.game.getPlayer1Y()) {
-                super.setY(super.getY() + this.speed);
+            if(super.getY() < this.getGame().getPlayer1Y()) {
+                super.setY(super.getY() + this.getSpeed());
             }
         }
     }
@@ -153,6 +153,58 @@ public class Enemy extends DefaultObject implements EnemyEntity {
 
     public Rectangle getBounds() {
         return new Rectangle((int)super.getX() , (int)super.getY(), 42, 65);
+    }
+
+    private Random getRnd() {
+        return this.rnd;
+    }
+
+    private void setRnd(Random rnd) {
+        this.rnd = rnd;
+    }
+
+    private void setEnemyImages(BufferedImage[] enemyImages) {
+        this.enemyImages = enemyImages;
+    }
+
+    private void setSpriteSheet(SpriteSheet spriteSheet) {
+        this.spriteSheet = spriteSheet;
+    }
+
+    private double getSpeedRandom() {
+        return this.speedRandom;
+    }
+
+    private void setSpeedRandom(double speedRandom) {
+        this.speedRandom = speedRandom;
+    }
+
+    private double getSpeed() {
+        return this.speed;
+    }
+
+    private void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    private Game getGame() {
+        return this.game;
+    }
+
+    private void setGame(Game game) {
+        this.game = game;
+    }
+
+    private void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    private void setHunter(boolean hunter) {
+        this.isHunter = hunter;
+    }
+
+    public void setRight(boolean right) {
+        this.isRight = right;
     }
 
     private void setAnimation() {

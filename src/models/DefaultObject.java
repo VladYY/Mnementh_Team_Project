@@ -6,9 +6,9 @@ public abstract class DefaultObject {
 
     private double x, y;
 
-    public DefaultObject(double x, double y) {
-        this.x = x;
-        this.y = y;
+    protected DefaultObject(double x, double y) {
+        this.setX(x);
+        this.setY(y);
     }
 
     public double getX() {
