@@ -15,6 +15,8 @@ import java.io.IOException;
 
 public class Fire extends DefaultObject implements FriendlyEntity {
 
+    private static final String IMAGE_PATH = "/resources/gfx/fire.png";
+
     private BufferedImage image;
     private int direction;
     private Game game;
@@ -23,11 +25,11 @@ public class Fire extends DefaultObject implements FriendlyEntity {
 
     public Fire(double x, double y, int direction, Game game, Controller controller, int damage) throws IOException {
         super(x,y);
-        this.direction = direction;
-        this.image = ImageIO.read(getClass().getResourceAsStream("/resources/gfx/fire.png"));
-        this.game = game;
-        this.controller = controller;
-        this.damage = damage;
+        this.setDirection(direction);
+        this.setImage();
+        this.setGame(game);
+        this.setController(controller);
+        this.setDamage(damage);
     }
 
     public int getDamage() {
@@ -69,6 +71,26 @@ public class Fire extends DefaultObject implements FriendlyEntity {
 
     public  Rectangle getBounds() {
         return new Rectangle((int)super.getX(), (int)super.getY(), 32, 32);
+    }
+
+    private void setImage() throws IOException {
+        this.image = ImageIO.read(getClass().getResourceAsStream(IMAGE_PATH));;
+    }
+
+    private void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    private void setGame(Game game) {
+        this.game = game;
+    }
+
+    private void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    private void setDamage(int damage) {
+        this.damage = damage;
     }
 
     private void detectBossCollision() {
