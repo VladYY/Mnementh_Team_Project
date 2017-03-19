@@ -33,14 +33,14 @@ public class Boss extends DefaultObject implements BossEntity {
     public Boss(double x, double y, Game game, Controller controller, int health, int damage) {
         super(x,y);
 
-        this.health = health;
-        this.damage = damage;
-        this.game = game;
-        this.velX = 2D;
-        this.velY = 2D;
-        this.controller = controller;
-        this.spriteSheet = new SpriteSheet(this.game.getSpriteSheetBoss());
-        this.boss = new BufferedImage[16];
+        this.setHealth(health);
+        this.setDamage(damage);
+        this.setGame(game);
+        this.setVelX(2D);
+        this.setVelY(2D);
+        this.setController(controller);
+        this.setSpriteSheet(new SpriteSheet(this.getGame().getSpriteSheetBoss()));
+        this.setBoss(new BufferedImage[16]);
 
         this.isAttackingLeft = false;
         this.isAttackingRight = false;
@@ -60,6 +60,20 @@ public class Boss extends DefaultObject implements BossEntity {
 
         this.isAttackingLeft = false;
         this.isAttackingRight = false;
+
+        // Set bounds for game field
+        if (super.getX() <= 0) {
+            super.setX(0);
+        }
+        if (super.getX() >= Game.WIDTH * 2 - 134) {
+            super.setX(Game.WIDTH * 2 - 134);
+        }
+        if (super.getY() <= 0) {
+            super.setY(0);
+        }
+        if (super.getY() >= Game.HEIGHT * 2 - 120) {
+            super.setY(Game.HEIGHT * 2 - 120);
+        }
 
         if(super.getX() <= this.game.getPlayer1X()) {
             super.setX(super.getX() + this.velX);
@@ -133,23 +147,50 @@ public class Boss extends DefaultObject implements BossEntity {
         return new Rectangle((int)super.getX() , (int)super.getY(), 144, 100);
     }
 
+    private void setVelX(double velX) {
+        this.velX = velX;
+    }
+
+    private void setVelY(double velY) {
+        this.velY = velY;
+    }
+
+    private void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    private Game getGame() {
+        return this.game;
+    }
+
+    private void setGame(Game game) {
+        this.game = game;
+    }
+
+    private void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    private void setSpriteSheet(SpriteSheet spriteSheet) {
+        this.spriteSheet = spriteSheet;
+    }
+
+    private void setBoss(BufferedImage[] boss) {
+        this.boss = boss;
+    }
+
     private void setAnimation() {
-        this.boss[0] = this.spriteSheet.grabBossImage(1, 1, 144, 144);
-        this.boss[1] = this.spriteSheet.grabBossImage(2, 1, 144, 144);
-        this.boss[2] = this.spriteSheet.grabBossImage(3, 1, 144, 144);
-        this.boss[3] = this.spriteSheet.grabBossImage(4, 1, 144, 144);
-        this.boss[4] = this.spriteSheet.grabBossImage(5, 1, 144, 144);
-        this.boss[5] = this.spriteSheet.grabBossImage(6, 1, 144, 144);
-        this.boss[6] = this.spriteSheet.grabBossImage(7, 1, 144, 144);
-        this.boss[7] = this.spriteSheet.grabBossImage(8, 1, 144, 144);
-        this.boss[8] = this.spriteSheet.grabBossImage(1, 2, 144, 144);
-        this.boss[9] = this.spriteSheet.grabBossImage(2, 2, 144, 144);
-        this.boss[10] = this.spriteSheet.grabBossImage(3, 2, 144, 144);
-        this.boss[11] = this.spriteSheet.grabBossImage(4, 2, 144, 144);
-        this.boss[12] = this.spriteSheet.grabBossImage(5, 2, 144, 144);
-        this.boss[13] = this.spriteSheet.grabBossImage(6, 2, 144, 144);
-        this.boss[14] = this.spriteSheet.grabBossImage(7, 2, 144, 144);
-        this.boss[15] = this.spriteSheet.grabBossImage(8, 2, 144, 144);
+        int colIndex = 1;
+        int rowIndex = 1;
+        for (int i = 0; i < this.boss.length; i++) {
+            if(i == 8){
+                colIndex = 1;
+                rowIndex = 2;
+            }
+            this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
+            colIndex++;
+
+        }
 
         this.animationLeft = new Animation(5,
             this.boss[0],
@@ -171,22 +212,17 @@ public class Boss extends DefaultObject implements BossEntity {
             this.boss[14],
             this.boss[15]);
 
-        this.boss[0] = this.spriteSheet.grabBossImage(1, 3, 144, 144);
-        this.boss[1] = this.spriteSheet.grabBossImage(2, 3, 144, 144);
-        this.boss[2] = this.spriteSheet.grabBossImage(3, 3, 144, 144);
-        this.boss[3] = this.spriteSheet.grabBossImage(4, 3, 144, 144);
-        this.boss[4] = this.spriteSheet.grabBossImage(5, 3, 144, 144);
-        this.boss[5] = this.spriteSheet.grabBossImage(6, 3, 144, 144);
-        this.boss[6] = this.spriteSheet.grabBossImage(7, 3, 144, 144);
-        this.boss[7] = this.spriteSheet.grabBossImage(8, 3, 144, 144);
-        this.boss[8] = this.spriteSheet.grabBossImage(1, 4, 144, 144);
-        this.boss[9] = this.spriteSheet.grabBossImage(2, 4, 144, 144);
-        this.boss[10] = this.spriteSheet.grabBossImage(3, 4, 144, 144);
-        this.boss[11] = this.spriteSheet.grabBossImage(4, 4, 144, 144);
-        this.boss[12] = this.spriteSheet.grabBossImage(5, 4, 144, 144);
-        this.boss[13] = this.spriteSheet.grabBossImage(6, 4, 144, 144);
-        this.boss[14] = this.spriteSheet.grabBossImage(7, 4, 144, 144);
-        this.boss[15] = this.spriteSheet.grabBossImage(8, 4, 144, 144);
+        colIndex = 1;
+        rowIndex = 3;
+        for (int i = 0; i < this.boss.length; i++) {
+            if(i == 8){
+                colIndex = 1;
+                rowIndex = 4;
+            }
+            this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
+            colIndex++;
+
+        }
 
         this.animationAttackLeft = new Animation(5,
             this.boss[0],
