@@ -189,26 +189,10 @@ public class Boss extends DefaultObject implements BossEntity {
         int colIndex = 1;
         int rowIndex = 1;
         if(Game.gameState == GameState.GAME_LEVEL_ONE) {
-            for (int i = 0; i < this.boss.length; i++) {
-                if(i == 8){
-                    colIndex = 1;
-                    rowIndex = 2;
-                }
-                this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
-                colIndex++;
-
-            }
+            this.fillBossImages(colIndex, rowIndex);
         } else if(Game.gameState == GameState.GAME_LEVEL_TWO) {
             rowIndex = 5;
-            for (int i = 0; i < this.boss.length; i++) {
-                if(i == 8){
-                    colIndex = 1;
-                    rowIndex = 6;
-                }
-                this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
-                colIndex++;
-
-            }
+            this.fillBossImages(colIndex, rowIndex);
         }
 
         this.animationLeft = new Animation(5,
@@ -232,29 +216,12 @@ public class Boss extends DefaultObject implements BossEntity {
             this.boss[15]);
 
         if(Game.gameState == GameState.GAME_LEVEL_ONE) {
-            colIndex = 1;
             rowIndex = 3;
-            for (int i = 0; i < this.boss.length; i++) {
-                if(i == 8){
-                    colIndex = 1;
-                    rowIndex = 4;
-                }
-                this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
-                colIndex++;
-
-            }
+            this.fillBossImages(colIndex, rowIndex);
 
         } else if(Game.gameState == GameState.GAME_LEVEL_TWO) {
-            colIndex = 1;
             rowIndex = 7;
-            for (int i = 0; i < this.boss.length; i++) {
-                if(i == 8){
-                    colIndex = 1;
-                    rowIndex = 8;
-                }
-                this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
-                colIndex++;
-            }
+            this.fillBossImages(colIndex, rowIndex);
         }
 
         this.animationAttackLeft = new Animation(5,
@@ -276,5 +243,17 @@ public class Boss extends DefaultObject implements BossEntity {
                 this.boss[13],
                 this.boss[14],
                 this.boss[15]);
+    }
+
+    private void fillBossImages(int colIndex, int rowIndex) {
+        int initialRowIndex = rowIndex;
+        for (int i = 0; i < this.boss.length; i++) {
+            if(i == 8){
+                colIndex = 1;
+                initialRowIndex = rowIndex + 1;
+            }
+            this.boss[i] = this.spriteSheet.grabBossImage(colIndex, initialRowIndex, 144, 144);
+            colIndex++;
+        }
     }
 }
