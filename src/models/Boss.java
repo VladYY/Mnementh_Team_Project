@@ -4,6 +4,7 @@ import animation.Animation;
 import app.Game;
 import collisions.Physics;
 import controllers.Controller;
+import enums.GameState;
 import interfaces.BossEntity;
 import spitesheets.SpriteSheet;
 
@@ -113,9 +114,9 @@ public class Boss extends DefaultObject implements BossEntity {
     }
 
     public void render(Graphics graphics) {
-        if(isAttackingRight) {
+        if(this.isAttackingRight) {
             this.animationAttackRight.drawAnimation(graphics, super.getX(), super.getY(), 0);
-        } else if(isAttackingLeft) {
+        } else if(this.isAttackingLeft) {
             this.animationAttackLeft.drawAnimation(graphics, super.getX(), super.getY(), 0);
         } else if(super.getX() > this.game.getPlayer1X()) {
             this.animationRight.drawAnimation(graphics, super.getX(), super.getY(), 0);
@@ -140,7 +141,12 @@ public class Boss extends DefaultObject implements BossEntity {
         graphics.setFont(fnt1);
         graphics.drawString(this.health / 9 + "%", 620, 42);
         graphics.setFont(fnt2);
-        graphics.drawString("Gnarl", 820, 37);
+        if(Game.gameState == GameState.GAME_LEVEL_ONE) {
+            graphics.drawString("Gnarl", 820, 37);
+        } else if(Game.gameState == GameState.GAME_LEVEL_TWO) {
+            graphics.drawString("Balerion", 820, 37);
+        }
+
     }
 
     public Rectangle getBounds() {
@@ -182,14 +188,27 @@ public class Boss extends DefaultObject implements BossEntity {
     private void setAnimation() {
         int colIndex = 1;
         int rowIndex = 1;
-        for (int i = 0; i < this.boss.length; i++) {
-            if(i == 8){
-                colIndex = 1;
-                rowIndex = 2;
-            }
-            this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
-            colIndex++;
+        if(Game.gameState == GameState.GAME_LEVEL_ONE) {
+            for (int i = 0; i < this.boss.length; i++) {
+                if(i == 8){
+                    colIndex = 1;
+                    rowIndex = 2;
+                }
+                this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
+                colIndex++;
 
+            }
+        } else if(Game.gameState == GameState.GAME_LEVEL_TWO) {
+            rowIndex = 5;
+            for (int i = 0; i < this.boss.length; i++) {
+                if(i == 8){
+                    colIndex = 1;
+                    rowIndex = 6;
+                }
+                this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
+                colIndex++;
+
+            }
         }
 
         this.animationLeft = new Animation(5,
@@ -212,36 +231,50 @@ public class Boss extends DefaultObject implements BossEntity {
             this.boss[14],
             this.boss[15]);
 
-        colIndex = 1;
-        rowIndex = 3;
-        for (int i = 0; i < this.boss.length; i++) {
-            if(i == 8){
-                colIndex = 1;
-                rowIndex = 4;
-            }
-            this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
-            colIndex++;
+        if(Game.gameState == GameState.GAME_LEVEL_ONE) {
+            colIndex = 1;
+            rowIndex = 3;
+            for (int i = 0; i < this.boss.length; i++) {
+                if(i == 8){
+                    colIndex = 1;
+                    rowIndex = 4;
+                }
+                this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
+                colIndex++;
 
+            }
+
+        } else if(Game.gameState == GameState.GAME_LEVEL_TWO) {
+            colIndex = 1;
+            rowIndex = 7;
+            for (int i = 0; i < this.boss.length; i++) {
+                if(i == 8){
+                    colIndex = 1;
+                    rowIndex = 8;
+                }
+                this.boss[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
+                colIndex++;
+            }
         }
 
         this.animationAttackLeft = new Animation(5,
-            this.boss[0],
-            this.boss[1],
-            this.boss[2],
-            this.boss[3],
-            this.boss[4],
-            this.boss[5],
-            this.boss[6],
-            this.boss[7]);
+                this.boss[0],
+                this.boss[1],
+                this.boss[2],
+                this.boss[3],
+                this.boss[4],
+                this.boss[5],
+                this.boss[6],
+                this.boss[7]);
 
         this.animationAttackRight = new Animation(5,
-            this.boss[8],
-            this.boss[9],
-            this.boss[10],
-            this.boss[11],
-            this.boss[12],
-            this.boss[13],
-            this.boss[14],
-            this.boss[15]);
+                this.boss[8],
+                this.boss[9],
+                this.boss[10],
+                this.boss[11],
+                this.boss[12],
+                this.boss[13],
+                this.boss[14],
+                this.boss[15]);
     }
 }

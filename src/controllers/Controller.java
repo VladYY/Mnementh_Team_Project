@@ -78,7 +78,7 @@ public class Controller {
                 }
             }
         } else if(this.game.isBossActive() && !this.game.isBossSpawned() &&
-                (this.game.gameState == GameState.GAME_LEVEL_ONE || this.game.gameState == GameState.GAME_LEVEL_TWO)){
+                (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO)){
 
             this.addEntity(new Boss(1150, 400, this.game, this, 900, 1));
             this.game.setBossSpawned(true);
