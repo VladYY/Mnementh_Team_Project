@@ -16,6 +16,11 @@ import java.io.IOException;
 public class Fire extends DefaultObject implements FriendlyEntity {
 
     private static final String IMAGE_PATH = "/resources/gfx/fire.png";
+    private static final int RIGHT_DIRECTION = 1;
+    private static final int LEFT_DIRECTION = 2;
+    private static final int DOWN_DIRECTION = 3;
+    private static final int UP_DIRECTION = 4;
+    private static final int VELOCITY = 10;
 
     private BufferedImage image;
     private int direction;
@@ -46,17 +51,17 @@ public class Fire extends DefaultObject implements FriendlyEntity {
 
     public void tick() {
         switch (this.direction) {
-            case 1:
-                super.setX(super.getX() + 10);
+            case RIGHT_DIRECTION:
+                super.setX(super.getX() + VELOCITY);
                 break;
-            case 2:
-                super.setX(super.getX() - 10);
+            case LEFT_DIRECTION:
+                super.setX(super.getX() - VELOCITY);
                 break;
-            case 3:
-                super.setY(super.getY() + 10);
+            case DOWN_DIRECTION :
+                super.setY(super.getY() + VELOCITY);
                 break;
-            case 4:
-                super.setY(super.getY() - 10);
+            case UP_DIRECTION:
+                super.setY(super.getY() - VELOCITY);
                 break;
         }
 
