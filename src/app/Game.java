@@ -22,8 +22,8 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
+import java.util.List;
 
 public class Game extends Canvas implements Runnable {
 
@@ -61,9 +61,9 @@ public class Game extends Canvas implements Runnable {
     private boolean setHighScore = false;
     private boolean isPaused;
 
-    private LinkedList<FriendlyEntity> friendlyEntities;
-    private LinkedList<EnemyEntity> enemyEntities;
-    private LinkedList<BossEntity> bossEntities;
+    private List<FriendlyEntity> friendlyEntities;
+    private List<EnemyEntity> enemyEntities;
+    private List<BossEntity> bossEntities;
 
     private int countEnemy = 5;
     private int enemyKilled = 0;
@@ -108,12 +108,12 @@ public class Game extends Canvas implements Runnable {
         return this.spriteSheetBoss;
     }
 
-    public LinkedList<EnemyEntity> getEnemyEntities() {
-        return this.enemyEntities;
+    public List<EnemyEntity> getEnemyEntities() {
+        return Collections.unmodifiableList(this.enemyEntities);
     }
 
-    public LinkedList<BossEntity> getBossEntities() {
-        return this.bossEntities;
+    public List<BossEntity> getBossEntities() {
+        return Collections.unmodifiableList(this.bossEntities);
     }
 
     public int getPlayer1Health() {

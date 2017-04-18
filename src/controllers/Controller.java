@@ -9,18 +9,17 @@ import models.Boss;
 import models.Enemy;
 
 import java.awt.*;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.*;
+import java.util.List;
 
 public class Controller {
 
     private Game game;
     private Random random;
 
-    private LinkedList<FriendlyEntity> friendlyEntities;
-    private LinkedList<EnemyEntity> enemyEntities;
-    private LinkedList<BossEntity> bossEntities;
+    private List<FriendlyEntity> friendlyEntities;
+    private List<EnemyEntity> enemyEntities;
+    private List<BossEntity> bossEntities;
 
     private FriendlyEntity friendlyEntity;
     private EnemyEntity enemyEntity;
@@ -29,20 +28,20 @@ public class Controller {
     public Controller(Game game) {
         this.game = game;
         this.random = new Random();
-        this.friendlyEntities = new LinkedList<>();
-        this.enemyEntities = new LinkedList<>();
-        this.bossEntities = new LinkedList<>();
+        this.friendlyEntities = new ArrayList<>();
+        this.enemyEntities = new ArrayList<>();
+        this.bossEntities = new ArrayList<>();
     }
 
-    public LinkedList<FriendlyEntity> getFriendly() {
-        return this.friendlyEntities;
+    public List<FriendlyEntity> getFriendly() {
+        return Collections.unmodifiableList(this.friendlyEntities);
     }
 
-    public LinkedList<EnemyEntity> getEnemy() {
-        return this.enemyEntities;
+    public List<EnemyEntity> getEnemy() {
+        return Collections.unmodifiableList(this.enemyEntities);
     }
 
-    public LinkedList<BossEntity> getBoss() { return this.bossEntities; }
+    public List<BossEntity> getBoss() { return Collections.unmodifiableList(this.bossEntities); }
 
     public void createEnemy(int count_enemy) {
         if(!this.game.isBossActive()) {
