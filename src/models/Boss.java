@@ -119,14 +119,15 @@ public class Boss extends DefaultObject implements BossEntity {
             }
         }
 
+        // Boss creates a shot
         if(Game.gameState != GameState.GAME_LEVEL_ONE) {
             if(this.game.getPlayer1X() < super.getX()) {
                 if(super.getY() <= this.game.getPlayer1Y() + 40 && super.getY() >= this.game.getPlayer1Y() - 40) {
-                    addBossShot(SHOT_LEFT_DIRECTION);
+                    this.addBossShot(SHOT_LEFT_DIRECTION);
                 }
             } else if(this.game.getPlayer1X() > super.getX()) {
                 if(super.getY() <= this.game.getPlayer1Y() + 40 && super.getY() >= this.game.getPlayer1Y() - 40) {
-                    addBossShot(SHOT_RIGHT_DIRECTION);
+                    this.addBossShot(SHOT_RIGHT_DIRECTION);
                 }
             }
         }

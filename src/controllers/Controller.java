@@ -91,7 +91,6 @@ public class Controller {
             this.addEntity(new Boss(1150, 400, this.game, this, 900, BOSS_DEFAULT_DAMAGE));
             this.game.setBossSpawned(true);
         }
-
     }
 
     public void tick() {
@@ -101,14 +100,19 @@ public class Controller {
             this.game.setBossSpawned(false);
             Game.gameState = GameState.GAME_LEVEL_TWO;
             this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
+            this.bossShotEntities.clear();
+            this.friendlyEntities = this.friendlyEntities.subList(0, 1);
         } else if(this.game.isBossActive() && this.game.isBossSpawned() && this.bossEntities.size() == 0
                 && Game.gameState == GameState.GAME_LEVEL_TWO) {
             this.game.setBossActive(false);
             this.game.setBossSpawned(false);
             Game.gameState = GameState.END;
             this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
+            this.bossShotEntities.clear();
+            this.friendlyEntities = this.friendlyEntities.subList(0, 1);
         }
 
+        System.out.println(this.friendlyEntities.size());
         //FOR FRIENDLY ENTITY
         for (int i = 0; i < this.friendlyEntities.size(); i++) {
             this.friendlyEntity = this.friendlyEntities.get(i);
