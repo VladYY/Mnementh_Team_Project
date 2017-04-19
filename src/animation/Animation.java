@@ -29,6 +29,15 @@ public class Animation {
         this.frames = 3;
     }
 
+    public Animation(int speed, BufferedImage img1, BufferedImage img2, BufferedImage img3, BufferedImage img4){
+        this.speed = speed;
+        this.img1 = img1;
+        this.img2 = img2;
+        this.img3 = img3;
+        this.img4 = img4;
+        this.frames = 4;
+    }
+
     public Animation(int speed,
                      BufferedImage img1,
                      BufferedImage img2,
@@ -74,6 +83,21 @@ public class Animation {
                     this.currentImg = this.img2;
                 if(this.count == 2)
                     this.currentImg = this.img3;
+
+                this.count++;
+
+                if(this.count > this.frames)
+                    this.count = 0;
+                break;
+            case 4 :
+                if(this.count == 0)
+                    this.currentImg = this.img1;
+                if(this.count == 1)
+                    this.currentImg = this.img2;
+                if(this.count == 2)
+                    this.currentImg = this.img3;
+                if(this.count == 3)
+                    this.currentImg = this.img4;
 
                 this.count++;
 

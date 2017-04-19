@@ -3,9 +3,11 @@ package controllers;
 import app.Game;
 import enums.GameState;
 import interfaces.BossEntity;
+import interfaces.BossShotEntity;
 import interfaces.EnemyEntity;
 import interfaces.FriendlyEntity;
 import models.Boss;
+import models.BossShot;
 import models.Enemy;
 
 import java.awt.*;
@@ -14,16 +16,20 @@ import java.util.List;
 
 public class Controller {
 
+    private static final int BOSS_DEFAULT_DAMAGE = 1;
+
     private Game game;
     private Random random;
 
     private List<FriendlyEntity> friendlyEntities;
     private List<EnemyEntity> enemyEntities;
     private List<BossEntity> bossEntities;
+    private List<BossShotEntity> bossShotEntities;
 
     private FriendlyEntity friendlyEntity;
     private EnemyEntity enemyEntity;
     private BossEntity bossEntity;
+    private BossShotEntity bossShot;
 
     public Controller(Game game) {
         this.game = game;
@@ -31,6 +37,7 @@ public class Controller {
         this.friendlyEntities = new ArrayList<>();
         this.enemyEntities = new ArrayList<>();
         this.bossEntities = new ArrayList<>();
+        this.bossShotEntities = new ArrayList<>();
     }
 
     public List<FriendlyEntity> getFriendly() {
@@ -42,6 +49,8 @@ public class Controller {
     }
 
     public List<BossEntity> getBoss() { return Collections.unmodifiableList(this.bossEntities); }
+
+    public List<BossShotEntity> getBossShotEntities() { return Collections.unmodifiableList(this.bossShotEntities); }
 
     public void createEnemy(int count_enemy) {
         if(!this.game.isBossActive()) {
@@ -79,7 +88,7 @@ public class Controller {
         } else if(this.game.isBossActive() && !this.game.isBossSpawned() &&
                 (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO)){
 
-            this.addEntity(new Boss(1150, 400, this.game, this, 900, 1));
+            this.addEntity(new Boss(1150, 400, this.game, this, 900, BOSS_DEFAULT_DAMAGE));
             this.game.setBossSpawned(true);
         }
 
@@ -128,6 +137,21 @@ public class Controller {
 
             this.bossEntity.tick();
         }
+
+        //FOR BOSS SHOT ENTITIES
+        for (int i = 0; i < this.bossShotEntities.size(); i++) {
+            this.bossShot = this.bossShotEntities.get(i);
+            if (this.bossShot.getX() < 0
+                || this.bossShot.getY() < 0
+                || this.bossShot.getX() > 1280
+                || this.bossShot.getY() > 800) {
+
+                this.removeEntity(this.bossShot);
+                break;
+            }
+
+            this.bossShot.tick();
+        }
     }
 
     public void render(Graphics graphics) {
@@ -151,6 +175,13 @@ public class Controller {
 
             this.bossEntity.render(graphics);
         }
+
+        //FOR BOSS SHOT ENTITIES
+        for (int i = 0; i < this.bossShotEntities.size(); i++) {
+            this.bossShot = this.bossShotEntities.get(i);
+
+            this.bossShot.render(graphics);
+        }
     }
 
     public void addEntity(FriendlyEntity block) {
@@ -159,6 +190,14 @@ public class Controller {
 
     public void removeEntity(FriendlyEntity block) {
         this.friendlyEntities.remove(block);
+    }
+
+    public void addEntity(BossShotEntity block) {
+        this.bossShotEntities.add(block);
+    }
+
+    public void removeEntity(BossShotEntity block) {
+        this.bossShotEntities.remove(block);
     }
 
     public void addEntity(EnemyEntity block) {

@@ -79,7 +79,7 @@ public class Fire extends DefaultObject implements FriendlyEntity {
     }
 
     private void setImage() throws IOException {
-        this.image = ImageIO.read(getClass().getResourceAsStream(IMAGE_PATH));;
+        this.image = ImageIO.read(getClass().getResourceAsStream(IMAGE_PATH));
     }
 
     private void setDirection(int direction) {
@@ -102,7 +102,7 @@ public class Fire extends DefaultObject implements FriendlyEntity {
         for (int i = 0; i < this.game.getBossEntities().size(); i++) {
             BossEntity tempEnt = this.game.getBossEntities().get(i);
 
-            if (Physics.Collision(this, tempEnt)){
+            if (Physics.collision(this, tempEnt)){
                 this.controller.removeEntity(this);
                 tempEnt.setHealth(tempEnt.getHealth() - this.getDamage());
             }
@@ -123,7 +123,7 @@ public class Fire extends DefaultObject implements FriendlyEntity {
         for (int i = 0; i < this.game.getEnemyEntities().size(); i++) {
             EnemyEntity tempEnt = this.game.getEnemyEntities().get(i);
 
-            if (Physics.Collision(this, tempEnt)){
+            if (Physics.collision(this, tempEnt)){
                 try {
                     Music.enemyDie();
                 } catch (IOException e) {

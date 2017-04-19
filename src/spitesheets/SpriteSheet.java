@@ -24,4 +24,9 @@ public class SpriteSheet {
         BufferedImage img = this.image.getSubimage((col * 144) - 144, (row * 144) - 144, width, height);
         return img;
     }
+
+    public BufferedImage grabBossShotImage(int col, int row, int width, int height) {
+        BufferedImage img = this.image.getSubimage((col * 96) - 96, (row * 48) - 48, width, height);
+        return img;
+    }
 }

@@ -61,5 +61,25 @@ public class Music {
             AudioPlayer.player.start(audioStream5);
         }
     }
+
+    public static void bossShoots() throws IOException {
+        String bossShoots = "./resources/audio/BossFire.wav";
+        InputStream in  = new FileInputStream(bossShoots);
+        AudioStream audioStream5 = new AudioStream(in);
+
+        if (Game.stateSound == StateSound.ON) {
+            AudioPlayer.player.start(audioStream5);
+        }
+    }
+
+    public static void bossShotHit() throws IOException {
+        String bossShotHit = "./resources/audio/BossShotHit.wav";
+        InputStream in  = new FileInputStream(bossShotHit);
+        AudioStream audioStream5 = new AudioStream(in);
+
+        if (Game.stateSound == StateSound.ON) {
+            AudioPlayer.player.start(audioStream5);
+        }
+    }
 }
 

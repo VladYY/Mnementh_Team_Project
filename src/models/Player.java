@@ -6,6 +6,7 @@ import audio.Music;
 import collisions.Physics;
 import controllers.Controller;
 import enums.GameState;
+import interfaces.BossShotEntity;
 import interfaces.EnemyEntity;
 import interfaces.FriendlyEntity;
 import spitesheets.SpriteSheet;
@@ -97,7 +98,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
         for (int i = 0; i < this.game.getEnemyEntities().size(); i++) {
             EnemyEntity tempEnt = this.game.getEnemyEntities().get(i);
 
-            if (Physics.Collision(this, tempEnt)) {
+            if (Physics.collision(this, tempEnt)) {
                 try {
                     Music.enemyDie();
                 } catch (IOException e) {
@@ -111,6 +112,22 @@ public class Player extends DefaultObject implements FriendlyEntity {
                 }
 
                 this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
+            }
+        }
+
+        for (int i = 0; i < this.controller.getBossShotEntities().size(); i++) {
+            BossShotEntity tempShot = this.controller.getBossShotEntities().get(i);
+
+            if(Physics.collision(this, tempShot)) {
+                this.controller.removeEntity(tempShot);
+
+                try {
+                    Music.bossShotHit();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                this.setHealth(this.getHealth() - tempShot.getDamage());
             }
         }
 

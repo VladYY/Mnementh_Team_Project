@@ -47,6 +47,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage spriteSheetGorgon = null;
     private BufferedImage spriteSheetDragon = null;
     private BufferedImage spriteSheetBoss = null;
+    private BufferedImage spriteSheetBossShot = null;
 
     private Battleground battleground;
     private Battleground battlegroundNextLevel;
@@ -61,7 +62,6 @@ public class Game extends Canvas implements Runnable {
     private boolean setHighScore = false;
     private boolean isPaused;
 
-    private List<FriendlyEntity> friendlyEntities;
     private List<EnemyEntity> enemyEntities;
     private List<BossEntity> bossEntities;
 
@@ -108,6 +108,10 @@ public class Game extends Canvas implements Runnable {
         return this.spriteSheetBoss;
     }
 
+    public BufferedImage getSpriteSheetBossShot() {
+        return this.spriteSheetBossShot;
+    }
+
     public List<EnemyEntity> getEnemyEntities() {
         return Collections.unmodifiableList(this.enemyEntities);
     }
@@ -124,8 +128,9 @@ public class Game extends Canvas implements Runnable {
         this.player1.setHealth(health);
     }
 
-    public Player getPlayer1() {
-        return this.player1;
+    public FriendlyEntity getPlayer1() {
+        FriendlyEntity playerEntity = this.player1;
+        return playerEntity;
     }
 
     public double getPlayer1X() {
@@ -325,6 +330,7 @@ public class Game extends Canvas implements Runnable {
             this.spriteSheetGorgon = loader.loadImage("/resources/gfx/fixed_gorgon_sheet.png");
             this.spriteSheetDragon = loader.loadImage("/resources/gfx/fixed_dragon_sheet.png");
             this.spriteSheetBoss = loader.loadImage("/resources/gfx/fixed_boss_sprite.png");
+            this.spriteSheetBossShot = loader.loadImage("/resources/gfx/boss_fireball.png");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -339,7 +345,6 @@ public class Game extends Canvas implements Runnable {
 
         this.menu = new Menu(this);
 
-        this.friendlyEntities = this.controller.getFriendly();
         this.enemyEntities = this.controller.getEnemy();
         this.bossEntities = this.controller.getBoss();
     }
