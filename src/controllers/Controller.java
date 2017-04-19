@@ -176,4 +176,8 @@ public class Controller {
     public void removeEntity(EnemyEntity block) {
         this.enemyEntities.remove(block);
     }
+
+    public void clearEnemies() {
+        this.enemyEntities.clear();
+    }
 }

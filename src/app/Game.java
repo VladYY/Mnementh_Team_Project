@@ -432,7 +432,7 @@ public class Game extends Canvas implements Runnable {
             this.player1.setY(200);
             this.player1.setHealth(200);
             this.setCountEnemy(5);
-            this.enemyEntities.clear();
+            this.controller.clearEnemies();
             graphics.drawImage(this.imageDead, 0, 0, this.getWidth(), this.getHeight(), this);
             this.menu.render(graphics);
 
