@@ -2,17 +2,25 @@ package models;
 
 import animation.Animation;
 import app.Game;
+import audio.Music;
 import collisions.Physics;
 import controllers.Controller;
 import enums.GameState;
 import interfaces.BossEntity;
+import interfaces.BossShotEntity;
 import spitesheets.SpriteSheet;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Arrays;
 
-public class Boss extends DefaultObject implements BossEntity {
+public class BossLevelTwo extends DefaultObject implements BossEntity {
+
+    private static final int SHOT_OFFSET = 15;
+    private static final int SHOT_RIGHT_DIRECTION = 1;
+    private static final int SHOT_LEFT_DIRECTION = 2;
+    private static final int MINIMUM_DISTANCE_FOR_SHOT = 200;
 
     private double velX;
     private double velY;
@@ -32,7 +40,7 @@ public class Boss extends DefaultObject implements BossEntity {
     private boolean isAttackingLeft;
     private boolean isAttackingRight;
 
-    public Boss(double x, double y, Game game, Controller controller, int health, int damage) {
+    public BossLevelTwo(double x, double y, Game game, Controller controller, int health, int damage) {
         super(x,y);
 
         this.setHealth(health);
@@ -111,6 +119,19 @@ public class Boss extends DefaultObject implements BossEntity {
                 this.controller.removeEntity(this);
             }
         }
+
+        // Boss creates a shot
+        if(Game.gameState != GameState.GAME_LEVEL_ONE) {
+            if(this.game.getPlayer1X() < super.getX()) {
+                if(super.getY() <= this.game.getPlayer1Y() + 40 && super.getY() >= this.game.getPlayer1Y() - 40) {
+                    this.addBossShot(SHOT_LEFT_DIRECTION);
+                }
+            } else if(this.game.getPlayer1X() > super.getX()) {
+                if(super.getY() <= this.game.getPlayer1Y() + 40 && super.getY() >= this.game.getPlayer1Y() - 40) {
+                    this.addBossShot(SHOT_RIGHT_DIRECTION);
+                }
+            }
+        }
     }
 
     public void render(Graphics graphics) {
@@ -141,11 +162,39 @@ public class Boss extends DefaultObject implements BossEntity {
         graphics.setFont(fnt1);
         graphics.drawString(this.health / 9 + "%", 620, 42);
         graphics.setFont(fnt2);
-        graphics.drawString("Gnarl", 820, 37);
+        if(Game.gameState == GameState.GAME_LEVEL_ONE) {
+            graphics.drawString("Gnarl", 820, 37);
+        } else if(Game.gameState == GameState.GAME_LEVEL_TWO) {
+            graphics.drawString("Balerion", 820, 37);
+        }
     }
 
     public Rectangle getBounds() {
         return new Rectangle((int)super.getX() , (int)super.getY(), 144, 100);
+    }
+
+    private void addBossShot(int direction) {
+        if (this.isShotPossible()) {
+            this.controller.addEntity(new BossShot(super.getX(), super.getY() + SHOT_OFFSET, direction, this.game, this.damage));
+            try {
+                Music.bossShoots();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private boolean isShotPossible() {
+        boolean isPlayerNotClose = Math.abs(super.getX() - this.game.getPlayer1X()) > MINIMUM_DISTANCE_FOR_SHOT;
+        if(this.controller.getBossShotEntities().size() != 0 && isPlayerNotClose) {
+            BossShotEntity temp = this.controller.getBossShotEntities().get(this.controller.getBossShotEntities().size() - 1);
+            if(Math.abs(temp.getX() - super.getX()) >= 100) {
+                return true;
+            }
+        } else if(this.controller.getBossShotEntities().size() == 0 && isPlayerNotClose) {
+            return true;
+        }
+        return false;
     }
 
     private void setVelX(double velX) {
