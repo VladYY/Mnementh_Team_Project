@@ -6,9 +6,8 @@ import interfaces.BossEntity;
 import interfaces.BossShotEntity;
 import interfaces.EnemyEntity;
 import interfaces.FriendlyEntity;
-import models.Boss;
+import models.BossLevelOne;
 import models.BossLevelTwo;
-import models.BossShot;
 import models.Enemy;
 
 import java.awt.*;
@@ -94,7 +93,7 @@ public class Controller {
         } else if(this.game.isBossActive() && !this.game.isBossSpawned() &&
                 Game.gameState == GameState.GAME_LEVEL_ONE){
 
-            this.addEntity(new Boss(1150, 400, this.game, this, 900, BOSS_DEFAULT_DAMAGE));
+            this.addEntity(new BossLevelOne(1150, 400, this.game, this, 900, BOSS_DEFAULT_DAMAGE));
             this.game.setBossSpawned(true);
         } else if(this.game.isBossActive() && !this.game.isBossSpawned() &&
                 Game.gameState == GameState.GAME_LEVEL_TWO){

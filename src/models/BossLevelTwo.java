@@ -120,7 +120,7 @@ public class BossLevelTwo extends DefaultObject implements BossEntity {
             }
         }
 
-        // Boss creates a shot
+        // BossLevelOne creates a shot
         if(Game.gameState != GameState.GAME_LEVEL_ONE) {
             if(this.game.getPlayer1X() < super.getX()) {
                 if(super.getY() <= this.game.getPlayer1Y() + 40 && super.getY() >= this.game.getPlayer1Y() - 40) {
@@ -145,7 +145,7 @@ public class BossLevelTwo extends DefaultObject implements BossEntity {
             this.animationLeft.drawAnimation(graphics, super.getX(), super.getY(), 0);
         }
 
-        // Boss HP BAR
+        // BossLevelOne HP BAR
         Font fnt1 = new Font("arial", Font.BOLD, 30);
         Font fnt2 = new Font("arial", Font.BOLD, 20);
 
@@ -162,11 +162,7 @@ public class BossLevelTwo extends DefaultObject implements BossEntity {
         graphics.setFont(fnt1);
         graphics.drawString(this.health / 9 + "%", 620, 42);
         graphics.setFont(fnt2);
-        if(Game.gameState == GameState.GAME_LEVEL_ONE) {
-            graphics.drawString("Gnarl", 820, 37);
-        } else if(Game.gameState == GameState.GAME_LEVEL_TWO) {
-            graphics.drawString("Balerion", 820, 37);
-        }
+        graphics.drawString("Balerion", 820, 37);
     }
 
     public Rectangle getBounds() {

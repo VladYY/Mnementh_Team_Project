@@ -129,6 +129,10 @@ public class Player extends DefaultObject implements FriendlyEntity {
                 }
 
                 this.setHealth(this.getHealth() - tempShot.getDamage());
+
+                if (this.health <= 0) {
+                    Game.gameState = GameState.END;
+                }
             }
         }
 

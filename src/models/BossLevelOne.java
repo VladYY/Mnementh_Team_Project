@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
-public class Boss extends DefaultObject implements BossEntity {
+public class BossLevelOne extends DefaultObject implements BossEntity {
 
     private double velX;
     private double velY;
@@ -32,7 +32,7 @@ public class Boss extends DefaultObject implements BossEntity {
     private boolean isAttackingLeft;
     private boolean isAttackingRight;
 
-    public Boss(double x, double y, Game game, Controller controller, int health, int damage) {
+    public BossLevelOne(double x, double y, Game game, Controller controller, int health, int damage) {
         super(x,y);
 
         this.setHealth(health);
@@ -124,7 +124,7 @@ public class Boss extends DefaultObject implements BossEntity {
             this.animationLeft.drawAnimation(graphics, super.getX(), super.getY(), 0);
         }
 
-        // Boss HP BAR
+        // BossLevelOne HP BAR
         Font fnt1 = new Font("arial", Font.BOLD, 30);
         Font fnt2 = new Font("arial", Font.BOLD, 20);
 
