@@ -13,6 +13,8 @@ import spitesheets.SpriteSheet;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class Boss extends DefaultObject implements BossEntity {
 
@@ -29,7 +31,7 @@ public class Boss extends DefaultObject implements BossEntity {
     private Controller controller;
 
     private SpriteSheet spriteSheet;
-    private BufferedImage[] boss;
+    private BufferedImage[] bossImages;
 
     private Animation animationLeft;
     private Animation animationRight;
@@ -49,7 +51,7 @@ public class Boss extends DefaultObject implements BossEntity {
         this.setVelY(2D);
         this.setController(controller);
         this.setSpriteSheet(new SpriteSheet(this.getGame().getSpriteSheetBoss()));
-        this.setBoss(new BufferedImage[16]);
+        this.setBossImages(new BufferedImage[16]);
 
         this.isAttackingLeft = false;
         this.isAttackingRight = false;
@@ -224,8 +226,8 @@ public class Boss extends DefaultObject implements BossEntity {
         this.spriteSheet = spriteSheet;
     }
 
-    private void setBoss(BufferedImage[] boss) {
-        this.boss = boss;
+    private void setBossImages(BufferedImage[] bossImages) {
+        this.bossImages = bossImages;
     }
 
     private void setAnimation() {
@@ -238,25 +240,8 @@ public class Boss extends DefaultObject implements BossEntity {
             this.fillBossImages(colIndex, rowIndex);
         }
 
-        this.animationLeft = new Animation(5,
-            this.boss[0],
-            this.boss[1],
-            this.boss[2],
-            this.boss[3],
-            this.boss[4],
-            this.boss[5],
-            this.boss[6],
-            this.boss[7]);
-
-        this.animationRight = new Animation(5,
-            this.boss[8],
-            this.boss[9],
-            this.boss[10],
-            this.boss[11],
-            this.boss[12],
-            this.boss[13],
-            this.boss[14],
-            this.boss[15]);
+        this.animationLeft = new Animation(5, Arrays.copyOfRange(this.bossImages, 0, 8));
+        this.animationRight = new Animation(5, Arrays.copyOfRange(this.bossImages, 8, this.bossImages.length));
 
         if(Game.gameState == GameState.GAME_LEVEL_ONE) {
             rowIndex = 3;
@@ -267,35 +252,18 @@ public class Boss extends DefaultObject implements BossEntity {
             this.fillBossImages(colIndex, rowIndex);
         }
 
-        this.animationAttackLeft = new Animation(5,
-                this.boss[0],
-                this.boss[1],
-                this.boss[2],
-                this.boss[3],
-                this.boss[4],
-                this.boss[5],
-                this.boss[6],
-                this.boss[7]);
-
-        this.animationAttackRight = new Animation(5,
-                this.boss[8],
-                this.boss[9],
-                this.boss[10],
-                this.boss[11],
-                this.boss[12],
-                this.boss[13],
-                this.boss[14],
-                this.boss[15]);
+        this.animationAttackLeft = new Animation(5, Arrays.copyOfRange(this.bossImages, 0, 8));
+        this.animationAttackRight = new Animation(5, Arrays.copyOfRange(this.bossImages, 8, this.bossImages.length));
     }
 
     private void fillBossImages(int colIndex, int rowIndex) {
         int initialRowIndex = rowIndex;
-        for (int i = 0; i < this.boss.length; i++) {
+        for (int i = 0; i < this.bossImages.length; i++) {
             if(i == 8){
                 colIndex = 1;
                 initialRowIndex = rowIndex + 1;
             }
-            this.boss[i] = this.spriteSheet.grabBossImage(colIndex, initialRowIndex, 144, 144);
+            this.bossImages[i] = this.spriteSheet.grabBossImage(colIndex, initialRowIndex, 144, 144);
             colIndex++;
         }
     }

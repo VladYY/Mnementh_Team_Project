@@ -14,6 +14,7 @@ import spitesheets.SpriteSheet;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Player extends DefaultObject implements FriendlyEntity {
 
@@ -191,24 +192,7 @@ public class Player extends DefaultObject implements FriendlyEntity {
 
         }
 
-        this.animationLeft = new Animation(5,
-            this.dragon[8],
-            this.dragon[9],
-            this.dragon[10],
-            this.dragon[11],
-            this.dragon[12],
-            this.dragon[13],
-            this.dragon[14],
-            this.dragon[15]);
-
-        this.animationRight = new Animation(5,
-            this.dragon[0],
-            this.dragon[1],
-            this.dragon[2],
-            this.dragon[3],
-            this.dragon[4],
-            this.dragon[5],
-            this.dragon[6],
-            this.dragon[7]);
+        this.animationLeft = new Animation(5, Arrays.copyOfRange(this.dragon, 8, this.dragon.length));
+        this.animationRight = new Animation(5,Arrays.copyOfRange(this.dragon, 0, 8));
     }
 }

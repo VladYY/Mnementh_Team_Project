@@ -213,25 +213,25 @@ public class Enemy extends DefaultObject implements EnemyEntity {
             this.enemyImages[1] = this.spriteSheet.grabImage(2, 1, 42, 65);
             this.enemyImages[2] = this.spriteSheet.grabImage(3, 1, 42, 65);
 
-            this.animation = new Animation(5, this.enemyImages[0], this.enemyImages[1], this.enemyImages[2]);
+            this.animation = new Animation(5, this.enemyImages);
         } else if (super.getX() >= 600 && !this.isHunter){
             this.enemyImages[0] = this.spriteSheet.grabImage(1, 2, 42, 65);
             this.enemyImages[1] = this.spriteSheet.grabImage(2, 2, 42, 65);
             this.enemyImages[2] = this.spriteSheet.grabImage(3, 2, 42, 65);
 
-            this.animation = new Animation(5, this.enemyImages[0], this.enemyImages[1], this.enemyImages[2]);
+            this.animation = new Animation(5, this.enemyImages);
         } else {
             this.enemyImages[0] = this.spriteSheet.grabImage(1, 3, 42, 65);
             this.enemyImages[1] = this.spriteSheet.grabImage(2, 3, 42, 65);
             this.enemyImages[2] = this.spriteSheet.grabImage(3, 3, 42, 65);
 
-            this.animationLeft = new Animation(5, this.enemyImages[0], this.enemyImages[1], this.enemyImages[2]);
+            this.animationLeft = new Animation(5, this.enemyImages);
 
             this.enemyImages[0] = this.spriteSheet.grabImage(1, 4, 42, 65);
             this.enemyImages[1] = this.spriteSheet.grabImage(2, 4, 42, 65);
             this.enemyImages[2] = this.spriteSheet.grabImage(3, 4, 42, 65);
 
-            this.animationRight = new Animation(5, this.enemyImages[0], this.enemyImages[1], this.enemyImages[2]);
+            this.animationRight = new Animation(5, this.enemyImages);
         }
     }
 }

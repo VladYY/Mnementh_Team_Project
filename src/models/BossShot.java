@@ -86,7 +86,7 @@ public class BossShot extends DefaultObject implements BossShotEntity {
             }
         }
 
-        this.animation = new Animation(5, this.shotImages[0], this.shotImages[1], this.shotImages[2], this.shotImages[3]);
+        this.animation = new Animation(5, this.shotImages);
     }
 
     private void setShotImages() {
