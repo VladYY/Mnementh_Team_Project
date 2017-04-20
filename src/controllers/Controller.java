@@ -122,7 +122,6 @@ public class Controller {
                     || this.friendlyEntity.getY() > 800) {
 
                 this.removeEntity(this.friendlyEntity);
-                break;
             }
 
             this.friendlyEntity.tick();
@@ -151,7 +150,6 @@ public class Controller {
                 || this.bossShot.getY() > 800) {
 
                 this.removeEntity(this.bossShot);
-                break;
             }
 
             this.bossShot.tick();
