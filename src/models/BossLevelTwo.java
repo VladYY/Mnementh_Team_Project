@@ -143,24 +143,34 @@ public class BossLevelTwo extends DefaultObject implements BossEntity {
             this.animationLeft.drawAnimation(graphics, super.getX(), super.getY(), 0);
         }
 
-        // BossLevelOne HP BAR
+        int rectX = 505;
+        int rectY = 5;
+        int healthStringY = 42;
+        int nameStringY = 37;
+        if(Game.gameState == GameState.GAME_LEVEL_THREE){
+            rectY += 60;
+            healthStringY += 60;
+            nameStringY += 60;
+        }
+
+        // BossLevelTwo HP BAR
         Font fnt1 = new Font("arial", Font.BOLD, 30);
         Font fnt2 = new Font("arial", Font.BOLD, 20);
 
         graphics.setColor(Color.RED);
-        graphics.fillRect(505, 5, 300, 50);
+        graphics.fillRect(rectX, rectY, 300, 50);
 
         graphics.setColor(Color.GREEN);
-        graphics.fillRect(505, 5, this.health / 3, 50);
+        graphics.fillRect(rectX, rectY, this.health / 3, 50);
 
         graphics.setColor(Color.WHITE);
-        graphics.drawRect(505, 5, 300, 50);
+        graphics.drawRect(rectX, rectY, 300, 50);
 
         graphics.setColor(Color.white);
         graphics.setFont(fnt1);
-        graphics.drawString(this.health / 9 + "%", 620, 42);
+        graphics.drawString(this.health / 9 + "%", 620, healthStringY);
         graphics.setFont(fnt2);
-        graphics.drawString("Balerion", 820, 37);
+        graphics.drawString("Balerion", 820, nameStringY);
     }
 
     public Rectangle getBounds() {

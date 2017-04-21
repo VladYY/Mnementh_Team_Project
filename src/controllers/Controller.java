@@ -101,6 +101,12 @@ public class Controller {
 
             this.addEntity(new BossLevelTwo(1150, 400, this.game, this, 900, BOSS_DEFAULT_DAMAGE));
             this.game.setBossSpawned(true);
+        } else if(this.game.isBossActive() && !this.game.isBossSpawned() &&
+            Game.gameState == GameState.GAME_LEVEL_THREE){
+
+            this.addEntity(new BossLevelOne(40, 400, this.game, this, 900, BOSS_DEFAULT_DAMAGE));
+            this.addEntity(new BossLevelTwo(1150, 400, this.game, this, 900, BOSS_DEFAULT_DAMAGE));
+            this.game.setBossSpawned(true);
         }
     }
 
@@ -125,7 +131,7 @@ public class Controller {
             this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
         }
 
-        if(Game.gameState == GameState.END) {
+        if(Game.gameState == GameState.END || this.bossEntities.size() == 0) {
             this.bossShotEntities.clear();
         }
 
