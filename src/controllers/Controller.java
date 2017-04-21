@@ -2,10 +2,7 @@ package controllers;
 
 import app.Game;
 import enums.GameState;
-import interfaces.BossEntity;
-import interfaces.BossShotEntity;
-import interfaces.EnemyEntity;
-import interfaces.FriendlyEntity;
+import interfaces.*;
 import models.BossLevelOne;
 import models.BossLevelTwo;
 import models.Enemy;
@@ -25,11 +22,13 @@ public class Controller {
     private List<EnemyEntity> enemyEntities;
     private List<BossEntity> bossEntities;
     private List<BossShotEntity> bossShotEntities;
+    private List<HealthRestorer> healthRestorersEntities;
 
     private FriendlyEntity friendlyEntity;
     private EnemyEntity enemyEntity;
     private BossEntity bossEntity;
     private BossShotEntity bossShot;
+    private HealthRestorer healthRestorer;
 
     public Controller(Game game) {
         this.game = game;
@@ -38,6 +37,7 @@ public class Controller {
         this.enemyEntities = new ArrayList<>();
         this.bossEntities = new ArrayList<>();
         this.bossShotEntities = new ArrayList<>();
+        this.healthRestorersEntities = new ArrayList<>();
     }
 
     public List<FriendlyEntity> getFriendly() {
@@ -51,6 +51,8 @@ public class Controller {
     public List<BossEntity> getBoss() { return Collections.unmodifiableList(this.bossEntities); }
 
     public List<BossShotEntity> getBossShotEntities() { return Collections.unmodifiableList(this.bossShotEntities); }
+
+    public List<HealthRestorer> getHealthRestorersEntities() { return Collections.unmodifiableList(this.healthRestorersEntities); }
 
     public void createEnemy(int count_enemy) {
         if(!this.game.isBossActive()) {
@@ -115,18 +117,24 @@ public class Controller {
                 && Game.gameState == GameState.GAME_LEVEL_ONE){
             this.game.setBossActive(false);
             this.game.setBossSpawned(false);
+            this.healthRestorersEntities.clear();
+            this.removeEntity(this.healthRestorer);
             Game.gameState = GameState.GAME_LEVEL_TWO;
             this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
         } else if(this.game.isBossActive() && this.game.isBossSpawned() && this.bossEntities.size() == 0
                 && Game.gameState == GameState.GAME_LEVEL_TWO) {
             this.game.setBossActive(false);
             this.game.setBossSpawned(false);
+            this.healthRestorersEntities.clear();
+            this.removeEntity(this.healthRestorer);
             Game.gameState = GameState.GAME_LEVEL_THREE;
             this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
         } else if(this.game.isBossActive() && this.game.isBossSpawned() && this.bossEntities.size() == 0
                 && Game.gameState == GameState.GAME_LEVEL_THREE) {
             this.game.setBossActive(false);
             this.game.setBossSpawned(false);
+            this.healthRestorersEntities.clear();
+            this.removeEntity(this.healthRestorer);
             Game.gameState = GameState.END;
             this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
         }
@@ -177,6 +185,12 @@ public class Controller {
 
             this.bossShot.tick();
         }
+
+        for (int i = 0; i < this.healthRestorersEntities.size(); i++) {
+             this.healthRestorer = this.healthRestorersEntities.get(i);
+
+             this.healthRestorer.tick();
+        }
     }
 
     public void render(Graphics graphics) {
@@ -206,6 +220,12 @@ public class Controller {
             this.bossShot = this.bossShotEntities.get(i);
 
             this.bossShot.render(graphics);
+        }
+
+        for (int i = 0; i < this.healthRestorersEntities.size(); i++) {
+            this.healthRestorer = this.healthRestorersEntities.get(i);
+
+            this.healthRestorer.render(graphics);
         }
     }
 
@@ -239,6 +259,14 @@ public class Controller {
 
     public void removeEntity(EnemyEntity block) {
         this.enemyEntities.remove(block);
+    }
+
+    public void addEntity(HealthRestorer block) {
+        this.healthRestorersEntities.add(block);
+    }
+
+    public void removeEntity(HealthRestorer block) {
+        this.healthRestorersEntities.remove(block);
     }
 
     public void clearEnemies() {
