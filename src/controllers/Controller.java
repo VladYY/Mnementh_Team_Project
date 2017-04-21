@@ -113,6 +113,10 @@ public class Controller {
             this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
         }
 
+        if(Game.gameState == GameState.END) {
+            this.bossShotEntities.clear();
+        }
+
         //FOR FRIENDLY ENTITY
         for (int i = 0; i < this.friendlyEntities.size(); i++) {
             this.friendlyEntity = this.friendlyEntities.get(i);
@@ -151,8 +155,6 @@ public class Controller {
                 || Game.gameState == GameState.END) {
 
                 this.removeEntity(this.bossShot);
-                this.bossShotEntities.clear();
-                break;
             }
 
             this.bossShot.tick();

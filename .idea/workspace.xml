@@ -23,7 +23,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/Game.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
@@ -38,34 +38,60 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="121" column="55" lean-forward="false" selection-start-line="121" selection-start-column="55" selection-end-line="121" selection-end-column="55" />
+            <state relative-caret-position="109">
+              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
               <folding>
                 <element signature="e#1157#1158#0" expanded="true" />
                 <element signature="e#1231#1232#0" expanded="true" />
-                <element signature="e#1274#1275#0" expanded="true" />
                 <element signature="e#1345#1346#0" expanded="true" />
-                <element signature="e#7210#7211#0" expanded="true" />
-                <element signature="e#7261#7262#0" expanded="true" />
-                <element signature="e#7675#7676#0" expanded="true" />
-                <element signature="e#7717#7718#0" expanded="true" />
-                <marker date="1492760215245" expanded="false" signature="6903:6914" ph=" { " />
-                <marker date="1492760215245" expanded="false" signature="6947:6953" ph=" }" />
-                <marker date="1492760215245" expanded="false" signature="7005:7016" ph=" { " />
-                <marker date="1492760215245" expanded="false" signature="7052:7058" ph=" }" />
-                <marker date="1492760215245" expanded="false" signature="7107:7118" ph=" { " />
-                <marker date="1492760215245" expanded="false" signature="7151:7157" ph=" }" />
-                <marker date="1492760215245" expanded="false" signature="7308:7319" ph=" { " />
-                <marker date="1492760215245" expanded="false" signature="7349:7355" ph=" }" />
-                <marker date="1492760215245" expanded="false" signature="7400:7411" ph=" { " />
-                <marker date="1492760215245" expanded="false" signature="7440:7446" ph=" }" />
-                <marker date="1492760215245" expanded="false" signature="7494:7505" ph=" { " />
-                <marker date="1492760215245" expanded="false" signature="7537:7543" ph=" }" />
-                <marker date="1492760215245" expanded="false" signature="7592:7603" ph=" { " />
-                <marker date="1492760215245" expanded="false" signature="7636:7642" ph=" }" />
+                <element signature="e#7240#7241#0" expanded="true" />
+                <element signature="e#7291#7292#0" expanded="true" />
+                <element signature="e#7705#7706#0" expanded="true" />
+                <element signature="e#7747#7748#0" expanded="true" />
+                <marker date="1492761957903" expanded="false" signature="6933:6944" ph=" { " />
+                <marker date="1492761957903" expanded="false" signature="6977:6983" ph=" }" />
+                <marker date="1492761957903" expanded="false" signature="7035:7046" ph=" { " />
+                <marker date="1492761957903" expanded="false" signature="7082:7088" ph=" }" />
+                <marker date="1492761957903" expanded="false" signature="7137:7148" ph=" { " />
+                <marker date="1492761957903" expanded="false" signature="7181:7187" ph=" }" />
+                <marker date="1492761957903" expanded="false" signature="7338:7349" ph=" { " />
+                <marker date="1492761957903" expanded="false" signature="7379:7385" ph=" }" />
+                <marker date="1492761957903" expanded="false" signature="7430:7441" ph=" { " />
+                <marker date="1492761957903" expanded="false" signature="7470:7476" ph=" }" />
+                <marker date="1492761957903" expanded="false" signature="7524:7535" ph=" { " />
+                <marker date="1492761957903" expanded="false" signature="7567:7573" ph=" }" />
+                <marker date="1492761957903" expanded="false" signature="7622:7633" ph=" { " />
+                <marker date="1492761957903" expanded="false" signature="7666:7672" ph=" }" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BossShot.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/models/BossShot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <folding>
+                <element signature="e#992#993#0" expanded="true" />
+                <element signature="e#1027#1028#0" expanded="true" />
+                <element signature="e#1069#1070#0" expanded="true" />
+                <element signature="e#1104#1105#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Animation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/animation/Animation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding>
+                <marker date="1492757181009" expanded="true" signature="929:935" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -163,12 +189,12 @@
         <option value="$PROJECT_DIR$/src/interfaces/BossShotEntity.java" />
         <option value="$PROJECT_DIR$/src/audio/Music.java" />
         <option value="$PROJECT_DIR$/src/models/BossShot.java" />
-        <option value="$PROJECT_DIR$/src/app/Game.java" />
         <option value="$PROJECT_DIR$/src/models/Boss.java" />
         <option value="$PROJECT_DIR$/src/models/Player.java" />
         <option value="$PROJECT_DIR$/src/models/BossLevelOne.java" />
         <option value="$PROJECT_DIR$/src/models/BossLevelTwo.java" />
         <option value="$PROJECT_DIR$/src/controllers/Controller.java" />
+        <option value="$PROJECT_DIR$/src/app/Game.java" />
       </list>
     </option>
   </component>
@@ -404,6 +430,10 @@
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gfx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -416,10 +446,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="audio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -887,11 +913,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60167000" />
+    <option name="totallyTimeSpent" value="62294000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -903,7 +928,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3170347" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3170347" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1002,7 +1027,16 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="39" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="Game.gameState == GameState.END" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/controllers/Controller.java</url>
+          <line>148</line>
+          <properties />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="43" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1163,13 +1197,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/MnementhTheGame/models/Fire.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/out/production/MnementhTheGame/app/Game.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
@@ -1195,16 +1222,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/test/MnementhTheGame/audio/Music.class" />
-    <entry file="file://$PROJECT_DIR$/src/animation/Animation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <marker date="1492757181009" expanded="true" signature="929:935" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/Fire.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1365">
@@ -1259,53 +1276,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/BossShot.java">
+    <entry file="file://$PROJECT_DIR$/src/menu/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+        <state relative-caret-position="142">
+          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/MnementhTheGame/models/Player.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
           <folding>
-            <element signature="e#992#993#0" expanded="true" />
-            <element signature="e#1027#1028#0" expanded="true" />
-            <element signature="e#1104#1105#0" expanded="true" />
+            <element signature="e#1982#1983#0" expanded="true" />
+            <element signature="e#2018#2019#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/production/MnementhTheGame/models/Fire.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="e#1419#1420#0" expanded="true" />
+            <element signature="e#1454#1455#0" expanded="true" />
+            <element signature="e#1517#1518#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/out/test/MnementhTheGame/models/DefaultObject.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="185">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
             <element signature="e#360#361#0" expanded="true" />
             <element signature="e#389#390#0" expanded="true" />
             <element signature="e#423#424#0" expanded="true" />
-            <element signature="e#449#450#0" expanded="true" />
             <element signature="e#477#478#0" expanded="true" />
             <element signature="e#506#507#0" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out/production/MnementhTheGame/models/Player.class">
+    <entry file="file://$PROJECT_DIR$/src/animation/Animation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+        <state relative-caret-position="102">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
-            <element signature="e#1773#1774#0" expanded="true" />
-            <element signature="e#1805#1806#0" expanded="true" />
-            <element signature="e#1845#1846#0" expanded="true" />
-            <element signature="e#1877#1878#0" expanded="true" />
-            <element signature="e#1982#1983#0" expanded="true" />
+            <marker date="1492757181009" expanded="true" signature="929:935" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/menu/Menu.java">
+    <entry file="file://$PROJECT_DIR$/src/models/BossShot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="279">
+          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <element signature="e#992#993#0" expanded="true" />
+            <element signature="e#1027#1028#0" expanded="true" />
+            <element signature="e#1069#1070#0" expanded="true" />
+            <element signature="e#1104#1105#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding>
+            <element signature="e#1157#1158#0" expanded="true" />
+            <element signature="e#1231#1232#0" expanded="true" />
+            <element signature="e#1345#1346#0" expanded="true" />
+            <element signature="e#7240#7241#0" expanded="true" />
+            <element signature="e#7291#7292#0" expanded="true" />
+            <element signature="e#7705#7706#0" expanded="true" />
+            <element signature="e#7747#7748#0" expanded="true" />
+            <marker date="1492761957903" expanded="false" signature="6933:6944" ph=" { " />
+            <marker date="1492761957903" expanded="false" signature="6977:6983" ph=" }" />
+            <marker date="1492761957903" expanded="false" signature="7035:7046" ph=" { " />
+            <marker date="1492761957903" expanded="false" signature="7082:7088" ph=" }" />
+            <marker date="1492761957903" expanded="false" signature="7137:7148" ph=" { " />
+            <marker date="1492761957903" expanded="false" signature="7181:7187" ph=" }" />
+            <marker date="1492761957903" expanded="false" signature="7338:7349" ph=" { " />
+            <marker date="1492761957903" expanded="false" signature="7379:7385" ph=" }" />
+            <marker date="1492761957903" expanded="false" signature="7430:7441" ph=" { " />
+            <marker date="1492761957903" expanded="false" signature="7470:7476" ph=" }" />
+            <marker date="1492761957903" expanded="false" signature="7524:7535" ph=" { " />
+            <marker date="1492761957903" expanded="false" signature="7567:7573" ph=" }" />
+            <marker date="1492761957903" expanded="false" signature="7622:7633" ph=" { " />
+            <marker date="1492761957903" expanded="false" signature="7666:7672" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1318,37 +1383,6 @@
             <element signature="e#2590#2591#0" expanded="true" />
             <element signature="e#2629#2630#0" expanded="true" />
             <element signature="method#checkScore#0;class#Game#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="121" column="55" lean-forward="false" selection-start-line="121" selection-start-column="55" selection-end-line="121" selection-end-column="55" />
-          <folding>
-            <element signature="e#1157#1158#0" expanded="true" />
-            <element signature="e#1231#1232#0" expanded="true" />
-            <element signature="e#1274#1275#0" expanded="true" />
-            <element signature="e#1345#1346#0" expanded="true" />
-            <element signature="e#7210#7211#0" expanded="true" />
-            <element signature="e#7261#7262#0" expanded="true" />
-            <element signature="e#7675#7676#0" expanded="true" />
-            <element signature="e#7717#7718#0" expanded="true" />
-            <marker date="1492760215245" expanded="false" signature="6903:6914" ph=" { " />
-            <marker date="1492760215245" expanded="false" signature="6947:6953" ph=" }" />
-            <marker date="1492760215245" expanded="false" signature="7005:7016" ph=" { " />
-            <marker date="1492760215245" expanded="false" signature="7052:7058" ph=" }" />
-            <marker date="1492760215245" expanded="false" signature="7107:7118" ph=" { " />
-            <marker date="1492760215245" expanded="false" signature="7151:7157" ph=" }" />
-            <marker date="1492760215245" expanded="false" signature="7308:7319" ph=" { " />
-            <marker date="1492760215245" expanded="false" signature="7349:7355" ph=" }" />
-            <marker date="1492760215245" expanded="false" signature="7400:7411" ph=" { " />
-            <marker date="1492760215245" expanded="false" signature="7440:7446" ph=" }" />
-            <marker date="1492760215245" expanded="false" signature="7494:7505" ph=" { " />
-            <marker date="1492760215245" expanded="false" signature="7537:7543" ph=" }" />
-            <marker date="1492760215245" expanded="false" signature="7592:7603" ph=" { " />
-            <marker date="1492760215245" expanded="false" signature="7636:7642" ph=" }" />
           </folding>
         </state>
       </provider>
