@@ -30,6 +30,10 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 640;
     public static final int HEIGHT = 400;
 
+    private static final int MINIMAL_ENEMIES_KILLED_BOSS_ONE_TO_SPAWN = 10;
+    private static final int MINIMAL_ENEMIES_KILLED_BOSS_TWO_TO_SPAWN = 40;
+    private static final int MINIMAL_ENEMIES_KILLED_LEVEL_THREE_TO_SPAWN_BOSS = 80;
+
     private static final String TITLE = "Mnementh the game";
     private static final int SCALE = 2;
     private static final long serialVersionUID = 1L;
@@ -388,17 +392,17 @@ public class Game extends Canvas implements Runnable {
             }
 
             // Controlling if boss is created under some enemy killed number
-            if(this.getEnemyKilled() < 10 && Game.gameState == GameState.GAME_LEVEL_ONE) {
+            if(this.getEnemyKilled() < MINIMAL_ENEMIES_KILLED_BOSS_ONE_TO_SPAWN && Game.gameState == GameState.GAME_LEVEL_ONE) {
                 if (this.controller.getEnemy().size() == 0 && Game.gameState == GameState.GAME_LEVEL_ONE) {
                     this.setCountEnemy(this.getCountEnemy() + 1);
                     this.controller.createEnemy(this.countEnemy);
                 }
-            } else if(this.getEnemyKilled() < 40 && Game.gameState == GameState.GAME_LEVEL_TWO) {
+            } else if(this.getEnemyKilled() < MINIMAL_ENEMIES_KILLED_BOSS_TWO_TO_SPAWN && Game.gameState == GameState.GAME_LEVEL_TWO) {
                 if (this.controller.getEnemy().size() == 0 && Game.gameState == GameState.GAME_LEVEL_TWO) {
                     this.setCountEnemy(this.getCountEnemy() + 1);
                     this.controller.createEnemy(this.countEnemy);
                 }
-            } else if(this.getEnemyKilled() < 40 && Game.gameState == GameState.GAME_LEVEL_THREE) {
+            } else if(this.getEnemyKilled() < MINIMAL_ENEMIES_KILLED_LEVEL_THREE_TO_SPAWN_BOSS && Game.gameState == GameState.GAME_LEVEL_THREE) {
                 if (this.controller.getEnemy().size() == 0 && Game.gameState == GameState.GAME_LEVEL_THREE) {
                     this.setCountEnemy(this.getCountEnemy() + 1);
                     this.controller.createEnemy(this.countEnemy);
