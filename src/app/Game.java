@@ -44,6 +44,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage imageHelp = ImageLoader.loadImage("/resources/gfx/Dragon3.jpg");
     private BufferedImage battlegroundImage = ImageLoader.loadImage("/resources/gfx/battleGround.png");
     private BufferedImage battlegroundImage2 = ImageLoader.loadImage("/resources/gfx/CaveLevel.jpg");
+    private BufferedImage battlegroundImage3 = ImageLoader.loadImage("/resources/gfx/sky1.png");
     private BufferedImage spriteSheetGorgon = null;
     private BufferedImage spriteSheetDragon = null;
     private BufferedImage spriteSheetBoss = null;
@@ -51,6 +52,7 @@ public class Game extends Canvas implements Runnable {
 
     private Battleground battleground;
     private Battleground battlegroundNextLevel;
+    private Battleground battlegroundLevelThree;
     private Player player1;
     private Menu menu;
     private Controller controller;
@@ -94,6 +96,10 @@ public class Game extends Canvas implements Runnable {
 
     public BufferedImage getBattlegroundNextImage() {
         return this.battlegroundImage2;
+    }
+
+    public BufferedImage getBattlegroundImageThree() {
+        return this.battlegroundImage3;
     }
 
     public BufferedImage getSpriteSheetGorgon() {
@@ -279,7 +285,7 @@ public class Game extends Canvas implements Runnable {
     public void keyReleased(KeyEvent k) {
         int key = k.getKeyCode();
 
-        if (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO) {
+        if (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO || Game.gameState == GameState.GAME_LEVEL_THREE) {
             if (key == KeyEvent.VK_RIGHT) {
                 this.player1.setVelX(0);
             } else if (key == KeyEvent.VK_LEFT) {
@@ -341,6 +347,7 @@ public class Game extends Canvas implements Runnable {
         this.controller = new Controller(this);
         this.battleground = new Battleground(this.battlegroundImage);
         this.battlegroundNextLevel = new Battleground(this.battlegroundImage2);
+        this.battlegroundLevelThree = new Battleground(this.battlegroundImage3);
         this.player1 = new Player(200, 200, this, this.controller, 200, 15);
 
         this.menu = new Menu(this);
@@ -372,7 +379,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
-        if (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO) {
+        if (Game.gameState == GameState.GAME_LEVEL_ONE || Game.gameState == GameState.GAME_LEVEL_TWO || Game.gameState == GameState.GAME_LEVEL_THREE) {
             this.player1.tick();
             this.controller.tick();
 
@@ -388,6 +395,11 @@ public class Game extends Canvas implements Runnable {
                 }
             } else if(this.getEnemyKilled() < 40 && Game.gameState == GameState.GAME_LEVEL_TWO) {
                 if (this.controller.getEnemy().size() == 0 && Game.gameState == GameState.GAME_LEVEL_TWO) {
+                    this.setCountEnemy(this.getCountEnemy() + 1);
+                    this.controller.createEnemy(this.countEnemy);
+                }
+            } else if(this.getEnemyKilled() < 40 && Game.gameState == GameState.GAME_LEVEL_THREE) {
+                if (this.controller.getEnemy().size() == 0 && Game.gameState == GameState.GAME_LEVEL_THREE) {
                     this.setCountEnemy(this.getCountEnemy() + 1);
                     this.controller.createEnemy(this.countEnemy);
                 }
@@ -443,6 +455,10 @@ public class Game extends Canvas implements Runnable {
 
         } else if (Game.gameState == GameState.GAME_LEVEL_TWO) {
             this.battlegroundNextLevel.render(graphics);
+            this.renderElements(graphics);
+
+        } else if (Game.gameState == GameState.GAME_LEVEL_THREE) {
+            this.battlegroundLevelThree.render(graphics);
             this.renderElements(graphics);
 
         }
