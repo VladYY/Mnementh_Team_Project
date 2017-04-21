@@ -21,7 +21,6 @@ public class Controller {
     private Game game;
     private Random random;
 
-    private FriendlyEntity player;
     private List<FriendlyEntity> friendlyEntities;
     private List<EnemyEntity> enemyEntities;
     private List<BossEntity> bossEntities;
@@ -39,10 +38,6 @@ public class Controller {
         this.enemyEntities = new ArrayList<>();
         this.bossEntities = new ArrayList<>();
         this.bossShotEntities = new ArrayList<>();
-    }
-
-    public void setPlayer(FriendlyEntity player) {
-        this.player = player;
     }
 
     public List<FriendlyEntity> getFriendly() {
@@ -116,7 +111,6 @@ public class Controller {
             this.game.setBossSpawned(false);
             Game.gameState = GameState.END;
             this.game.setEnemyKilled(this.game.getEnemyKilled() + 1);
-            this.bossShotEntities.clear();
         }
 
         //FOR FRIENDLY ENTITY
@@ -153,9 +147,12 @@ public class Controller {
             if (this.bossShot.getX() < 0
                 || this.bossShot.getY() < 0
                 || this.bossShot.getX() > 1280
-                || this.bossShot.getY() > 800) {
+                || this.bossShot.getY() > 800
+                || Game.gameState == GameState.END) {
 
                 this.removeEntity(this.bossShot);
+                this.bossShotEntities.clear();
+                break;
             }
 
             this.bossShot.tick();

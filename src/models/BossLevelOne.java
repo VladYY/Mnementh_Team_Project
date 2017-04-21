@@ -106,10 +106,10 @@ public class BossLevelOne extends DefaultObject implements BossEntity {
                 this.isAttackingRight = true;
                 this.animationAttackRight.runAnimation();
             }
+        }
 
-            if(this.game.getPlayer1Health() <= 0) {
-                this.controller.removeEntity(this);
-            }
+        if(this.game.getPlayer1Health() <= 0) {
+            this.controller.removeEntity(this);
         }
     }
 
@@ -183,37 +183,25 @@ public class BossLevelOne extends DefaultObject implements BossEntity {
     private void setAnimation() {
         int colIndex = 1;
         int rowIndex = 1;
-        if(Game.gameState == GameState.GAME_LEVEL_ONE) {
-            this.fillBossImages(colIndex, rowIndex);
-        } else if(Game.gameState == GameState.GAME_LEVEL_TWO) {
-            rowIndex = 5;
-            this.fillBossImages(colIndex, rowIndex);
-        }
+        this.fillBossImages(colIndex, rowIndex);
 
         this.animationLeft = new Animation(5, Arrays.copyOfRange(this.bossImages, 0, 8));
         this.animationRight = new Animation(5, Arrays.copyOfRange(this.bossImages, 8, this.bossImages.length));
 
-        if(Game.gameState == GameState.GAME_LEVEL_ONE) {
-            rowIndex = 3;
-            this.fillBossImages(colIndex, rowIndex);
-
-        } else if(Game.gameState == GameState.GAME_LEVEL_TWO) {
-            rowIndex = 7;
-            this.fillBossImages(colIndex, rowIndex);
-        }
+        rowIndex = 3;
+        this.fillBossImages(colIndex, rowIndex);
 
         this.animationAttackLeft = new Animation(5, Arrays.copyOfRange(this.bossImages, 0, 8));
         this.animationAttackRight = new Animation(5, Arrays.copyOfRange(this.bossImages, 8, this.bossImages.length));
     }
 
     private void fillBossImages(int colIndex, int rowIndex) {
-        int initialRowIndex = rowIndex;
         for (int i = 0; i < this.bossImages.length; i++) {
             if(i == 8){
                 colIndex = 1;
-                initialRowIndex = rowIndex + 1;
+                rowIndex += 1;
             }
-            this.bossImages[i] = this.spriteSheet.grabBossImage(colIndex, initialRowIndex, 144, 144);
+            this.bossImages[i] = this.spriteSheet.grabBossImage(colIndex, rowIndex, 144, 144);
             colIndex++;
         }
     }
