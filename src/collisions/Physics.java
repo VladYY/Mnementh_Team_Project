@@ -1,9 +1,6 @@
 package collisions;
 
-import interfaces.BossEntity;
-import interfaces.BossShotEntity;
-import interfaces.EnemyEntity;
-import interfaces.FriendlyEntity;
+import interfaces.*;
 
 public class Physics {
 
@@ -30,5 +27,10 @@ public class Physics {
     public static boolean collision(EnemyEntity enemy, FriendlyEntity friendly) {
 
         return enemy.getBounds().intersects(friendly.getBounds());
+    }
+
+    public static boolean collision(FriendlyEntity friendlyEntity, HealthRestorer healthRestorer) {
+
+        return friendlyEntity.getBounds().intersects(healthRestorer.getBounds());
     }
 }

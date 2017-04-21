@@ -170,6 +170,11 @@ public class Enemy extends DefaultObject implements EnemyEntity {
         return new Rectangle((int)super.getX() , (int)super.getY(), 42, 65);
     }
 
+    @Override
+    public boolean isHunter() {
+        return this.isHunter;
+    }
+
     private Random getRnd() {
         return this.rnd;
     }

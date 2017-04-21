@@ -53,6 +53,7 @@ public class Game extends Canvas implements Runnable {
     private BufferedImage spriteSheetDragon = null;
     private BufferedImage spriteSheetBoss = null;
     private BufferedImage spriteSheetBossShot = null;
+    private BufferedImage spriteSheetHealth = null;
 
     private Battleground battleground;
     private Battleground battlegroundNextLevel;
@@ -120,6 +121,10 @@ public class Game extends Canvas implements Runnable {
 
     public BufferedImage getSpriteSheetBossShot() {
         return this.spriteSheetBossShot;
+    }
+
+    public BufferedImage getSpriteSheetHealth() {
+        return this.spriteSheetHealth;
     }
 
     public List<EnemyEntity> getEnemyEntities() {
@@ -341,6 +346,7 @@ public class Game extends Canvas implements Runnable {
             this.spriteSheetDragon = loader.loadImage("/resources/gfx/fixed_dragon_sheet.png");
             this.spriteSheetBoss = loader.loadImage("/resources/gfx/fixed_boss_sprite.png");
             this.spriteSheetBossShot = loader.loadImage("/resources/gfx/boss_fireball.png");
+            this.spriteSheetHealth = loader.loadImage("/resources/gfx/health.png");
         } catch (IOException e) {
             e.printStackTrace();
         }

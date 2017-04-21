@@ -9,6 +9,7 @@ import enums.GameState;
 import interfaces.BossShotEntity;
 import interfaces.EnemyEntity;
 import interfaces.FriendlyEntity;
+import interfaces.HealthRestorer;
 import spitesheets.SpriteSheet;
 
 import java.awt.*;
@@ -75,6 +76,13 @@ public class Player extends DefaultObject implements FriendlyEntity {
         this.health = health;
     }
 
+    public void restoreHealth(int healthToRestore) {
+        this.health += healthToRestore;
+        if(this.health > 200) {
+            this.health = 200;
+        }
+    }
+
     public void tick() {
         super.setX(super.getX() + this.velX);
         super.setY(super.getY() + this.velY);
@@ -133,6 +141,14 @@ public class Player extends DefaultObject implements FriendlyEntity {
                 if (this.health <= 0) {
                     Game.gameState = GameState.END;
                 }
+            }
+        }
+
+        for (int i = 0; i < this.controller.getHealthRestorersEntities().size(); i++) {
+            HealthRestorer tempHealthRestorer = this.controller.getHealthRestorersEntities().get(i);
+            if(Physics.collision(this, tempHealthRestorer)) {
+                this.restoreHealth(tempHealthRestorer.getHealthRestoreQuantity());
+                this.controller.removeEntity(tempHealthRestorer);
             }
         }
 
